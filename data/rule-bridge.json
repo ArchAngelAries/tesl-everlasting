@@ -1,0 +1,971 @@
+{
+  "schema": 1,
+  "scope": "partial-development-rules",
+  "source": "https://github.com/tes-legends/teslegends",
+  "cards": [
+    {
+      "card_id": -733290941,
+      "name": "Corsair",
+      "type": "Creature",
+      "cost": 1,
+      "attack": 1,
+      "health": 1,
+      "source_file": "src__assets__tesl__brotherhood_set.json",
+      "source_id": "corsair",
+      "effects": []
+    },
+    {
+      "card_id": -858028003,
+      "name": "Reconstructed Spider",
+      "type": "Creature",
+      "cost": 1,
+      "attack": 1,
+      "health": 1,
+      "source_file": "src__assets__tesl__clockwork_set.json",
+      "source_id": "reconstructed-spider",
+      "effects": []
+    },
+    {
+      "card_id": -761328653,
+      "name": "Abomination",
+      "type": "Creature",
+      "cost": 1,
+      "attack": 1,
+      "health": 1,
+      "source_file": "src__assets__tesl__clockwork_set.json",
+      "source_id": "abomination",
+      "effects": []
+    },
+    {
+      "card_id": 157797006,
+      "name": "Afflicted Alit",
+      "type": "Creature",
+      "cost": 2,
+      "attack": 3,
+      "health": 1,
+      "source_file": "src__assets__tesl__core_set.json",
+      "source_id": "afflicted-alit",
+      "effects": [
+        {
+          "trigger": "Summon",
+          "type": "damage",
+          "amount": 2,
+          "target": "players"
+        }
+      ]
+    },
+    {
+      "card_id": 1677935019,
+      "name": "Bog Lurcher",
+      "type": "Creature",
+      "cost": 4,
+      "attack": 9,
+      "health": 1,
+      "source_file": "src__assets__tesl__core_set.json",
+      "source_id": "bog-lurcher",
+      "effects": []
+    },
+    {
+      "card_id": -554006585,
+      "name": "Camlorn Hero",
+      "type": "Creature",
+      "cost": 3,
+      "attack": 4,
+      "health": 2,
+      "source_file": "src__assets__tesl__core_set.json",
+      "source_id": "camlorn-hero",
+      "effects": [
+        {
+          "trigger": "Summon",
+          "type": "damage",
+          "amount": 2,
+          "target": "opponent"
+        }
+      ]
+    },
+    {
+      "card_id": 1690856288,
+      "name": "Ice Spike",
+      "type": "Action",
+      "cost": 2,
+      "attack": null,
+      "health": null,
+      "source_file": "src__assets__tesl__core_set.json",
+      "source_id": "ice-spike",
+      "effects": [
+        {
+          "trigger": "Play",
+          "type": "damage",
+          "amount": 2,
+          "target": "opponent"
+        },
+        {
+          "trigger": "Play",
+          "type": "drawCards",
+          "amount": 1,
+          "target": "player"
+        }
+      ]
+    },
+    {
+      "card_id": 1023321735,
+      "name": "Redoran Enforcer",
+      "type": "Creature",
+      "cost": 2,
+      "attack": 2,
+      "health": 3,
+      "source_file": "src__assets__tesl__core_set.json",
+      "source_id": "redoran-enforcer",
+      "effects": []
+    },
+    {
+      "card_id": 1151548217,
+      "name": "Cathay-raht Veteran",
+      "type": "Creature",
+      "cost": 2,
+      "attack": 1,
+      "health": 5,
+      "source_file": "src__assets__tesl__core_set.json",
+      "source_id": "cathay-raht-veteran",
+      "effects": []
+    },
+    {
+      "card_id": -741858815,
+      "name": "Imperial Legionnaire",
+      "type": "Creature",
+      "cost": 3,
+      "attack": 3,
+      "health": 4,
+      "source_file": "src__assets__tesl__core_set.json",
+      "source_id": "imperial-legionnaire",
+      "effects": []
+    },
+    {
+      "card_id": 438381503,
+      "name": "Tusked Bristleback",
+      "type": "Creature",
+      "cost": 5,
+      "attack": 5,
+      "health": 5,
+      "source_file": "src__assets__tesl__core_set.json",
+      "source_id": "tusked-bristleback",
+      "effects": []
+    },
+    {
+      "card_id": -2066182867,
+      "name": "An-Xileel Invader",
+      "type": "Creature",
+      "cost": 4,
+      "attack": 5,
+      "health": 3,
+      "source_file": "src__assets__tesl__core_set.json",
+      "source_id": "an-xileel-invader",
+      "effects": []
+    },
+    {
+      "card_id": -799469860,
+      "name": "Helstrom Footpad",
+      "type": "Creature",
+      "cost": 2,
+      "attack": 3,
+      "health": 2,
+      "source_file": "src__assets__tesl__core_set.json",
+      "source_id": "helstrom-footpad",
+      "effects": []
+    },
+    {
+      "card_id": 1260418222,
+      "name": "Highland Lurcher",
+      "type": "Creature",
+      "cost": 6,
+      "attack": 7,
+      "health": 5,
+      "source_file": "src__assets__tesl__core_set.json",
+      "source_id": "highland-lurcher",
+      "effects": []
+    },
+    {
+      "card_id": 1427457192,
+      "name": "Swamp Leviathan",
+      "type": "Creature",
+      "cost": 7,
+      "attack": 8,
+      "health": 8,
+      "source_file": "src__assets__tesl__core_set.json",
+      "source_id": "swamp-leviathan",
+      "effects": []
+    },
+    {
+      "card_id": 620729069,
+      "name": "Enraged Mudcrab",
+      "type": "Creature",
+      "cost": 1,
+      "attack": 2,
+      "health": 1,
+      "source_file": "src__assets__tesl__core_set.json",
+      "source_id": "enraged-mudcrab",
+      "effects": []
+    },
+    {
+      "card_id": -1148597341,
+      "name": "Ferocious Dreugh",
+      "type": "Creature",
+      "cost": 4,
+      "attack": 3,
+      "health": 5,
+      "source_file": "src__assets__tesl__core_set.json",
+      "source_id": "ferocious-dreugh",
+      "effects": []
+    },
+    {
+      "card_id": -1859921962,
+      "name": "Ancient Giant",
+      "type": "Creature",
+      "cost": 1,
+      "attack": 1,
+      "health": 1,
+      "source_file": "src__assets__tesl__core_set.json",
+      "source_id": "ancient-giant",
+      "effects": []
+    },
+    {
+      "card_id": 1993801859,
+      "name": "Argonian Recruit",
+      "type": "Creature",
+      "cost": 1,
+      "attack": 1,
+      "health": 1,
+      "source_file": "src__assets__tesl__core_set.json",
+      "source_id": "argonian-recruit",
+      "effects": []
+    },
+    {
+      "card_id": -47134714,
+      "name": "Argonian Veteran",
+      "type": "Creature",
+      "cost": 3,
+      "attack": 3,
+      "health": 3,
+      "source_file": "src__assets__tesl__core_set.json",
+      "source_id": "argonian-veteran",
+      "effects": []
+    },
+    {
+      "card_id": 2042637566,
+      "name": "Deshaan Sneak",
+      "type": "Creature",
+      "cost": 4,
+      "attack": 3,
+      "health": 3,
+      "source_file": "src__assets__tesl__core_set.json",
+      "source_id": "deshaan-sneak",
+      "effects": []
+    },
+    {
+      "card_id": 286214085,
+      "name": "Durzog",
+      "type": "Creature",
+      "cost": 3,
+      "attack": 4,
+      "health": 4,
+      "source_file": "src__assets__tesl__core_set.json",
+      "source_id": "durzog",
+      "effects": []
+    },
+    {
+      "card_id": 1150098037,
+      "name": "Imperial Grunt",
+      "type": "Creature",
+      "cost": 1,
+      "attack": 1,
+      "health": 1,
+      "source_file": "src__assets__tesl__core_set.json",
+      "source_id": "imperial-grunt",
+      "effects": []
+    },
+    {
+      "card_id": 1763894300,
+      "name": "Rotting Draugr",
+      "type": "Creature",
+      "cost": 1,
+      "attack": 1,
+      "health": 1,
+      "source_file": "src__assets__tesl__core_set.json",
+      "source_id": "rotting-draugr",
+      "effects": []
+    },
+    {
+      "card_id": 175622366,
+      "name": "Scamp",
+      "type": "Creature",
+      "cost": 1,
+      "attack": 1,
+      "health": 1,
+      "source_file": "src__assets__tesl__core_set.json",
+      "source_id": "scamp",
+      "effects": []
+    },
+    {
+      "card_id": 404557142,
+      "name": "Shriveled Mummy",
+      "type": "Creature",
+      "cost": 2,
+      "attack": 2,
+      "health": 2,
+      "source_file": "src__assets__tesl__core_set.json",
+      "source_id": "shriveled-mummy",
+      "effects": []
+    },
+    {
+      "card_id": 214815022,
+      "name": "Skeleton",
+      "type": "Creature",
+      "cost": 1,
+      "attack": 1,
+      "health": 1,
+      "source_file": "src__assets__tesl__core_set.json",
+      "source_id": "skeleton",
+      "effects": []
+    },
+    {
+      "card_id": -1203785660,
+      "name": "Snow Fox",
+      "type": "Creature",
+      "cost": 3,
+      "attack": 2,
+      "health": 3,
+      "source_file": "src__assets__tesl__core_set.json",
+      "source_id": "snow-fox",
+      "effects": []
+    },
+    {
+      "card_id": -1962754183,
+      "name": "Spiderling",
+      "type": "Creature",
+      "cost": 2,
+      "attack": 2,
+      "health": 1,
+      "source_file": "src__assets__tesl__core_set.json",
+      "source_id": "spiderling",
+      "effects": []
+    },
+    {
+      "card_id": -1081314612,
+      "name": "Sundered Shade",
+      "type": "Creature",
+      "cost": 2,
+      "attack": 3,
+      "health": 2,
+      "source_file": "src__assets__tesl__core_set.json",
+      "source_id": "sundered-shade",
+      "effects": []
+    },
+    {
+      "card_id": 858815917,
+      "name": "Young Wolf",
+      "type": "Creature",
+      "cost": 1,
+      "attack": 1,
+      "health": 1,
+      "source_file": "src__assets__tesl__core_set.json",
+      "source_id": "young-wolf",
+      "effects": []
+    },
+    {
+      "card_id": 1128875378,
+      "name": "Jerall Forager",
+      "type": "Creature",
+      "cost": 2,
+      "attack": 2,
+      "health": 2,
+      "source_file": "src__assets__tesl__core_set.json",
+      "source_id": "jerall-forager",
+      "effects": []
+    },
+    {
+      "card_id": 373560332,
+      "name": "Morthal Watchman",
+      "type": "Creature",
+      "cost": 1,
+      "attack": 2,
+      "health": 1,
+      "source_file": "src__assets__tesl__core_set.json",
+      "source_id": "morthal-watchman",
+      "effects": []
+    },
+    {
+      "card_id": 494443404,
+      "name": "Scuttler",
+      "type": "Creature",
+      "cost": 1,
+      "attack": 1,
+      "health": 2,
+      "source_file": "src__assets__tesl__core_set.json",
+      "source_id": "scuttler",
+      "effects": []
+    },
+    {
+      "card_id": 1449346166,
+      "name": "Whiterun Trooper",
+      "type": "Creature",
+      "cost": 4,
+      "attack": 6,
+      "health": 2,
+      "source_file": "src__assets__tesl__core_set.json",
+      "source_id": "whiterun-trooper",
+      "effects": []
+    },
+    {
+      "card_id": 1717577005,
+      "name": "Skingrad Patroller",
+      "type": "Creature",
+      "cost": 2,
+      "attack": 3,
+      "health": 2,
+      "source_file": "src__assets__tesl__core_set.json",
+      "source_id": "skingrad-patroller",
+      "effects": []
+    },
+    {
+      "card_id": 115116463,
+      "name": "Lame Corprus",
+      "type": "Creature",
+      "cost": 6,
+      "attack": 5,
+      "health": 6,
+      "source_file": "src__assets__tesl__morrowind_set.json",
+      "source_id": "lame-corprus",
+      "effects": []
+    },
+    {
+      "card_id": -503969220,
+      "name": "Spirit Knife",
+      "type": "Action",
+      "cost": 7,
+      "attack": null,
+      "health": null,
+      "source_file": "src__assets__tesl__morrowind_set.json",
+      "source_id": "spirit-knife",
+      "effects": [
+        {
+          "trigger": "Play",
+          "type": "damage",
+          "amount": 7,
+          "target": "creature"
+        },
+        {
+          "trigger": "Play",
+          "type": "drawCards",
+          "amount": 1,
+          "target": "player"
+        }
+      ]
+    },
+    {
+      "card_id": 1830057376,
+      "name": "Blueclaw Matron",
+      "type": "Creature",
+      "cost": 7,
+      "attack": 3,
+      "health": 8,
+      "source_file": "src__assets__tesl__morrowind_set.json",
+      "source_id": "blueclaw-matron",
+      "effects": []
+    },
+    {
+      "card_id": 122067942,
+      "name": "Fetcherfly Swarm",
+      "type": "Creature",
+      "cost": 2,
+      "attack": 2,
+      "health": 2,
+      "source_file": "src__assets__tesl__morrowind_set.json",
+      "source_id": "fetcherfly-swarm",
+      "effects": []
+    },
+    {
+      "card_id": 1842794342,
+      "name": "Kwama Forager",
+      "type": "Creature",
+      "cost": 1,
+      "attack": 1,
+      "health": 1,
+      "source_file": "src__assets__tesl__morrowind_set.json",
+      "source_id": "kwama-forager",
+      "effects": []
+    },
+    {
+      "card_id": 815294691,
+      "name": "Vvardvark",
+      "type": "Creature",
+      "cost": 0,
+      "attack": 0,
+      "health": 1,
+      "source_file": "src__assets__tesl__morrowind_set.json",
+      "source_id": "vvardvark",
+      "effects": []
+    },
+    {
+      "card_id": 145203695,
+      "name": "Stoutheart Giant",
+      "type": "Creature",
+      "cost": 5,
+      "attack": 6,
+      "health": 4,
+      "source_file": "src__assets__tesl__skyrim_set.json",
+      "source_id": "stoutheart-giant",
+      "effects": []
+    },
+    {
+      "card_id": 1170174278,
+      "name": "Vigilant of Stendarr",
+      "type": "Creature",
+      "cost": 3,
+      "attack": 5,
+      "health": 2,
+      "source_file": "src__assets__tesl__skyrim_set.json",
+      "source_id": "vigilant-of-stendarr",
+      "effects": []
+    },
+    {
+      "card_id": 1894867222,
+      "name": "Solitude Stalwart",
+      "type": "Creature",
+      "cost": 1,
+      "attack": 2,
+      "health": 2,
+      "source_file": "src__assets__tesl__skyrim_set.json",
+      "source_id": "solitude-stalwart",
+      "effects": []
+    },
+    {
+      "card_id": 722033582,
+      "name": "Chaurus",
+      "type": "Creature",
+      "cost": 4,
+      "attack": 4,
+      "health": 4,
+      "source_file": "src__assets__tesl__skyrim_set.json",
+      "source_id": "chaurus",
+      "effects": []
+    },
+    {
+      "card_id": -1138789249,
+      "name": "Cave Bear",
+      "type": "Creature",
+      "cost": 5,
+      "attack": 5,
+      "health": 6,
+      "source_file": "src__assets__tesl__skyrim_set.json",
+      "source_id": "cave-bear",
+      "effects": []
+    },
+    {
+      "card_id": 177548251,
+      "name": "Angry Villager",
+      "type": "Creature",
+      "cost": 1,
+      "attack": 1,
+      "health": 1,
+      "source_file": "src__assets__tesl__skyrim_set.json",
+      "source_id": "angry-villager",
+      "effects": []
+    },
+    {
+      "card_id": 760644076,
+      "name": "Hulking Draugr",
+      "type": "Creature",
+      "cost": 5,
+      "attack": 5,
+      "health": 5,
+      "source_file": "src__assets__tesl__skyrim_set.json",
+      "source_id": "hulking-draugr",
+      "effects": []
+    },
+    {
+      "card_id": -220910969,
+      "name": "Rallying Stormcloak",
+      "type": "Creature",
+      "cost": 2,
+      "attack": 2,
+      "health": 2,
+      "source_file": "src__assets__tesl__skyrim_set.json",
+      "source_id": "rallying-stormcloak",
+      "effects": []
+    },
+    {
+      "card_id": -1994108878,
+      "name": "Sovngarde Hero",
+      "type": "Creature",
+      "cost": 3,
+      "attack": 3,
+      "health": 3,
+      "source_file": "src__assets__tesl__skyrim_set.json",
+      "source_id": "sovngarde-hero",
+      "effects": []
+    },
+    {
+      "card_id": 1591495941,
+      "name": "Stormcloak Battalion",
+      "type": "Creature",
+      "cost": 4,
+      "attack": 5,
+      "health": 5,
+      "source_file": "src__assets__tesl__skyrim_set.json",
+      "source_id": "stormcloak-battalion",
+      "effects": []
+    },
+    {
+      "card_id": 759136206,
+      "name": "Stricken Draugr",
+      "type": "Creature",
+      "cost": 2,
+      "attack": 2,
+      "health": 2,
+      "source_file": "src__assets__tesl__skyrim_set.json",
+      "source_id": "stricken-draugr",
+      "effects": []
+    },
+    {
+      "card_id": -639385803,
+      "name": "Thalmor Soldier",
+      "type": "Creature",
+      "cost": 1,
+      "attack": 1,
+      "health": 1,
+      "source_file": "src__assets__tesl__skyrim_set.json",
+      "source_id": "thalmor-soldier",
+      "effects": []
+    },
+    {
+      "card_id": 2121856305,
+      "name": "Acolyte of Boethiah",
+      "type": "Creature",
+      "cost": 1,
+      "attack": 1,
+      "health": 2,
+      "source_file": "src__assets__tesl__story_set.json",
+      "source_id": "acolyte-of-boethiah",
+      "effects": []
+    },
+    {
+      "card_id": 139473413,
+      "name": "Aggressive Spider",
+      "type": "Creature",
+      "cost": 1,
+      "attack": 2,
+      "health": 1,
+      "source_file": "src__assets__tesl__story_set.json",
+      "source_id": "aggressive-spider",
+      "effects": []
+    },
+    {
+      "card_id": -1371947242,
+      "name": "Baandari Outlaw",
+      "type": "Creature",
+      "cost": 2,
+      "attack": 2,
+      "health": 2,
+      "source_file": "src__assets__tesl__story_set.json",
+      "source_id": "baandari-outlaw",
+      "effects": []
+    },
+    {
+      "card_id": -1944635378,
+      "name": "Boethiah Cultist",
+      "type": "Creature",
+      "cost": 1,
+      "attack": 1,
+      "health": 1,
+      "source_file": "src__assets__tesl__story_set.json",
+      "source_id": "boethiah-cultist",
+      "effects": []
+    },
+    {
+      "card_id": -894653618,
+      "name": "Crowd Favorite",
+      "type": "Creature",
+      "cost": 2,
+      "attack": 2,
+      "health": 1,
+      "source_file": "src__assets__tesl__story_set.json",
+      "source_id": "crowd-favorite",
+      "effects": []
+    },
+    {
+      "card_id": 906449635,
+      "name": "Cruel Bandit",
+      "type": "Creature",
+      "cost": 1,
+      "attack": 1,
+      "health": 1,
+      "source_file": "src__assets__tesl__story_set.json",
+      "source_id": "cruel-bandit",
+      "effects": []
+    },
+    {
+      "card_id": -1892047993,
+      "name": "Daedra Worshiper",
+      "type": "Creature",
+      "cost": 2,
+      "attack": 2,
+      "health": 2,
+      "source_file": "src__assets__tesl__story_set.json",
+      "source_id": "daedra-worshiper",
+      "effects": []
+    },
+    {
+      "card_id": -1988362919,
+      "name": "Dark Adherent",
+      "type": "Creature",
+      "cost": 1,
+      "attack": 2,
+      "health": 1,
+      "source_file": "src__assets__tesl__story_set.json",
+      "source_id": "dark-adherent",
+      "effects": []
+    },
+    {
+      "card_id": -1866183707,
+      "name": "Defiant Prisoner",
+      "type": "Creature",
+      "cost": 4,
+      "attack": 2,
+      "health": 4,
+      "source_file": "src__assets__tesl__story_set.json",
+      "source_id": "defiant-prisoner",
+      "effects": []
+    },
+    {
+      "card_id": -1734732697,
+      "name": "Desperate Captive",
+      "type": "Creature",
+      "cost": 2,
+      "attack": 3,
+      "health": 1,
+      "source_file": "src__assets__tesl__story_set.json",
+      "source_id": "desperate-captive",
+      "effects": []
+    },
+    {
+      "card_id": 76505525,
+      "name": "Fearsome Dremora",
+      "type": "Creature",
+      "cost": 4,
+      "attack": 3,
+      "health": 3,
+      "source_file": "src__assets__tesl__story_set.json",
+      "source_id": "fearsome-dremora",
+      "effects": []
+    },
+    {
+      "card_id": 1714445403,
+      "name": "Foraging Mudcrab",
+      "type": "Creature",
+      "cost": 1,
+      "attack": 1,
+      "health": 1,
+      "source_file": "src__assets__tesl__story_set.json",
+      "source_id": "foraging-mudcrab",
+      "effects": []
+    },
+    {
+      "card_id": -1429888706,
+      "name": "Graceful Myrmidon",
+      "type": "Creature",
+      "cost": 5,
+      "attack": 4,
+      "health": 4,
+      "source_file": "src__assets__tesl__story_set.json",
+      "source_id": "graceful-myrmidon",
+      "effects": []
+    },
+    {
+      "card_id": -49228705,
+      "name": "High Elf Soldier",
+      "type": "Creature",
+      "cost": 4,
+      "attack": 3,
+      "health": 3,
+      "source_file": "src__assets__tesl__story_set.json",
+      "source_id": "high-elf-soldier",
+      "effects": []
+    },
+    {
+      "card_id": -374513854,
+      "name": "Northpoint Lieutenant",
+      "type": "Creature",
+      "cost": 4,
+      "attack": 4,
+      "health": 2,
+      "source_file": "src__assets__tesl__story_set.json",
+      "source_id": "northpoint-lieutenant",
+      "effects": []
+    },
+    {
+      "card_id": -675856486,
+      "name": "Reckless Combatant",
+      "type": "Creature",
+      "cost": 1,
+      "attack": 2,
+      "health": 1,
+      "source_file": "src__assets__tesl__story_set.json",
+      "source_id": "reckless-combatant",
+      "effects": []
+    },
+    {
+      "card_id": -1424678033,
+      "name": "Redguard Pit Dog",
+      "type": "Creature",
+      "cost": 3,
+      "attack": 3,
+      "health": 2,
+      "source_file": "src__assets__tesl__story_set.json",
+      "source_id": "redguard-pit-dog",
+      "effects": []
+    },
+    {
+      "card_id": -956430111,
+      "name": "Skooma Smuggler",
+      "type": "Creature",
+      "cost": 1,
+      "attack": 1,
+      "health": 3,
+      "source_file": "src__assets__tesl__story_set.json",
+      "source_id": "skooma-smuggler",
+      "effects": []
+    },
+    {
+      "card_id": 242679399,
+      "name": "South Road Brigand",
+      "type": "Creature",
+      "cost": 1,
+      "attack": 2,
+      "health": 1,
+      "source_file": "src__assets__tesl__story_set.json",
+      "source_id": "south-road-brigand",
+      "effects": []
+    },
+    {
+      "card_id": 1480844588,
+      "name": "Thalmor Agent",
+      "type": "Creature",
+      "cost": 2,
+      "attack": 2,
+      "health": 3,
+      "source_file": "src__assets__tesl__story_set.json",
+      "source_id": "thalmor-agent",
+      "effects": []
+    },
+    {
+      "card_id": -1952594300,
+      "name": "Veteran Gladiator",
+      "type": "Creature",
+      "cost": 4,
+      "attack": 3,
+      "health": 3,
+      "source_file": "src__assets__tesl__story_set.json",
+      "source_id": "veteran-gladiator",
+      "effects": []
+    },
+    {
+      "card_id": 1821421158,
+      "name": "Vile Imp",
+      "type": "Creature",
+      "cost": 2,
+      "attack": 3,
+      "health": 1,
+      "source_file": "src__assets__tesl__story_set.json",
+      "source_id": "vile-imp",
+      "effects": []
+    },
+    {
+      "card_id": 972100948,
+      "name": "Stalking Crocodile",
+      "type": "Creature",
+      "cost": 2,
+      "attack": 3,
+      "health": 2,
+      "source_file": "src__assets__tesl__story_set.json",
+      "source_id": "stalking-crocodile",
+      "effects": []
+    },
+    {
+      "card_id": -1029315278,
+      "name": "Snapping Dreugh",
+      "type": "Creature",
+      "cost": 4,
+      "attack": 3,
+      "health": 3,
+      "source_file": "src__assets__tesl__story_set.json",
+      "source_id": "snapping-dreugh",
+      "effects": []
+    },
+    {
+      "card_id": 1936706051,
+      "name": "Hive Worker",
+      "type": "Creature",
+      "cost": 4,
+      "attack": 3,
+      "health": 3,
+      "source_file": "src__assets__tesl__story_set.json",
+      "source_id": "hive-worker",
+      "effects": []
+    },
+    {
+      "card_id": 31057844,
+      "name": "Starved Hunger",
+      "type": "Creature",
+      "cost": 2,
+      "attack": 4,
+      "health": 1,
+      "source_file": "src__assets__tesl__story_set.json",
+      "source_id": "starved-hunger",
+      "effects": []
+    },
+    {
+      "card_id": -987512163,
+      "name": "Whiterun Recruit",
+      "type": "Creature",
+      "cost": 4,
+      "attack": 4,
+      "health": 2,
+      "source_file": "src__assets__tesl__story_set.json",
+      "source_id": "whiterun-recruit",
+      "effects": []
+    },
+    {
+      "card_id": -178865414,
+      "name": "Rihad Nomad",
+      "type": "Creature",
+      "cost": 2,
+      "attack": 2,
+      "health": 2,
+      "source_file": "src__assets__tesl__story_set.json",
+      "source_id": "rihad-nomad",
+      "effects": []
+    },
+    {
+      "card_id": 526804092,
+      "name": "Cathay Novice",
+      "type": "Creature",
+      "cost": 1,
+      "attack": 2,
+      "health": 1,
+      "source_file": "src__assets__tesl__story_set.json",
+      "source_id": "cathay-novice",
+      "effects": []
+    },
+    {
+      "card_id": 436368971,
+      "name": "Cheydinhal Conscript",
+      "type": "Creature",
+      "cost": 1,
+      "attack": 1,
+      "health": 3,
+      "source_file": "src__assets__tesl__story_set.json",
+      "source_id": "cheydinhal-conscript",
+      "effects": []
+    }
+  ]
+}

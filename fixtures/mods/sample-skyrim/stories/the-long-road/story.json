@@ -1,0 +1,343 @@
+{
+ "format": 1,
+ "slug": "the-long-road",
+ "name": "The Long Road",
+ "description": "Sample: a story with more acts and episodes than the borrowed layout shows (4 acts, 10 episodes).",
+ "template": "DBH",
+ "acts": [
+  {
+   "slug": "act1",
+   "name": "The Road North",
+   "chapters": [
+    {
+     "slug": "ep1",
+     "name": "Episode 1: The Road North",
+     "coin": "asset:ContentPack000/Images/CampaignCoins/DBH_Location_Discs/DBH_LOC_CRDL_01_160_avatar_png",
+     "intro": [
+      {
+       "speaker": "Narrator",
+       "text": "The Road North, part 1."
+      }
+     ],
+     "events": [
+      {
+       "slug": "camp",
+       "name": "Campfire",
+       "x": 0.5,
+       "y": 0.5,
+       "intro": [
+        {
+         "speaker": "Traveller",
+         "text": "Rest a while.",
+         "portrait": "asset:ContentPack000/Images/AIPortraits/DBH_Opponent_Portraits/DBH_NPC_CRDL_02_284_avatar_png"
+        }
+       ],
+       "rewards": [
+        {
+         "gold": 10
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "slug": "ep2",
+     "name": "Episode 2",
+     "coin": "asset:ContentPack000/Images/CampaignCoins/DBH_Location_Discs/DBH_LOC_CRDL_01_160_avatar_png",
+     "intro": [
+      {
+       "speaker": "Narrator",
+       "text": "The Road North, part 2."
+      }
+     ],
+     "events": [
+      {
+       "slug": "camp",
+       "name": "Campfire",
+       "x": 0.5,
+       "y": 0.5,
+       "intro": [
+        {
+         "speaker": "Traveller",
+         "text": "Rest a while.",
+         "portrait": "asset:ContentPack000/Images/AIPortraits/DBH_Opponent_Portraits/DBH_NPC_CRDL_02_284_avatar_png"
+        }
+       ],
+       "rewards": [
+        {
+         "gold": 10
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "slug": "ep3",
+     "name": "Episode 3",
+     "coin": "asset:ContentPack000/Images/CampaignCoins/DBH_Location_Discs/DBH_LOC_CRDL_01_160_avatar_png",
+     "intro": [
+      {
+       "speaker": "Narrator",
+       "text": "The Road North, part 3."
+      }
+     ],
+     "events": [
+      {
+       "slug": "camp",
+       "name": "Campfire",
+       "x": 0.5,
+       "y": 0.5,
+       "intro": [
+        {
+         "speaker": "Traveller",
+         "text": "Rest a while.",
+         "portrait": "asset:ContentPack000/Images/AIPortraits/DBH_Opponent_Portraits/DBH_NPC_CRDL_02_284_avatar_png"
+        }
+       ],
+       "rewards": [
+        {
+         "gold": 10
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "slug": "ep4",
+     "name": "Episode 4",
+     "coin": "asset:ContentPack000/Images/CampaignCoins/DBH_Location_Discs/DBH_LOC_CRDL_01_160_avatar_png",
+     "intro": [
+      {
+       "speaker": "Narrator",
+       "text": "The Road North, part 4."
+      }
+     ],
+     "events": [
+      {
+       "slug": "camp",
+       "name": "Campfire",
+       "x": 0.5,
+       "y": 0.5,
+       "intro": [
+        {
+         "speaker": "Traveller",
+         "text": "Rest a while.",
+         "portrait": "asset:ContentPack000/Images/AIPortraits/DBH_Opponent_Portraits/DBH_NPC_CRDL_02_284_avatar_png"
+        }
+       ],
+       "rewards": [
+        {
+         "gold": 10
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "act2",
+   "name": "The Pale Pass",
+   "chapters": [
+    {
+     "slug": "ep1",
+     "name": "Episode 1: The Pale Pass",
+     "coin": "asset:ContentPack000/Images/CampaignCoins/DBH_Location_Discs/DBH_LOC_CRDL_01_160_avatar_png",
+     "intro": [
+      {
+       "speaker": "Narrator",
+       "text": "The Pale Pass, part 1."
+      }
+     ],
+     "events": [
+      {
+       "slug": "camp",
+       "name": "Campfire",
+       "x": 0.5,
+       "y": 0.5,
+       "intro": [
+        {
+         "speaker": "Traveller",
+         "text": "Rest a while.",
+         "portrait": "asset:ContentPack000/Images/AIPortraits/DBH_Opponent_Portraits/DBH_NPC_CRDL_02_284_avatar_png"
+        }
+       ],
+       "rewards": [
+        {
+         "gold": 10
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "slug": "ep2",
+     "name": "Episode 2",
+     "coin": "asset:ContentPack000/Images/CampaignCoins/DBH_Location_Discs/DBH_LOC_CRDL_01_160_avatar_png",
+     "intro": [
+      {
+       "speaker": "Narrator",
+       "text": "The Pale Pass, part 2."
+      }
+     ],
+     "events": [
+      {
+       "slug": "camp",
+       "name": "Campfire",
+       "x": 0.5,
+       "y": 0.5,
+       "intro": [
+        {
+         "speaker": "Traveller",
+         "text": "Rest a while.",
+         "portrait": "asset:ContentPack000/Images/AIPortraits/DBH_Opponent_Portraits/DBH_NPC_CRDL_02_284_avatar_png"
+        }
+       ],
+       "rewards": [
+        {
+         "gold": 10
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "act3",
+   "name": "Winterhold",
+   "chapters": [
+    {
+     "slug": "ep1",
+     "name": "Episode 1: Winterhold",
+     "coin": "asset:ContentPack000/Images/CampaignCoins/DBH_Location_Discs/DBH_LOC_CRDL_01_160_avatar_png",
+     "intro": [
+      {
+       "speaker": "Narrator",
+       "text": "Winterhold, part 1."
+      }
+     ],
+     "events": [
+      {
+       "slug": "camp",
+       "name": "Campfire",
+       "x": 0.5,
+       "y": 0.5,
+       "intro": [
+        {
+         "speaker": "Traveller",
+         "text": "Rest a while.",
+         "portrait": "asset:ContentPack000/Images/AIPortraits/DBH_Opponent_Portraits/DBH_NPC_CRDL_02_284_avatar_png"
+        }
+       ],
+       "rewards": [
+        {
+         "gold": 10
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "slug": "ep2",
+     "name": "Episode 2",
+     "coin": "asset:ContentPack000/Images/CampaignCoins/DBH_Location_Discs/DBH_LOC_CRDL_01_160_avatar_png",
+     "intro": [
+      {
+       "speaker": "Narrator",
+       "text": "Winterhold, part 2."
+      }
+     ],
+     "events": [
+      {
+       "slug": "camp",
+       "name": "Campfire",
+       "x": 0.5,
+       "y": 0.5,
+       "intro": [
+        {
+         "speaker": "Traveller",
+         "text": "Rest a while.",
+         "portrait": "asset:ContentPack000/Images/AIPortraits/DBH_Opponent_Portraits/DBH_NPC_CRDL_02_284_avatar_png"
+        }
+       ],
+       "rewards": [
+        {
+         "gold": 10
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "act4",
+   "name": "The Throat of the World",
+   "chapters": [
+    {
+     "slug": "ep1",
+     "name": "Episode 1: The Throat of the World",
+     "coin": "asset:ContentPack000/Images/CampaignCoins/DBH_Location_Discs/DBH_LOC_CRDL_01_160_avatar_png",
+     "intro": [
+      {
+       "speaker": "Narrator",
+       "text": "The Throat of the World, part 1."
+      }
+     ],
+     "events": [
+      {
+       "slug": "camp",
+       "name": "Campfire",
+       "x": 0.5,
+       "y": 0.5,
+       "intro": [
+        {
+         "speaker": "Traveller",
+         "text": "Rest a while.",
+         "portrait": "asset:ContentPack000/Images/AIPortraits/DBH_Opponent_Portraits/DBH_NPC_CRDL_02_284_avatar_png"
+        }
+       ],
+       "rewards": [
+        {
+         "gold": 10
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "slug": "ep2",
+     "name": "Episode 2",
+     "coin": "asset:ContentPack000/Images/CampaignCoins/DBH_Location_Discs/DBH_LOC_CRDL_01_160_avatar_png",
+     "intro": [
+      {
+       "speaker": "Narrator",
+       "text": "The Throat of the World, part 2."
+      }
+     ],
+     "events": [
+      {
+       "slug": "camp",
+       "name": "Campfire",
+       "x": 0.5,
+       "y": 0.5,
+       "intro": [
+        {
+         "speaker": "Traveller",
+         "text": "Rest a while.",
+         "portrait": "asset:ContentPack000/Images/AIPortraits/DBH_Opponent_Portraits/DBH_NPC_CRDL_02_284_avatar_png"
+        }
+       ],
+       "rewards": [
+        {
+         "gold": 10
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

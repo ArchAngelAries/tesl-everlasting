@@ -1,0 +1,19 @@
+{
+ "format": 1,
+ "cardbacks": [
+  {
+   "slug": "skyrim-heroes",
+   "name": "Skyrim Heroes",
+   "image": "skyrim-heroes.png",
+   "store": "skyrim-heroes-store.png",
+   "price": 0
+  },
+  {
+   "slug": "greybeard-shout",
+   "name": "Greybeard Shout",
+   "image": "greybeard-shout.png",
+   "store": "greybeard-shout-store.png",
+   "price": 400
+  }
+ ]
+}

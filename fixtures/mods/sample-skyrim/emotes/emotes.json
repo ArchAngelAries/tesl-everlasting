@@ -1,0 +1,17 @@
+{
+ "format": 1,
+ "emotes": [
+  {
+   "slug": "arrow-to-the-knee",
+   "label": "Arrow to the knee",
+   "text": "I used to be an adventurer like you...",
+   "like": "Oops",
+   "audio": "extra-all-arrow-to-the-knee.wav"
+  },
+  {
+   "slug": "fus-ro-dah",
+   "label": "Fus Ro Dah!",
+   "text": "FUS RO DAH!"
+  }
+ ]
+}

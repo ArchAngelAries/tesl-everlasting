@@ -1,0 +1,49 @@
+{
+ "format": 1,
+ "avatars": [
+  {
+   "slug": "housecarl",
+   "name": "Housecarl",
+   "image": "housecarl.png",
+   "circle": "housecarl-circle.png",
+   "voice": "AvatarBreton1",
+   "emotes": {
+    "Hello": {
+     "text": "My Jarl's hall is open to you.",
+     "audio": "housecarl-emote-Hello.wav"
+    },
+    "GoodGame": {
+     "text": "You fought with honour."
+    },
+    "Taunt": {
+     "text": "I am sworn to carry your burdens. Not your excuses."
+    }
+   },
+   "extra_emotes": [
+    {
+     "slug": "skol",
+     "label": "Skol!",
+     "text": "Skol! To Sovngarde!",
+     "like": "Taunt",
+     "audio": "extra-housecarl-skol.wav"
+    }
+   ]
+  },
+  {
+   "slug": "draugr",
+   "name": "Draugr",
+   "image": "draugr.png",
+   "circle": "draugr-circle.png"
+  },
+  {
+   "slug": "greybeard",
+   "name": "Greybeard",
+   "image": "greybeard.png",
+   "circle": "greybeard-circle.png"
+  }
+ ],
+ "page": {
+  "name": "Skyrim Heroes",
+  "description": "Avatars from the Skyrim Heroes sample mod."
+ }
+}

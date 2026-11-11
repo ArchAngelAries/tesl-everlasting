@@ -1,0 +1,161 @@
+key	entries (| separated)
+rewards_20_soul_gems	gems:20
+rewards_30_soul_gems	gems:30
+rewards_40_soul_gems	gems:40
+rewards_the_animal_lover_title	title:title_the_animal_lover
+rewards_alt_swims_at_night	premiumcardid:-79175348*1
+rewards_isle_of_madness_saint_card_back	cardback:cardback_isle_of_madness_saint
+rewards_cwc_act1_ep1_darkened_forest	card:Thornwell Terror*3|gems:20
+rewards_cwc_act1_ep1_forelhost_front_gate	card:Hallowed Deathpriest*3|gems:20
+rewards_cwc_act1_ep1_forelhost_lost_tomb_A	card:Sails-Through-Storms*1
+rewards_cwc_act1_ep1_forelhost_lost_tomb_B	card:Weakness*3|gems:30
+rewards_cwc_act1_ep1_mistveil_dungeon	card:Mistveil Warden*3|gems:20
+rewards_cwc_act1_ep1_ragged_flagon	card:Daring Heist*3|gems:20
+rewards_cwc_act1_ep1_streets_of_riften	card:Riften Lawkeeper*3|gems:20
+rewards_cwc_act1_ep1_thornwell_farm_A	card:Relic Hunter*3
+rewards_cwc_act1_ep1_thornwell_farm_B	card:Ratway Prospector*3|gems:20
+rewards_cwc_act1_ep2_alfe_fyr	card:Treasure Map*3|gems:20
+rewards_cwc_act1_ep2_bleakcoast_ridge	card:Grappling Hook*3|gems:20
+rewards_cwc_act1_ep2_college_of_winterhold_A	card:Dormant Centurion*3
+rewards_cwc_act1_ep2_college_of_winterhold_B	card:Arcanaeum Librarian*3|gems:20
+rewards_cwc_act1_ep2_end_of_episode_2_A	card:Laaneth*1
+rewards_cwc_act1_ep2_end_of_episode_2_B	card:Ruin Archaeologist*3|gems:30
+rewards_cwc_act1_ep2_jzargo	card:Scroll Seeker*3|gems:20
+rewards_cwc_act1_ep2_mount_anthor	card:Dragon Aspect*3|gems:20
+rewards_cwc_act1_ep2_sightless_pit_A	card:Back-Alley Rogue*3
+rewards_cwc_act1_ep2_sightless_pit_B	card:Cog Collector*3|gems:20
+rewards_cwc_act1_ep2_the_midden	card:Reverberating Strike*3|gems:20
+rewards_cwc_act1_ep2_winterhold_wilderness	card:Trial of Flame*3|gems:20
+rewards_cwc_act2_ep3_brass_fortress_market_square	card:Clockwork Apostle*3|gems:20
+rewards_cwc_act2_ep3_mire_mechanica	card:Murkwater Guide*3|gems:20
+rewards_cwc_act2_ep3_the_halls_of_conveyance_A	card:Assembled Conduit*3
+rewards_cwc_act2_ep3_the_halls_of_conveyance_B	card:Assembled Sanitizer*3|gems:20
+rewards_cwc_act2_ep3_the_last_stand_A	card:Galyn the Shelterer*1
+rewards_cwc_act2_ep3_the_last_stand_B	card:Brass Arquebus*3|gems:30
+rewards_cwc_act2_ep3_the_ventral_terminus_A	card:Assembled Sentry*3
+rewards_cwc_act2_ep3_the_ventral_terminus_B	card:Reflective Automaton*3|gems:20
+rewards_cwc_act2_ep4_cogitum_centralis_A	card:Hulking Fabricant*3
+rewards_cwc_act2_ep4_cogitum_centralis_B	card:Shalk Fabricant*3|gems:20
+rewards_cwc_act2_ep4_hall_of_conveyance_A	card:Ruthless Freebooter*3
+rewards_cwc_act2_ep4_hall_of_conveyance_B	card:Firepot Spider*3|gems:20
+rewards_cwc_act2_ep4_the_apprentice_A	card:Gearwork Spider*3
+rewards_cwc_act2_ep4_the_apprentice_B	card:Mecinar's Will*3|gems:20
+rewards_cwc_act2_ep4_the_betrayal_A	card:Kagouti Fabricant*3
+rewards_cwc_act2_ep4_the_betrayal_B	card:Abandoned Imperfect*3|gems:20
+rewards_cwc_act2_ep4_the_inner_curiosity_A	card:Aldora the Daring*1
+rewards_cwc_act2_ep4_the_inner_curiosity_B	card:Dwarven Colossus*3|gems:30
+rewards_cwc_act2_ep4_the_red_mountain	card:Star-Sung Bard*3|gems:20
+rewards_cwc_act3_ep5_collapsing_tunnel	card:Verminous Fabricant*3|gems:20
+rewards_cwc_act3_ep5_piston_cavum	card:Nix-Hound Fabricant*3|gems:20
+rewards_cwc_act3_ep5_shaft_of_sohleh_A	card:Assembled Titan*1
+rewards_cwc_act3_ep5_shaft_of_sohleh_B	card:Hunter-Killers*3|gems:30
+rewards_cwc_act3_ep5_submerged_aqueduct	card:Brassilisk*3|gems:20
+rewards_cwc_act3_ep5_the_canimus_pit_A	card:Reconstruction Engine*3
+rewards_cwc_act3_ep5_the_canimus_pit_B	card:Skeevaton*3|gems:20
+rewards_cwc_act3_ep5_the_tools_A	card:Awakened Imperfect*3
+rewards_cwc_act3_ep5_the_tools_B	card:Fabricate*3|gems:20
+rewards_cwc_act3_ep6_chamber_of_lorkhan_A	card:Mecinar*1
+rewards_cwc_act3_ep6_chamber_of_lorkhan_B	
+rewards_cwc_act3_ep6_dragonclaw_rock	card:Clockwork Dragon*3|gems:20
+rewards_cwc_act3_ep6_eastmarch_camp	card:Phalanx Exemplar*3|gems:20
+rewards_cwc_act3_ep6_sanguine_barrows	card:Barrow Stalker*3|gems:20
+rewards_cwc_act3_ep6_the_inner_curiosity_A	card:Clockwork Scorpion*3
+rewards_cwc_act3_ep6_the_inner_curiosity_B	card:Excavate*3|gems:20
+rewards_cwc_act3_ep6_the_throne_aligned_A	card:Memory Wraith*3
+rewards_cwc_act3_ep6_the_throne_aligned_B	card:Throne Aligned*3|gems:20
+rewards_dbh_act1_ep1_arenthil_wethrins_house	card:Grand Ball*3|gems:20
+rewards_dbh_act1_ep1_cloudy_dregs_inn	card:Knife to the Throat*3
+rewards_dbh_act1_ep1_docks	card:The Black Dragon*1|gems:30
+rewards_dbh_act1_ep1_dreughside	card:Gristlehide Dreugh*3|gems:20
+rewards_dbh_act1_ep1_kastus_thorns_house	card:Brotherhood Slayer*3|gems:20
+rewards_dbh_act1_ep1_murder_scene	card:Daggers in the Dark*3
+rewards_dbh_act1_ep1_order_of_the_hour_barracks	card:Knight of the Hour*3|gems:20
+rewards_dbh_act1_ep1_temple_of_akatosh	card:Chanter of Akatosh*3|gems:20
+rewards_dbh_act1_ep2_castle_wayrest_grand_hall_A	card:Palace Conspirator*3
+rewards_dbh_act1_ep2_castle_wayrest_grand_hall_B	card:Blood Sorceress*3|gems:20
+rewards_dbh_act1_ep2_city_gates	card:Corsair Ship*3|gems:20
+rewards_dbh_act1_ep2_princess_barynia	card:Flesh Sculpture*3
+rewards_dbh_act1_ep2_throne_room	gems:30
+rewards_dbh_act1_ep2_wayrest_plains_A	card:Protector of the Innocent*3
+rewards_dbh_act1_ep2_wayrest_plains_B	card:Dark Guardian*3|gems:20
+rewards_dbh_act1_ep2_wayrest_sewers	card:Skeever Infestation*3|gems:20
+rewards_dbh_act2_ep3_cultists_meeting_place_A	card:Astrid*1
+rewards_dbh_act2_ep3_cultists_meeting_place_B	card:Gravesinger*3|gems:30
+rewards_dbh_act2_ep3_grave_concoctions	card:Marked Man*3|gems:20
+rewards_dbh_act2_ep3_hall_of_the_dead	card:Falkreath Defiler*3|gems:20
+rewards_dbh_act2_ep3_hilltop_shrine_A	card:Unstoppable Rage*3
+rewards_dbh_act2_ep3_hilltop_shrine_B	card:Fell the Mighty*3|gems:20
+rewards_dbh_act2_ep4_abandoned_mine	card:Stalking Shadowscale*3|gems:20
+rewards_dbh_act2_ep4_accuse_varlyn_A	card:Cicero the Betrayer*1
+rewards_dbh_act2_ep4_accuse_varlyn_B	card:Wrath of Sithis*3|gems:30
+rewards_dbh_act2_ep4_corpselight_farm	card:Little Girl*3|gems:20
+rewards_dbh_act2_ep4_falkwreath_jail	card:Quicksilver Crossbow*3|gems:20
+rewards_dbh_act2_ep4_falkwreath_sanctuary_A	card:Brotherhood Sanctuary*3
+rewards_dbh_act2_ep4_falkwreath_sanctuary_B	card:Sanctuary Pet*3
+rewards_dbh_act3_ep5_bravil_treasury	card:Penitus Oculatus Agent*3
+rewards_dbh_act3_ep5_eclipse_hideout	card:Eclipse Baroness*3
+rewards_dbh_act3_ep5_silverhome_on_the_water	card:Stealer of Secrets*3
+rewards_dbh_act3_ep5_silverhome_on_the_water_back_room_A	card:Garnag, Dark Adherent*1
+rewards_dbh_act3_ep5_silverhome_on_the_water_back_room_B	card:Spear of Embers*3|gems:30
+rewards_dbh_act3_ep5_skooma_den	card:Blood Pact Messenger*3|gems:20
+rewards_dbh_act3_ep5_south_bridge	card:Skooma Underboss*3|gems:20
+rewards_dbh_act3_ep6_night_mothers_crypt_part1	card:Underworld Vigilante*3|gems:20
+rewards_dbh_act3_ep6_night_mothers_crypt_part2_B	card:The Night Mother*1
+rewards_dbh_act3_ep6_night_mothers_crypt_part2_C	card:Shadowmere*1|gems:40
+rewards_dbh_act3_ep6_silverhome_on_the_water	card:Sanctuary Raid*3
+rewards_iom_act1_ep1_a_man_divided_A	card:Unstable Madman*3
+rewards_iom_act1_ep1_a_man_divided_B	gems:20
+rewards_iom_act1_ep1_ending_A	card:Gates of Madness*3
+rewards_iom_act1_ep1_ending_B	card:The Gatekeeper*1|gems:30
+rewards_iom_act1_ep1_garden_of_swords_A	card:Cloak*3
+rewards_iom_act1_ep1_garden_of_swords_B	card:Gardener's Harvest*3|gems:20
+rewards_iom_act1_ep1_gates_of_madness_A	card:Squish the Wimpy*3
+rewards_iom_act1_ep1_gates_of_madness_B	card:Icy Shambles*3|gems:20
+rewards_iom_act1_ep1_no_rat_camp_A	card:Nervous Giant*3|gems:20
+rewards_iom_act1_ep1_notehollow_A	card:Grummite Magus*3
+rewards_iom_act1_ep1_notehollow_B	card:Spawn Mother*3|gems:20
+rewards_iom_act1_ep2_fortress_catacombs_A	card:Crazed Hunger*3
+rewards_iom_act1_ep2_fortress_catacombs_B	card:Preying Elytra*3|gems:20
+rewards_iom_act1_ep2_fortress_hallway_A	card:Baliwog Tidecrawlers*3|gems:20
+rewards_iom_act1_ep2_fortress_ramparts_A	card:Fortress Guard*3|gems:20
+rewards_iom_act1_ep2_necrom_graveyard_A	card:Ghost Fanatic*3
+rewards_iom_act1_ep2_necrom_graveyard_B	card:Wake the Dead*3|gems:20
+rewards_iom_act1_ep2_trophy_room_A	card:Crucible Blacksmith*3
+rewards_iom_act1_ep2_trophy_room_B	card:Trouble Seeker*3|gems:20
+rewards_iom_act1_ep2_zhanars_chambers_A	card:Drive Mad*3
+rewards_iom_act1_ep2_zhanars_chambers_B	card:Dawnfang*1|gems:30
+rewards_iom_act2_ep3_barons_palace	card:Ring of Lordship*3
+rewards_iom_act2_ep3_kwama_mine	card:Transmogrify*3|gems:20
+rewards_iom_act2_ep3_meliels_farm_A	card:Hulking Scalon*3
+rewards_iom_act2_ep3_meliels_farm_B	card:Felldew*3|gems:20
+rewards_iom_act2_ep3_meliels_garrison_A	card:Manic Jack*3
+rewards_iom_act2_ep3_meliels_garrison_B	card:Thadon, Duke of Mania*1|gems:30
+rewards_iom_act2_ep3_mushroom_tower_A	card:Xavara Atronach*3
+rewards_iom_act2_ep3_mushroom_tower_B	card:Eager Torturer*3|gems:20
+rewards_iom_act2_ep4_bthardzam_A	card:Pointy Wall of Spikes*3
+rewards_iom_act2_ep4_bthardzam_B	card:Mad Dash*3|gems:20
+rewards_iom_act2_ep4_bthardzam_dungeon_A	card:Doomfang Ally*3
+rewards_iom_act2_ep4_bthardzam_dungeon_B	card:Golden Initiate*3|gems:20
+rewards_iom_act2_ep4_bthardzam_passage_A	card:Seething Flesh Golem*3
+rewards_iom_act2_ep4_bthardzam_passage_B	card:Syl, Duchess of Dementia*1|gems:30
+rewards_iom_act2_ep4_druadach_pass_A	card:Lady Syl's Cruelty*3
+rewards_iom_act2_ep4_druadach_pass_B	card:Cyriel*1|gems:20
+rewards_iom_act2_ep4_grove_of_mara	card:Blessing of the Grove*3|gems:20
+rewards_iom_act3_ep5_circus_of_slaughter_A	card:Bedeviling Scamp*3
+rewards_iom_act3_ep5_circus_of_slaughter_B	card:Manic Grummite*3|gems:20
+rewards_iom_act3_ep5_darkened_grove_A	card:Greatwood Elder*3
+rewards_iom_act3_ep5_darkened_grove_B	card:Gnarl Rootbender*3|gems:20
+rewards_iom_act3_ep5_flooded_camp_A	card:Tiny Dragon*3
+rewards_iom_act3_ep5_flooded_camp_B	card:Giant Chicken*3|gems:20
+rewards_iom_act3_ep5_knifepoint_hollow_A	card:Seducer Darkfire*3
+rewards_iom_act3_ep5_knifepoint_hollow_B	card:Luzrah gro-Shar*1|gems:30
+rewards_iom_act3_ep5_new_sheoth_gates_A	card:Shining Saint*3
+rewards_iom_act3_ep5_new_sheoth_gates_B	card:Dark Seducer*3|gems:20
+rewards_iom_act3_ep5_trance_A	card:Skinned Hound*3
+rewards_iom_act3_ep5_trance_B	card:Heretic Conjurer*3|gems:20
+rewards_iom_act3_ep6_final_battle_A	card:Brellach Commander*3
+rewards_iom_act3_ep6_final_battle_B	card:Haskill*1
+rewards_iom_act3_ep6_final_battle_C	card:Fork of Horripilation*1|gems:40
+rewards_iom_act3_ep6_obelisk_of_order_A	card:Knight of Order*3
+rewards_iom_act3_ep6_obelisk_of_order_B	card:Jyggalag's Incursion*3|gems:20
+rewards_puzzle_morrowind_pack	pack:morrowind*1

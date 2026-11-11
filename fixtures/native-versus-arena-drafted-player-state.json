@@ -1,0 +1,2019 @@
+{
+ "schema": 1,
+ "level": 1,
+ "xp": 0,
+ "gold": 500,
+ "gems": 0,
+ "tickets": 1,
+ "onboardingProgressFlags": 279345627774,
+ "selectedCategories": [
+  "avatar"
+ ],
+ "selectedValues": [
+  "AvatarBreton1"
+ ],
+ "campaigns": [
+  {
+   "campaignId": 838862610,
+   "isActive": true,
+   "lastPlayedActIndex": 0,
+   "lastPlayedChapterIndex": 0,
+   "lastPlayedChapterEventIndex": 0,
+   "actData": [
+    {
+     "actId": -1493538784,
+     "isMastery": false,
+     "chapterData": [
+      {
+       "chapterId": 780347380,
+       "isComplete": true,
+       "hasIntroBeenShown": true,
+       "hasEndingBeenShown": true,
+       "chapterEventData": [],
+       "introChoice": 0,
+       "endingChoice": 0,
+       "chapterSeenCinematicTypeHashes": []
+      },
+      {
+       "chapterId": 700614585,
+       "isComplete": true,
+       "hasIntroBeenShown": true,
+       "hasEndingBeenShown": true,
+       "chapterEventData": [
+        {
+         "chapterEventId": -1931313345,
+         "chapterId": 700614585,
+         "isComplete": true,
+         "introChoice": 1,
+         "endingChoice": 0
+        }
+       ],
+       "introChoice": 0,
+       "endingChoice": 0,
+       "chapterSeenCinematicTypeHashes": []
+      },
+      {
+       "chapterId": -2078554160,
+       "isComplete": true,
+       "hasIntroBeenShown": true,
+       "hasEndingBeenShown": true,
+       "chapterEventData": [
+        {
+         "chapterEventId": -1630356982,
+         "chapterId": -2078554160,
+         "isComplete": true,
+         "introChoice": 1,
+         "endingChoice": 0
+        }
+       ],
+       "introChoice": 0,
+       "endingChoice": 0,
+       "chapterSeenCinematicTypeHashes": []
+      },
+      {
+       "chapterId": -983951786,
+       "isComplete": true,
+       "hasIntroBeenShown": true,
+       "hasEndingBeenShown": true,
+       "chapterEventData": [
+        {
+         "chapterEventId": -1119840492,
+         "chapterId": -983951786,
+         "isComplete": true,
+         "introChoice": 1,
+         "endingChoice": 0
+        }
+       ],
+       "introChoice": 0,
+       "endingChoice": 0,
+       "chapterSeenCinematicTypeHashes": []
+      },
+      {
+       "chapterId": 448093326,
+       "isComplete": true,
+       "hasIntroBeenShown": true,
+       "hasEndingBeenShown": true,
+       "chapterEventData": [
+        {
+         "chapterEventId": 2011015062,
+         "chapterId": 448093326,
+         "isComplete": true,
+         "introChoice": 1,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": -2076749286,
+         "chapterId": 448093326,
+         "isComplete": true,
+         "introChoice": 1,
+         "endingChoice": 0
+        }
+       ],
+       "introChoice": 0,
+       "endingChoice": 0,
+       "chapterSeenCinematicTypeHashes": []
+      },
+      {
+       "chapterId": 498888375,
+       "isComplete": true,
+       "hasIntroBeenShown": true,
+       "hasEndingBeenShown": true,
+       "chapterEventData": [
+        {
+         "chapterEventId": -1701561169,
+         "chapterId": 498888375,
+         "isComplete": true,
+         "introChoice": 1,
+         "endingChoice": 0
+        }
+       ],
+       "introChoice": 0,
+       "endingChoice": 0,
+       "chapterSeenCinematicTypeHashes": []
+      },
+      {
+       "chapterId": -2083135900,
+       "isComplete": true,
+       "hasIntroBeenShown": true,
+       "hasEndingBeenShown": true,
+       "chapterEventData": [
+        {
+         "chapterEventId": 604377235,
+         "chapterId": -2083135900,
+         "isComplete": true,
+         "introChoice": 1,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": 896653332,
+         "chapterId": -2083135900,
+         "isComplete": true,
+         "introChoice": 1,
+         "endingChoice": 0
+        }
+       ],
+       "introChoice": 0,
+       "endingChoice": 0,
+       "chapterSeenCinematicTypeHashes": []
+      },
+      {
+       "chapterId": -844439433,
+       "isComplete": true,
+       "hasIntroBeenShown": true,
+       "hasEndingBeenShown": true,
+       "chapterEventData": [
+        {
+         "chapterEventId": -576414906,
+         "chapterId": -844439433,
+         "isComplete": true,
+         "introChoice": 1,
+         "endingChoice": 0
+        }
+       ],
+       "introChoice": 0,
+       "endingChoice": 0,
+       "chapterSeenCinematicTypeHashes": []
+      },
+      {
+       "chapterId": -1301693248,
+       "isComplete": true,
+       "hasIntroBeenShown": true,
+       "hasEndingBeenShown": true,
+       "chapterEventData": [
+        {
+         "chapterEventId": 1613728758,
+         "chapterId": -1301693248,
+         "isComplete": true,
+         "introChoice": 1,
+         "endingChoice": 0
+        }
+       ],
+       "introChoice": 0,
+       "endingChoice": 0,
+       "chapterSeenCinematicTypeHashes": []
+      }
+     ]
+    },
+    {
+     "actId": -1145226141,
+     "isMastery": false,
+     "chapterData": [
+      {
+       "chapterId": 1283116879,
+       "isComplete": true,
+       "hasIntroBeenShown": true,
+       "hasEndingBeenShown": true,
+       "chapterEventData": [
+        {
+         "chapterEventId": -582499039,
+         "chapterId": 1283116879,
+         "isComplete": true,
+         "introChoice": 1,
+         "endingChoice": 0
+        }
+       ],
+       "introChoice": 0,
+       "endingChoice": 0,
+       "chapterSeenCinematicTypeHashes": []
+      },
+      {
+       "chapterId": 1897469501,
+       "isComplete": true,
+       "hasIntroBeenShown": true,
+       "hasEndingBeenShown": true,
+       "chapterEventData": [
+        {
+         "chapterEventId": -1053486574,
+         "chapterId": 1897469501,
+         "isComplete": true,
+         "introChoice": 1,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": -383189891,
+         "chapterId": 1897469501,
+         "isComplete": true,
+         "introChoice": 1,
+         "endingChoice": 0
+        }
+       ],
+       "introChoice": 0,
+       "endingChoice": 0,
+       "chapterSeenCinematicTypeHashes": []
+      },
+      {
+       "chapterId": -429141447,
+       "isComplete": true,
+       "hasIntroBeenShown": true,
+       "hasEndingBeenShown": true,
+       "chapterEventData": [
+        {
+         "chapterEventId": 637683377,
+         "chapterId": -429141447,
+         "isComplete": true,
+         "introChoice": 1,
+         "endingChoice": 0
+        }
+       ],
+       "introChoice": 0,
+       "endingChoice": 0,
+       "chapterSeenCinematicTypeHashes": []
+      },
+      {
+       "chapterId": 853744990,
+       "isComplete": true,
+       "hasIntroBeenShown": true,
+       "hasEndingBeenShown": true,
+       "chapterEventData": [
+        {
+         "chapterEventId": -1637875821,
+         "chapterId": 853744990,
+         "isComplete": true,
+         "introChoice": 1,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": 1556663847,
+         "chapterId": 853744990,
+         "isComplete": true,
+         "introChoice": 1,
+         "endingChoice": 0
+        }
+       ],
+       "introChoice": 0,
+       "endingChoice": 0,
+       "chapterSeenCinematicTypeHashes": []
+      },
+      {
+       "chapterId": -1829879562,
+       "isComplete": true,
+       "hasIntroBeenShown": true,
+       "hasEndingBeenShown": true,
+       "chapterEventData": [
+        {
+         "chapterEventId": -556626958,
+         "chapterId": -1829879562,
+         "isComplete": true,
+         "introChoice": 1,
+         "endingChoice": 0
+        }
+       ],
+       "introChoice": 0,
+       "endingChoice": 0,
+       "chapterSeenCinematicTypeHashes": []
+      },
+      {
+       "chapterId": 1730769770,
+       "isComplete": true,
+       "hasIntroBeenShown": true,
+       "hasEndingBeenShown": true,
+       "chapterEventData": [
+        {
+         "chapterEventId": -1056356191,
+         "chapterId": 1730769770,
+         "isComplete": true,
+         "introChoice": 1,
+         "endingChoice": 0
+        }
+       ],
+       "introChoice": 0,
+       "endingChoice": 0,
+       "chapterSeenCinematicTypeHashes": []
+      }
+     ]
+    },
+    {
+     "actId": 1766285026,
+     "isMastery": false,
+     "chapterData": [
+      {
+       "chapterId": 964403708,
+       "isComplete": false,
+       "hasIntroBeenShown": false,
+       "hasEndingBeenShown": false,
+       "chapterEventData": [
+        {
+         "chapterEventId": -1135861649,
+         "chapterId": 964403708,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        }
+       ],
+       "introChoice": 0,
+       "endingChoice": 0,
+       "chapterSeenCinematicTypeHashes": []
+      }
+     ]
+    }
+   ],
+   "ownedActs": [
+    -1493538784,
+    -1145226141,
+    1766285026
+   ]
+  },
+  {
+   "campaignId": -614467842,
+   "isActive": false,
+   "lastPlayedActIndex": 0,
+   "lastPlayedChapterIndex": 0,
+   "lastPlayedChapterEventIndex": 0,
+   "actData": [
+    {
+     "actId": 659235525,
+     "isMastery": false,
+     "chapterData": [
+      {
+       "chapterId": -1531825858,
+       "isComplete": false,
+       "hasIntroBeenShown": false,
+       "hasEndingBeenShown": false,
+       "chapterEventData": [
+        {
+         "chapterEventId": -295735828,
+         "chapterId": -1531825858,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": -1220463180,
+         "chapterId": -1531825858,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": -1880618955,
+         "chapterId": -1531825858,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": -1920009769,
+         "chapterId": -1531825858,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": -2097933752,
+         "chapterId": -1531825858,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": 2097757602,
+         "chapterId": -1531825858,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": 560661651,
+         "chapterId": -1531825858,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": 968203104,
+         "chapterId": -1531825858,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        }
+       ],
+       "introChoice": 0,
+       "endingChoice": 0,
+       "chapterSeenCinematicTypeHashes": []
+      }
+     ]
+    },
+    {
+     "actId": 1959489494,
+     "isMastery": false,
+     "chapterData": [
+      {
+       "chapterId": -1275411220,
+       "isComplete": false,
+       "hasIntroBeenShown": false,
+       "hasEndingBeenShown": false,
+       "chapterEventData": [
+        {
+         "chapterEventId": -362829295,
+         "chapterId": -1275411220,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": 1395549035,
+         "chapterId": -1275411220,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": 1800447603,
+         "chapterId": -1275411220,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": -1928407154,
+         "chapterId": -1275411220,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        }
+       ],
+       "introChoice": 0,
+       "endingChoice": 0,
+       "chapterSeenCinematicTypeHashes": []
+      }
+     ]
+    },
+    {
+     "actId": -1811180978,
+     "isMastery": false,
+     "chapterData": [
+      {
+       "chapterId": 1250233909,
+       "isComplete": false,
+       "hasIntroBeenShown": false,
+       "hasEndingBeenShown": false,
+       "chapterEventData": [
+        {
+         "chapterEventId": -1822935668,
+         "chapterId": 1250233909,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": 40681364,
+         "chapterId": 1250233909,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": -905112806,
+         "chapterId": 1250233909,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": 1528265456,
+         "chapterId": 1250233909,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": 2101748622,
+         "chapterId": 1250233909,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": -1636024308,
+         "chapterId": 1250233909,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        }
+       ],
+       "introChoice": 0,
+       "endingChoice": 0,
+       "chapterSeenCinematicTypeHashes": []
+      }
+     ]
+    }
+   ],
+   "ownedActs": [
+    659235525,
+    1959489494,
+    -1811180978
+   ]
+  },
+  {
+   "campaignId": 399053349,
+   "isActive": false,
+   "lastPlayedActIndex": 0,
+   "lastPlayedChapterIndex": 0,
+   "lastPlayedChapterEventIndex": 0,
+   "actData": [
+    {
+     "actId": 1379316746,
+     "isMastery": false,
+     "chapterData": [
+      {
+       "chapterId": 2027643010,
+       "isComplete": false,
+       "hasIntroBeenShown": false,
+       "hasEndingBeenShown": false,
+       "chapterEventData": [
+        {
+         "chapterEventId": -69705706,
+         "chapterId": 2027643010,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": 1373623805,
+         "chapterId": 2027643010,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": -493560241,
+         "chapterId": 2027643010,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": 643642665,
+         "chapterId": 2027643010,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": 249503606,
+         "chapterId": 2027643010,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": -1986392771,
+         "chapterId": 2027643010,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": 550132584,
+         "chapterId": 2027643010,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        }
+       ],
+       "introChoice": 0,
+       "endingChoice": 0,
+       "chapterSeenCinematicTypeHashes": []
+      }
+     ]
+    },
+    {
+     "actId": 1538723479,
+     "isMastery": false,
+     "chapterData": [
+      {
+       "chapterId": -1169815702,
+       "isComplete": false,
+       "hasIntroBeenShown": false,
+       "hasEndingBeenShown": false,
+       "chapterEventData": [
+        {
+         "chapterEventId": 315280023,
+         "chapterId": -1169815702,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": -235013023,
+         "chapterId": -1169815702,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": -423218362,
+         "chapterId": -1169815702,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": 945406193,
+         "chapterId": -1169815702,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": -783094043,
+         "chapterId": -1169815702,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        }
+       ],
+       "introChoice": 0,
+       "endingChoice": 0,
+       "chapterSeenCinematicTypeHashes": []
+      }
+     ]
+    },
+    {
+     "actId": 2104786733,
+     "isMastery": false,
+     "chapterData": [
+      {
+       "chapterId": 433376672,
+       "isComplete": false,
+       "hasIntroBeenShown": false,
+       "hasEndingBeenShown": false,
+       "chapterEventData": [
+        {
+         "chapterEventId": -54902551,
+         "chapterId": 433376672,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": -1715553196,
+         "chapterId": 433376672,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": 129894271,
+         "chapterId": 433376672,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": 1271260546,
+         "chapterId": 433376672,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": 2002666260,
+         "chapterId": 433376672,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": 1516409014,
+         "chapterId": 433376672,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        }
+       ],
+       "introChoice": 0,
+       "endingChoice": 0,
+       "chapterSeenCinematicTypeHashes": []
+      }
+     ]
+    }
+   ],
+   "ownedActs": [
+    1379316746,
+    1538723479,
+    2104786733
+   ]
+  },
+  {
+   "campaignId": 329600394,
+   "isActive": false,
+   "lastPlayedActIndex": 0,
+   "lastPlayedChapterIndex": 0,
+   "lastPlayedChapterEventIndex": 0,
+   "actData": [
+    {
+     "actId": -521205363,
+     "isMastery": false,
+     "chapterData": [
+      {
+       "chapterId": -518932007,
+       "isComplete": false,
+       "hasIntroBeenShown": false,
+       "hasEndingBeenShown": false,
+       "chapterEventData": [
+        {
+         "chapterEventId": 2100273155,
+         "chapterId": -518932007,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": 1066815654,
+         "chapterId": -518932007,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": 417237282,
+         "chapterId": -518932007,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": -1616083458,
+         "chapterId": -518932007,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": 1102946309,
+         "chapterId": -518932007,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": -2016793670,
+         "chapterId": -518932007,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": -1879027220,
+         "chapterId": -518932007,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": -985242737,
+         "chapterId": -518932007,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": -19966228,
+         "chapterId": -518932007,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": -963098892,
+         "chapterId": -518932007,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": -1237100050,
+         "chapterId": -518932007,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        }
+       ],
+       "introChoice": 0,
+       "endingChoice": 0,
+       "chapterSeenCinematicTypeHashes": []
+      }
+     ]
+    },
+    {
+     "actId": 1181065674,
+     "isMastery": false,
+     "chapterData": [
+      {
+       "chapterId": -786497695,
+       "isComplete": false,
+       "hasIntroBeenShown": false,
+       "hasEndingBeenShown": false,
+       "chapterEventData": [
+        {
+         "chapterEventId": -271349161,
+         "chapterId": -786497695,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": 71720067,
+         "chapterId": -786497695,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": -1665445563,
+         "chapterId": -786497695,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": 1347316375,
+         "chapterId": -786497695,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": 1722336314,
+         "chapterId": -786497695,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": -1244872797,
+         "chapterId": -786497695,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": 1219268291,
+         "chapterId": -786497695,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": 1501453208,
+         "chapterId": -786497695,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": 419267697,
+         "chapterId": -786497695,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": -1362088526,
+         "chapterId": -786497695,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": 1725893106,
+         "chapterId": -786497695,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        }
+       ],
+       "introChoice": 0,
+       "endingChoice": 0,
+       "chapterSeenCinematicTypeHashes": []
+      }
+     ]
+    },
+    {
+     "actId": -136939022,
+     "isMastery": false,
+     "chapterData": [
+      {
+       "chapterId": 1034946402,
+       "isComplete": false,
+       "hasIntroBeenShown": false,
+       "hasEndingBeenShown": false,
+       "chapterEventData": [
+        {
+         "chapterEventId": 792395026,
+         "chapterId": 1034946402,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": -1324428606,
+         "chapterId": 1034946402,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": -818008360,
+         "chapterId": 1034946402,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": -1444139323,
+         "chapterId": 1034946402,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": -445067469,
+         "chapterId": 1034946402,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": -64705076,
+         "chapterId": 1034946402,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": 1906268437,
+         "chapterId": 1034946402,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": -890663715,
+         "chapterId": 1034946402,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": -1381389797,
+         "chapterId": 1034946402,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": 1277617987,
+         "chapterId": 1034946402,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": -926370591,
+         "chapterId": 1034946402,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": -2037241312,
+         "chapterId": 1034946402,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        }
+       ],
+       "introChoice": 0,
+       "endingChoice": 0,
+       "chapterSeenCinematicTypeHashes": []
+      }
+     ]
+    },
+    {
+     "actId": 163148446,
+     "isMastery": false,
+     "chapterData": [
+      {
+       "chapterId": -877245918,
+       "isComplete": false,
+       "hasIntroBeenShown": false,
+       "hasEndingBeenShown": false,
+       "chapterEventData": [
+        {
+         "chapterEventId": 2088063664,
+         "chapterId": -877245918,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": 1601078836,
+         "chapterId": -877245918,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": -372591483,
+         "chapterId": -877245918,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": -521708153,
+         "chapterId": -877245918,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": -930606434,
+         "chapterId": -877245918,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": 1349940460,
+         "chapterId": -877245918,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": 1122558304,
+         "chapterId": -877245918,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": -1343197750,
+         "chapterId": -877245918,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": 1300891754,
+         "chapterId": -877245918,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": 407466145,
+         "chapterId": -877245918,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": 1097775088,
+         "chapterId": -877245918,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": -1819420190,
+         "chapterId": -877245918,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": 2022804138,
+         "chapterId": -877245918,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": -1764430585,
+         "chapterId": -877245918,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": 1290200445,
+         "chapterId": -877245918,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": 79868925,
+         "chapterId": -877245918,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": 315679612,
+         "chapterId": -877245918,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": -352409752,
+         "chapterId": -877245918,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": 610045417,
+         "chapterId": -877245918,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": -1143334405,
+         "chapterId": -877245918,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        }
+       ],
+       "introChoice": 0,
+       "endingChoice": 0,
+       "chapterSeenCinematicTypeHashes": []
+      }
+     ]
+    }
+   ],
+   "ownedActs": [
+    -521205363,
+    1181065674,
+    -136939022,
+    163148446
+   ]
+  },
+  {
+   "campaignId": 449681346,
+   "isActive": false,
+   "lastPlayedActIndex": 0,
+   "lastPlayedChapterIndex": 0,
+   "lastPlayedChapterEventIndex": 0,
+   "actData": [
+    {
+     "actId": -668464385,
+     "isMastery": false,
+     "chapterData": [
+      {
+       "chapterId": -1060545547,
+       "isComplete": false,
+       "hasIntroBeenShown": false,
+       "hasEndingBeenShown": false,
+       "chapterEventData": [
+        {
+         "chapterEventId": 1824998868,
+         "chapterId": -1060545547,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": -527834228,
+         "chapterId": -1060545547,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": 1182417738,
+         "chapterId": -1060545547,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": -116220378,
+         "chapterId": -1060545547,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": -454362425,
+         "chapterId": -1060545547,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": 906610990,
+         "chapterId": -1060545547,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": 808617452,
+         "chapterId": -1060545547,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": -726623922,
+         "chapterId": -1060545547,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        }
+       ],
+       "introChoice": 0,
+       "endingChoice": 0,
+       "chapterSeenCinematicTypeHashes": []
+      }
+     ]
+    },
+    {
+     "actId": 57822099,
+     "isMastery": false,
+     "chapterData": [
+      {
+       "chapterId": 381924664,
+       "isComplete": false,
+       "hasIntroBeenShown": false,
+       "hasEndingBeenShown": false,
+       "chapterEventData": [
+        {
+         "chapterEventId": -1278060481,
+         "chapterId": 381924664,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": -1847777028,
+         "chapterId": 381924664,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": -1141048399,
+         "chapterId": 381924664,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": -160543632,
+         "chapterId": 381924664,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": 1247368333,
+         "chapterId": 381924664,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": 208487772,
+         "chapterId": 381924664,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        }
+       ],
+       "introChoice": 0,
+       "endingChoice": 0,
+       "chapterSeenCinematicTypeHashes": []
+      }
+     ]
+    },
+    {
+     "actId": -1221987810,
+     "isMastery": false,
+     "chapterData": [
+      {
+       "chapterId": 251238530,
+       "isComplete": false,
+       "hasIntroBeenShown": false,
+       "hasEndingBeenShown": false,
+       "chapterEventData": [
+        {
+         "chapterEventId": -1147107039,
+         "chapterId": 251238530,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": 1309649549,
+         "chapterId": 251238530,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": -1893681914,
+         "chapterId": 251238530,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": 1357611753,
+         "chapterId": 251238530,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": 834546908,
+         "chapterId": 251238530,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        },
+        {
+         "chapterEventId": 1525860251,
+         "chapterId": 251238530,
+         "isComplete": false,
+         "introChoice": 0,
+         "endingChoice": 0
+        }
+       ],
+       "introChoice": 0,
+       "endingChoice": 0,
+       "chapterSeenCinematicTypeHashes": []
+      }
+     ]
+    }
+   ],
+   "ownedActs": [
+    -668464385,
+    57822099,
+    -1221987810
+   ]
+  }
+ ],
+ "rewards": [],
+ "nextRewardId": 4,
+ "grantedEvents": [
+  -1931313345,
+  -1630356982,
+  -1119840492
+ ],
+ "grantedChoices": [
+  "-2076749286:Intro"
+ ],
+ "cardIds": [
+  1193892832,
+  -1767873507,
+  -1226235166,
+  1218903077,
+  -1152867558,
+  -1653188426,
+  1744549196,
+  -424209530,
+  844499977,
+  -741858815,
+  373560332,
+  899518525,
+  -751645406,
+  494443404,
+  134431766,
+  1717577005,
+  -452943738,
+  1449346166,
+  1480705345,
+  1128875378,
+  207833797,
+  1741863602,
+  -1261699196,
+  -1903529353,
+  1984109634,
+  438381503,
+  -1410566212,
+  1022895797,
+  -775726033,
+  157797006,
+  935076603,
+  -61384030,
+  794235553,
+  -602835722,
+  1038408842,
+  1479393784,
+  -1497585773,
+  -426404054,
+  1106955994,
+  -1816206504,
+  -679792433,
+  2071968016,
+  -1216391466,
+  -873497107,
+  -669989098,
+  -1458562617,
+  -2036935735,
+  1931741259,
+  1844093215,
+  1427457192,
+  -801177855,
+  1329094148,
+  83714140,
+  342030232
+ ],
+ "cardCounts": [
+  3,
+  4,
+  1,
+  3,
+  1,
+  1,
+  5,
+  1,
+  3,
+  3,
+  2,
+  2,
+  1,
+  2,
+  1,
+  3,
+  2,
+  3,
+  1,
+  2,
+  1,
+  1,
+  1,
+  1,
+  3,
+  2,
+  2,
+  2,
+  3,
+  2,
+  3,
+  2,
+  3,
+  3,
+  2,
+  3,
+  3,
+  3,
+  3,
+  3,
+  2,
+  1,
+  3,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  1,
+  0,
+  1
+ ],
+ "cardPremiumCounts": [
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  0,
+  1,
+  0
+ ],
+ "packages": [],
+ "nextPackageId": 1,
+ "arena": {
+  "phase": 0,
+  "arenaType": "",
+  "arenaTypeEnum": 0,
+  "isCompleted": false,
+  "hasRewards": false,
+  "selectedClassTypeHash": 0,
+  "potentialClassTypeHashes": [],
+  "cardSelectionTypeHashes": [],
+  "cardTypeHashes": [],
+  "premiums": [],
+  "matches": []
+ },
+ "versusArena": {
+  "phase": 2,
+  "arenaType": "versus",
+  "arenaTypeEnum": 2,
+  "isCompleted": false,
+  "hasRewards": false,
+  "selectedClassTypeHash": -1108289417,
+  "potentialClassTypeHashes": [
+   1683115975,
+   -1108289417,
+   1344000598
+  ],
+  "cardSelectionTypeHashes": [],
+  "cardTypeHashes": [
+   -1661672729,
+   1778625906,
+   1477162806,
+   -1420242029,
+   166629390,
+   -1179285674,
+   -1554453687,
+   -295361290,
+   1073483930,
+   1759297880,
+   166482805,
+   -1179285674,
+   -2101722782,
+   -1196141924,
+   166482805,
+   1405826749,
+   -384331916,
+   1468435563,
+   -987206472,
+   -1077442028,
+   -503969220,
+   -294235279,
+   794235553,
+   -987994366,
+   41830377,
+   -1001722202,
+   458738242,
+   480413640,
+   -1991073211,
+   184208638
+  ],
+  "premiums": [
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "matches": [
+   {
+    "orderIndex": 0,
+    "avatarTypeHash": 602115571,
+    "scenarioModifierTypeHash": 0,
+    "scenarioTypeHash": 0,
+    "laneTypeHash1": 1,
+    "laneTypeHash2": 2,
+    "featuredMatchTypeHash": 0,
+    "deckTypeHash": -831065473,
+    "losses": 1,
+    "wins": 0,
+    "completed": false,
+    "canSelect": true
+   }
+  ]
+ },
+ "quests": [
+  {
+   "typeName": "JawsAnimalsMore",
+   "typeNameHash": -1061203982,
+   "questType": "Daily",
+   "mechanicType": "SummonCount",
+   "numAchieved": 1,
+   "numAchievedSeen": 0,
+   "numRequired": 25,
+   "isSkippable": true,
+   "numGold": 0,
+   "numGems": 0,
+   "numCardPacks": 1,
+   "cardPackType": "cardpack_oblivion",
+   "titleKey": ""
+  }
+ ],
+ "questDay": "2026-10-21",
+ "questSkipDay": "",
+ "completedQuests": [],
+ "ownedTitles": [],
+ "ownedCardBacks": [],
+ "titleProgressKeys": [
+  "title_councilor_of_dagoth",
+  "title_the_blademaster",
+  "title_the_captain",
+  "title_the_deadly",
+  "title_the_destructive",
+  "title_the_high_king",
+  "title_the_house_leader",
+  "title_the_master_wizard",
+  "title_Jaws_WalkerOfOblivion",
+  "title_Jaws_TheBeastmaster"
+ ],
+ "titleProgressValues": [
+  1,
+  1,
+  1,
+  6,
+  44,
+  3,
+  1,
+  2,
+  1,
+  1
+ ],
+ "pendingTitleRewards": [],
+ "pendingGrants": [],
+ "decks": [
+  {
+   "id": 1,
+   "displayName": "09bb9d90-99e1-11e5-b039-fa163ed9f58f-deck_name",
+   "hasBeenSeen": false,
+   "isValid": true,
+   "isLocked": false,
+   "renameFromUser": false,
+   "artTypeHash": -1067383124,
+   "deckTypeHash": -1151170197,
+   "cards": [
+    {
+     "typeHash": 1744549196,
+     "numRegular": 3,
+     "numPremium": 0
+    },
+    {
+     "typeHash": -424209530,
+     "numRegular": 1,
+     "numPremium": 0
+    },
+    {
+     "typeHash": 844499977,
+     "numRegular": 3,
+     "numPremium": 0
+    },
+    {
+     "typeHash": -741858815,
+     "numRegular": 3,
+     "numPremium": 0
+    },
+    {
+     "typeHash": 1218903077,
+     "numRegular": 3,
+     "numPremium": 0
+    },
+    {
+     "typeHash": 373560332,
+     "numRegular": 2,
+     "numPremium": 0
+    },
+    {
+     "typeHash": 899518525,
+     "numRegular": 2,
+     "numPremium": 0
+    },
+    {
+     "typeHash": -751645406,
+     "numRegular": 1,
+     "numPremium": 0
+    },
+    {
+     "typeHash": 494443404,
+     "numRegular": 2,
+     "numPremium": 0
+    },
+    {
+     "typeHash": 134431766,
+     "numRegular": 1,
+     "numPremium": 0
+    },
+    {
+     "typeHash": 1717577005,
+     "numRegular": 3,
+     "numPremium": 0
+    },
+    {
+     "typeHash": -452943738,
+     "numRegular": 3,
+     "numPremium": 0
+    },
+    {
+     "typeHash": -1767873507,
+     "numRegular": 3,
+     "numPremium": 0
+    },
+    {
+     "typeHash": 1449346166,
+     "numRegular": 3,
+     "numPremium": 0
+    },
+    {
+     "typeHash": 1480705345,
+     "numRegular": 1,
+     "numPremium": 0
+    },
+    {
+     "typeHash": 1128875378,
+     "numRegular": 2,
+     "numPremium": 0
+    },
+    {
+     "typeHash": 207833797,
+     "numRegular": 1,
+     "numPremium": 0
+    },
+    {
+     "typeHash": 1741863602,
+     "numRegular": 1,
+     "numPremium": 0
+    },
+    {
+     "typeHash": -1261699196,
+     "numRegular": 1,
+     "numPremium": 0
+    },
+    {
+     "typeHash": -1903529353,
+     "numRegular": 1,
+     "numPremium": 0
+    },
+    {
+     "typeHash": 1984109634,
+     "numRegular": 1,
+     "numPremium": 0
+    },
+    {
+     "typeHash": 438381503,
+     "numRegular": 2,
+     "numPremium": 0
+    },
+    {
+     "typeHash": -1410566212,
+     "numRegular": 2,
+     "numPremium": 0
+    },
+    {
+     "typeHash": 1022895797,
+     "numRegular": 2,
+     "numPremium": 0
+    },
+    {
+     "typeHash": 1193892832,
+     "numRegular": 1,
+     "numPremium": 0
+    },
+    {
+     "typeHash": -1152867558,
+     "numRegular": 1,
+     "numPremium": 0
+    },
+    {
+     "typeHash": -1653188426,
+     "numRegular": 1,
+     "numPremium": 0
+    }
+   ],
+   "eventId": 0
+  },
+  {
+   "id": 2,
+   "displayName": "c41d996c-33be-44c1-84ad-921e835a51c9-deck_name",
+   "hasBeenSeen": false,
+   "isValid": true,
+   "isLocked": false,
+   "renameFromUser": false,
+   "artTypeHash": 1034696742,
+   "deckTypeHash": 1310303462,
+   "cards": [
+    {
+     "typeHash": 1193892832,
+     "numRegular": 1,
+     "numPremium": 0
+    },
+    {
+     "typeHash": -775726033,
+     "numRegular": 3,
+     "numPremium": 0
+    },
+    {
+     "typeHash": 157797006,
+     "numRegular": 2,
+     "numPremium": 0
+    },
+    {
+     "typeHash": 935076603,
+     "numRegular": 3,
+     "numPremium": 0
+    },
+    {
+     "typeHash": -61384030,
+     "numRegular": 2,
+     "numPremium": 0
+    },
+    {
+     "typeHash": 794235553,
+     "numRegular": 3,
+     "numPremium": 0
+    },
+    {
+     "typeHash": -602835722,
+     "numRegular": 3,
+     "numPremium": 0
+    },
+    {
+     "typeHash": 899518525,
+     "numRegular": 1,
+     "numPremium": 0
+    },
+    {
+     "typeHash": 1038408842,
+     "numRegular": 2,
+     "numPremium": 0
+    },
+    {
+     "typeHash": 1479393784,
+     "numRegular": 3,
+     "numPremium": 0
+    },
+    {
+     "typeHash": -1497585773,
+     "numRegular": 3,
+     "numPremium": 0
+    },
+    {
+     "typeHash": 1744549196,
+     "numRegular": 3,
+     "numPremium": 0
+    },
+    {
+     "typeHash": -426404054,
+     "numRegular": 3,
+     "numPremium": 0
+    },
+    {
+     "typeHash": 1106955994,
+     "numRegular": 3,
+     "numPremium": 0
+    },
+    {
+     "typeHash": -1816206504,
+     "numRegular": 3,
+     "numPremium": 0
+    },
+    {
+     "typeHash": -679792433,
+     "numRegular": 2,
+     "numPremium": 0
+    },
+    {
+     "typeHash": 2071968016,
+     "numRegular": 1,
+     "numPremium": 0
+    },
+    {
+     "typeHash": -1216391466,
+     "numRegular": 3,
+     "numPremium": 0
+    },
+    {
+     "typeHash": -873497107,
+     "numRegular": 1,
+     "numPremium": 0
+    },
+    {
+     "typeHash": -669989098,
+     "numRegular": 1,
+     "numPremium": 0
+    },
+    {
+     "typeHash": 1984109634,
+     "numRegular": 2,
+     "numPremium": 0
+    },
+    {
+     "typeHash": -1458562617,
+     "numRegular": 1,
+     "numPremium": 0
+    },
+    {
+     "typeHash": -2036935735,
+     "numRegular": 1,
+     "numPremium": 0
+    }
+   ],
+   "eventId": 0
+  }
+ ],
+ "nextDeckId": 2
+}

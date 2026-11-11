@@ -1,0 +1,357 @@
+card_id	name	reason
+# Text-compiled cards whose original graph runs in our engine (overlap differential); the original replaces the compiled spec.
+157797006	Afflicted Alit	same; original smoke: Summon
+1612844278	Ageless Automaton	differ; original smoke: WhenCardAttacks
+1849423892	Aldmeri Patriot	same; original smoke: Summon
+-659037608	Alik'r Bandit	same; original smoke: WhenCardIsEquipped
+-501985501	Alik'r Survivalist	differ; original smoke: Summon,WhenCardIsEquipped
+1634606923	Alpha Wolf	same; original smoke: aura
+-96070433	Altar of Meridia	same; original smoke: activate
+1916654634	Arrow in the Knee	same; original smoke: play
+1004263411	Artaeum Savant	original-fails; original smoke: ERROR InvalidOperationException: abilities ran (WhenCardIsPl
+1908820511	Auridon Paladin	same; original smoke: WhenCardIsPlayed
+-2027529089	Auroran Sentry	same; original smoke: WhenCardTakesDamage
+-510467808	Avatar 100 HP - Puzzle	same; original smoke: aura
+-1221673727	Avatar Immortal Experimental Scrolls	same; original smoke: aura
+195135320	Bandit Ambush	same; original smoke: play
+-1652308136	Bangkorai Butcher	same; original smoke: Summon
+1718221886	Baron of Tear	differ; original smoke: Summon
+-2047142888	Black Worm Necromancer	same; original smoke: Summon
+-363853243	Blackrose Herbalist	differ; original smoke: WhenPlayerTurnStartsCleanup
+1837064049	Blighted Alit	same; original smoke: WhenPlayerTurnStarts
+266932556	Bone Bow	original-fails; original smoke: ERROR InvalidOperationException: no legal triggered target i
+1315409015	Bone Colossus	same; original smoke: Summon,aura
+-1147395660	Breton Conjurer	same; original smoke: WhenCardWardIsBroken
+1824362895	Broken Bottles	differ; original smoke: WhenPlayerTurnStarts
+1588675943	Bruma Armorer	original-fails; original smoke: ERROR InvalidOperationException: abilities ran (WhenCardEnte
+-1519417470	Bruma Profiteer	same; original smoke: WhenCardEntersBoard
+780292596	Cast Out	same; original smoke: play
+294653485	Chaurus Reaper	same; original smoke: Summon
+1700506601	Chieftain's Banner	same; original smoke: aura
+-873497107	Child of Hircine	same; original smoke: Slay
+1083377509	Corundum Relic	same; original smoke: aura
+1297481327	Covenant Marauder	same; original smoke: aura
+-891364239	Cruel Firebloom	same; original smoke: play
+-597326576	Crystal Tower Crafter	original-fails; original smoke: ERROR InvalidOperationException: abilities ran (WhenCardIsPl
+-1420242029	Daggerfall Mage	same; original smoke: WhenCardWardIsBroken
+2058789951	Dagi-raht Mystic	same; original smoke: Pilfer
+-14129695	Dawnstar Healer	original-fails; original smoke: ERROR InvalidOperationException: abilities ran (WhenCardBrea
+83714140	Descendant of Alkosh	same; original smoke: Pilfer
+1076369070	Detain	same; original smoke: play
+-2029647281	Dragonstar Rider	same; original smoke: WhenCardIsEquipped
+132354610	Dragontail Savior	same; original smoke: Summon
+1597455647	Dune Smuggler	differ; original smoke: Summon(chosen),WhenCardChangesLane
+-9440141	Dune Stalker	same; original smoke: Summon(chosen)
+-1289107677	Dwarven Centurion	same; original smoke: WhenCardTakesDamage
+289735337	Elder Centaur	original-fails; original smoke: ERROR InvalidOperationException: abilities ran (WhenCardAtta
+-61384030	Enchanted Plate	original-fails; original smoke: ERROR InvalidOperationException: trigger Summon not gathered
+-1664652895	Falinesti Reaver	same; original smoke: Summon
+174504504	Fifth Legion Trainer	original-fails; original smoke: ERROR InvalidOperationException: abilities ran (WhenCardEnte
+-1576564883	Fireball	same; original smoke: play
+-500792878	General Tullius	same; original smoke: Summon,WhenCardDies
+-1986526500	Giant Snake	same; original smoke: Summon
+1916219696	Gloom Wraith	differ; original smoke: Summon
+-946264207	Goblin Skulk	same; original smoke: Pilfer
+1480705345	Golden Saint	same; original smoke: Summon
+-1596715503	Golden Saint	same; original smoke: Summon
+1389558899	Green Pact Stalker	same; original smoke: Summon
+-2088538292	Green-Touched Spriggan	same; original smoke: WhenCardIsHealed
+-1196805617	Gust of Wind	same; original smoke: play
+1456667394	Healing Hands	same; original smoke: play
+489838961	Helgen Squad Leader	same; original smoke: WhenCardAttacks
+497955275	Hex Ring	same; original smoke: WhenCardIsPlayed
+493233623	Ice Wraith	same; original smoke: WhenPlayerTurnStartsCleanup
+-2018410927	Imperial Siege Engine	same; original smoke: Summon
+-214646135	Imprisoned Deathlord	same; original smoke: WhenCardEntersBoard
+75396029	Initiate of Hircine	same; original smoke: Slay
+1665929628	Legion Praefect	same; original smoke: Summon
+39110547	Lion Guard Strategist	same; original smoke: WhenCardEntersBoard
+1565188079	Mace of Encumbrance	same; original smoke: Summon(chosen)
+-1674821965	Markarth Bannerman	same; original smoke: WhenCardPreparesAttack
+908812419	Midnight Sweep	same; original smoke: play
+729361361	Militant Chieftain	same; original smoke: Summon,aura
+-1063638264	Moonstone Relic	differ; original smoke: WhenCardBreaksRune
+-542954561	Mummify	same; original smoke: play
+1855596106	Murkwater Goblin	same; original smoke: aura
+-2119475776	Murkwater Savage	differ; original smoke: WhenCardEntersBoard
+743730649	Murkwater Shaman	same; original smoke: WhenPlayerTurnStartsCleanup
+1164235978	Murkwater Shaman	same; original smoke: WhenPlayerTurnStartsCleanup
+1940038772	Murkwater Skirmisher	same; original smoke: Summon
+-641970152	Necromancer's Amulet	same; original smoke: WhenCardDies
+1099519659	Niben Bay Cutthroat	same; original smoke: aura
+1267886066	Northwind Outpost	differ; original smoke: aura
+-1152777964	Odahviing	same; original smoke: Summon
+287504025	Preserver of the Root	same; original smoke: aura
+1128555061	Power Surge	same; original smoke: play
+-258786561	Queen Barenziah	same; original smoke: Summon
+-140181666	Raiding Party	same; original smoke: play
+-294235279	Ransack	same; original smoke: play
+-1903529353	Ravenous Hunger	same; original smoke: Summon
+166482805	Reachman Shaman	same; original smoke: WhenPlayerTurnStartsCleanup
+167240258	Red Bramman	same; original smoke: Summon
+2044566273	Relentless Raider	original-fails; original smoke: ERROR InvalidOperationException: abilities ran (WhenCardBrea
+1964907304	Renowned Legate	same; original smoke: Summon
+1140811777	Rihad Battlemage	same; original smoke: aura
+1200203004	Rihad Battlemage	same; original smoke: aura
+-801177855	Rihad Horseman	same; original smoke: aura
+-170836003	Riverhold Escort	same; original smoke: Pilfer
+2015003566	Royal Sage	same; original smoke: Summon
+-859287355	Royal Sage	same; original smoke: Summon
+-587531429	Scouting Patrol	same; original smoke: play
+-1661653182	Shadow Shift	same; original smoke: play
+898431840	Shadow Shift	same; original smoke: play
+968142914	Shornhelm Champion	same; original smoke: WhenCardWardIsBroken
+-461655438	Silvenar Tracker	same; original smoke: Summon
+-1432506315	Skaven Pyromancer	same; original smoke: Summon
+569839897	Slaughterfish	same; original smoke: WhenPlayerTurnStartsCleanup
+-1033310392	Slaughterfish Spawning	same; original smoke: play
+-651722950	Soul Split	same; original smoke: play
+1937927855	Spider Lair	differ; original smoke: WhenPlayerTurnStartsCleanup
+-2040126054	Stampeding Mammoth	same; original smoke: aura
+-1443822548	Stormhold Henchman	same; original smoke: aura
+-735244497	Stronghold Eradicator	same; original smoke: Summon
+226924386	Studium Headmaster	same; original smoke: Summon
+-1964781179	Supreme Atromancer	same; original smoke: WhenCardEntersBoard,Summon
+2074906612	Swift Strike	original-fails; original smoke: ERROR InvalidOperationException: no legal target in a popula
+1886360652	Swift Strike	original-fails; original smoke: ERROR InvalidOperationException: no legal target in a popula
+-1554453687	Tome of Alteration	original-fails; original smoke: ERROR InvalidOperationException: trigger Summon not gathered
+820258389	Trebuchet	same; original smoke: WhenPlayerTurnStartsCleanup
+1984109634	Triumphant Jarl	same; original smoke: Summon
+400984530	Triumphant Jarl	same; original smoke: Summon
+-1834255118	Ungolim The Listener	same; original smoke: Summon
+1265664894	Watch Commander	same; original smoke: Summon
+-295282626	Whirling Duelist	same; original smoke: WhenCardIsEquipped
+-1825509412	Wild Beastcaller	differ; original smoke: Summon
+973170196	Winter's Grasp	same; original smoke: play
+1606636518	Wisdom of Ancients	same; original smoke: play
+2092651621	Wood Orc Headhunter	same; original smoke: Summon
+-278885641	Wrothgar Kingpin	same; original smoke: WhenCardEntersBoard
+1736426356	Altmer Flameslinger	same; original smoke: WhenPlayerTurnStartsCleanup
+-1272845130	Dominion Battlereeve	same; original smoke: Summon,LastGaspTrigger,Slay
+1636894128	Imperial Lackey	same; original smoke: LastGaspTrigger
+1348920722	Cauterize	same; original smoke: play
+1881279383	Covenant Masterpiece	original-fails; original smoke: ERROR InvalidOperationException: no fixture event satisfies 
+728231988	Emeric, Covenant King	differ; original smoke: WhenPlayerTurnEnds,Summon(chosen)
+1232280759	Enlistment Officer	same; original smoke: Summon
+412564110	Guildsworn Bloodluster	differ; original smoke: Expertise,Expertise(chosen)
+-1858021931	Forked Bolt	same; original smoke: play
+-777853853	Guildsworn Apprentice	same; original smoke: Summon
+961998553	Guildsworn Cavalier	same; original smoke: Expertise
+199885742	Guildsworn Revitalizer	same; original smoke: Expertise
+-1771364736	Fighters Guild Berserker	same; original smoke: Expertise
+974862868	High Rock Stalwart	original-fails; original smoke: ERROR InvalidOperationException: trigger Summon not gathered
+1165373446	Empire Recruiter	same; original smoke: Pilfer
+1160798440	Legion Zero Templar	same; original smoke: Summon
+2018226574	Shadowscale Hunter	same; original smoke: Veteran
+1166235993	Guildsworn Incendiary	same; original smoke: Expertise
+-1527076437	Renowned Instructor	same; original smoke: Expertise
+844695336	Sai Sahan	same; original smoke: Summon
+186430116	Sparksmith	same; original smoke: WhenCardIsEquipped
+-374586671	Strategic Deployment	same; original smoke: play
+-318202547	Supply Runner	same; original smoke: Summon
+-1748836169	Vanus's Scribe	differ; original smoke: Expertise
+1488266682	Accidental Summoning	differ; original smoke: play
+929206989	Brassilisk	same; original smoke: WhenCardTakesDamage
+-758245661	Collapsing Tunnel	differ; original smoke: WhenCardBreaksRune
+1998229975	Dwarven Colossus	differ; original smoke: Summon
+-1632067920	Fiery Flameblaze	differ; original smoke: play
+1546947492	Rising Waters	same; original smoke: WhenPlayerTurnStartsCleanup
+1537314758	Sunder II	same; original smoke: activate
+1619453542	Throne Aligned	original-fails; original smoke: ERROR InvalidOperationException: trigger Summon not gathered
+1224076964	Mythic Dawn Informer	differ; original smoke: LastGaspTrigger
+-1413193108	Arenthia Guerrilla	same; original smoke: aura
+-504642331	The Crisis Begins	same; original smoke: play
+1969717936	Oblivion Invasion	same; original smoke: play
+-1644790589	Daedric Incursion	same; original smoke: play
+-44631800	Widow Daedra	same; original smoke: WhenCardBreaksRune
+-1038531871	Bedlam	same; original smoke: play
+528592204	Dust Eater Skirmisher	differ; original smoke: WhenCardTakesDamage
+1594345279	Dive Rock Fall	same; original smoke: play
+169936922	Blood-Crazed Daedroth	same; original smoke: Summon
+2027449645	Blind Moth Priest	same; original smoke: aura
+457492927	Elixir of Potency	same; original smoke: activate
+1646081978	Giant Slaughterfish	same; original smoke: WhenPlayerTurnStartsCleanup
+605422918	Mehrunes Dagon's Flayer	same; original smoke: WhenPlayerTurnStartsCleanup(chosen)
+798165938	Valkynaz Mage	same; original smoke: WhenCardWardIsBroken
+-954988660	Outland Patrol	same; original smoke: LastGaspTrigger
+1879212177	Black Soul Gem	same; original smoke: WhenCardDies
+-2086861127	Black Soul Gem	differ; original smoke: WhenCardDies
+295791758	Mountain Lion	same; original smoke: Summon
+1241376776	Wild Boar	same; original smoke: WhenPlayerTurnStartsCleanup
+-305974074	Flaming Breath	same; original smoke: play
+766530851	Doomed Adventurer	same; original smoke: LastGaspTrigger
+-258100774	Occult Ritemaster	differ; original smoke: Summon,WhenCardIsEquipped
+1302969705	Fresh Start	same; original smoke: play
+-1480308540	Kynreeve Champion	same; original smoke: WhenCardTakesDamage
+-623041352	Archer's Perch	same; original smoke: WhenCardAttacks
+88259360	Blood Sorceress	original-fails; original smoke: ERROR InvalidOperationException: abilities ran (WhenPlayerTu
+346446694	Brotherhood Slayer	same; original smoke: Slay
+-6743431	Completed Contract	same; original smoke: play
+2050393439	Corpselight Farmer	original-fails; original smoke: ERROR InvalidOperationException: trigger WhenPlayerTurnStart
+-949205489	Corsair Ship	original-fails; original smoke: ERROR InvalidOperationException: no legal triggered target i
+1946714276	Fell the Mighty	same; original smoke: play
+-455665662	Grand Ball	same; original smoke: play
+792640043	Gristlehide Dreugh	same; original smoke: WhenCardTakesDamage
+1627653092	Knife to the Throat	same; original smoke: play
+1591893004	Little Girl	differ; original smoke: WhenPlayerTurnStartsCleanup
+1439548280	Marked Man	same; original smoke: Summon
+1655624616	Sanctuary Pet	same; original smoke: Summon(chosen)
+-462728031	Sanctuary Pet	same; original smoke: Summon(chosen)
+1966575870	Spawning Pool	differ; original smoke: WhenPlayerTurnStartsCleanup
+-608913933	Speaker Terenus	original-fails; original smoke: ERROR InvalidOperationException: abilities ran (WhenCardIsPl
+-1073368463	Temple's Blessing	same; original smoke: aura
+198068342	Crazed Hunger	same; original smoke: aura
+-1610794889	Giant Chicken	same; original smoke: LastGaspTrigger
+1831263143	Cast Into Time	same; original smoke: play
+744779288	Cradlecrush Giant	same; original smoke: Summon
+1678386054	Sword of the Inferno	original-fails; original smoke: ERROR InvalidOperationException: no legal triggered target i
+440099940	Ancient Prison	original-fails; original smoke: ERROR InvalidOperationException: abilities ran (WhenCardEnte
+141088648	Brellach Commander	differ; original smoke: Summon,Pilfer
+2124177191	Crazed Hunger	same; original smoke: WhenPlayerTurnStarts,WhenCardIsPlayed,aura
+1790691369	Felldew	same; original smoke: play
+1527411474	Giant Chicken	same; original smoke: LastGaspTrigger
+-846769673	Knight of Order	same; original smoke: Summon
+-89673891	Manic Mutation	same; original smoke: play
+-1845196063	Pointy Wall of Spikes	differ; original smoke: WhenCardTakesDamage
+-1445693535	Smoked Baliwog Leg	same; original smoke: play
+-1050726668	Spawn Mother	same; original smoke: Summon
+331478554	Unstoppable Berserker	same; original smoke: WhenPlayerTurnEnds
+133401086	Close Call	same; original smoke: play
+2050658798	Shivering Apothecary	differ; original smoke: Summon
+1345679378	Stoneshard Orc	same; original smoke: Summon(chosen)
+-1755965020	Chaurus Breeding Pit	same; original smoke: play
+1606917152	Pack Leader	same; original smoke: Pilfer,aura
+468367890	Protector of the Mane	same; original smoke: WhenCardIsHealed
+-1978336192	Smuggler's Haul	differ; original smoke: play
+-1039106056	Ulfric's Housecarl	same; original smoke: WhenCardBreaksRune
+434380024	Blackwood Distiller	same; original smoke: Pilfer,Slay
+-653632292	Frenzied Alit	same; original smoke: WhenCardTakesDamage
+-1310707462	Ashlander Punisher	same; original smoke: Pilfer,Slay
+857317091	Murkwater Scourge	same; original smoke: Summon,LastGaspTrigger
+1491945700	Hulking Mummy	same; original smoke: Summon
+-2036877263	Apprentice Necromancer	same; original smoke: Consume(chosen)
+161387582	Prankster Mage	same; original smoke: WhenCardWardIsBroken,aura
+536764784	Champion of the Arena	same; original smoke: Summon(chosen)
+-938494744	Ayleid Guardian	same; original smoke: Summon
+-1285896311	Almalexia's Blessing	differ; original smoke: play
+297163443	Blighted Werebat	same; original smoke: WhenPlayerTurnEnds
+-1158172668	Bloodline Outcast	same; original smoke: WhenCardDies
+-648740334	Bonewalker	same; original smoke: Summon
+1649613573	Cliff Strider	original-fails; original smoke: ERROR InvalidOperationException: abilities ran (WhenPlayerTu
+1863931149	Corprus Disease	same; original smoke: play
+-1370043641	Deranged Corprus	same; original smoke: aura
+-1505286800	Falling Wizard	same; original smoke: Summon,LastGaspTrigger
+1549644931	Fighters Guild Hall	original-fails; original smoke: ERROR InvalidOperationException: abilities ran (WhenCardTake
+-1975997249	Glass Greaves	original-fails; original smoke: ERROR InvalidOperationException: trigger Plot not gathered
+-400839003	Guar Stablemaster	differ; original smoke: Summon
+606363788	Hlaalu Sharpshooter	same; original smoke: Plot(chosen)
+-1420432869	Illusory Wall	same; original smoke: WhenPlayerTurnStartsCleanup
+564003897	Jiub	differ; original smoke: Slay
+1345209521	Knight of Gnisis	same; original smoke: Summon
+-1280987565	Kwama Queen	same; original smoke: Plot,aura
+1914295650	Lower Canton Smith	same; original smoke: Plot(chosen)
+-100961620	Mages Guild Recruit	same; original smoke: Summon(chosen)
+-827798255	Moonmoth Castellan	differ; original smoke: Plot,PlotFailed
+1845448850	Morag Tong Aspirant	same; original smoke: Slay
+-917179562	Nix-Ox	same; original smoke: Summon
+1643808429	Servant of Dagoth	differ; original smoke: Summon
+-511363521	Seyda Neen Courier	same; original smoke: Summon(chosen)
+-1964909706	Skeleton Champion	same; original smoke: Summon
+1350408783	Sotha Sil's Blessing	original-fails; original smoke: ERROR InvalidOperationException: no legal target in a popula
+-503969220	Spirit Knife	same; original smoke: play
+1943440178	Stand Watch	same; original smoke: play
+-1862842887	Suran Pawnbroker	differ; original smoke: Plot
+-543916079	The Red Year	same; original smoke: play,WhenCardDealsDamage
+-421725867	Twin Lamps Consul	differ; original smoke: Plot
+-1536671454	Vvardvark Experiment	same; original smoke: play
+250717238	Cartel Bruiser	same; original smoke: Pilfer
+-1545346644	Imbued Minotaur	original-fails; original smoke: ERROR InvalidOperationException: abilities ran (WhenCardCons
+1565955924	Imbued Khajiit	original-fails; original smoke: ERROR InvalidOperationException: abilities ran (WhenCardCons
+-1394876136	Imbued Argonian	original-fails; original smoke: ERROR InvalidOperationException: abilities ran (WhenCardCons
+362390617	Imbued Bosmer	original-fails; original smoke: ERROR InvalidOperationException: abilities ran (WhenCardCons
+1657353473	Imbued Breton	original-fails; original smoke: ERROR InvalidOperationException: abilities ran (WhenCardCons
+1320767098	Wandering Skeleton	same; original smoke: LastGaspTrigger
+1309242071	Rebel Warden	same; original smoke: Pilfer
+183499429	Blastbones	same; original smoke: LastGaspTrigger
+1265061955	Crocodile Brute	same; original smoke: WhenCardConsumes
+746861909	Euraxian Berserker	same; original smoke: Consume(chosen)
+190391314	Midnight Trespasser	same; original smoke: Consume(chosen)
+-286712589	Nibenese Mercenary	same; original smoke: Consume(chosen)
+-587057870	Rimmen Siege Weapons	differ; original smoke: WhenPlayerTurnStartsCleanup,aura
+-212283771	Khajiiti Warhelm	original-fails; original smoke: ERROR InvalidOperationException: trigger Summon not gathered
+-2099704881	Apex Predator	same; original smoke: WhenPlayerTurnEnds,WhenCardChangesLane
+351483326	Monastic Champion	same; original smoke: Pilfer
+683060108	Mercenary Captain	same; original smoke: Consume(chosen)
+1557614697	Fallen Dragon	same; original smoke: Summon
+2086484577	Arise	same; original smoke: play
+1646149449	Enraged Dragonknight	differ; original smoke: Consume(chosen)
+-2108351942	Khamira	same; original smoke: Pilfer
+651795925	Cadwell the Soul Shriven	same; original smoke: WhenCardBreaksRune
+-1557006386	Ancient Lookout	same; original smoke: WhenCardEntersBoard
+925784729	Arcane Enchanter	original-fails; original smoke: ERROR InvalidOperationException: trigger WhenCardMoveComplet
+-2043856038	Assassin's Ritual	differ; original smoke: play
+455301747	Barbas	differ; original smoke: Summon
+864023059	Battlemage's Onslaught	differ; original smoke: play
+-2022294925	Blades Lookout	same; original smoke: WhenCardEntersBoard
+1972415057	Caravan Enforcer	same; original smoke: WhenCardChangesLane
+1477641436	Cliffside Lookout	same; original smoke: WhenCardEntersBoard
+415692908	Counterfeit Trinket	same; original smoke: play
+-1955645154	Encumbered Explorer	same; original smoke: WhenCardAttackComplete
+1544370995	Enlightenment	same; original smoke: play
+1530234366	Flame Blast	same; original smoke: play
+465767870	Flame Cloak	same; original smoke: play
+-1806219075	Frost Troll	same; original smoke: WhenCardTakesDamage
+-2058713126	Ghost Sea Lookout	same; original smoke: WhenCardEntersBoard
+-287593845	Glass Helm of Remedy	original-fails; original smoke: ERROR InvalidOperationException: trigger Summon not gathered
+2053830739	Greybeard Mentor	same; original smoke: Summon
+1741900667	Greybeard Mentor	same; original smoke: Summon
+1768649206	J'zargo	same; original smoke: Summon
+-7715626	Karthspire Scourge	same; original smoke: Summon
+1900529745	Mage's Trick	same; original smoke: play
+-1992032649	Master Swordsmith	same; original smoke: WhenPlayerTurnStarts
+768890407	Midnight Snack	same; original smoke: LastGaspTrigger
+-489995894	Midnight Snack	same; original smoke: LastGaspTrigger
+1477162806	Mistveil Enchanter	same; original smoke: Summon
+1264365970	Monk's Strike	differ; original smoke: play
+-1375023832	Praetorian Commander	same; original smoke: Summon
+1946384176	Prized Chicken	same; original smoke: LastGaspTrigger
+699348060	Prized Chicken	same; original smoke: LastGaspTrigger
+-1084720811	Raging Horker	same; original smoke: WhenCardTakesDamage
+-643288632	Restoration Tutor	same; original smoke: Summon(chosen)
+-544257570	Ring of Namira	same; original smoke: WhenCardIsHealed,WhenCardIsPlayed
+-1060017693	Shadowgreen Elder	differ; original smoke: Summon
+1544383450	Shadowscale Partisan	same; original smoke: Summon
+780490122	Snowhawk Detachment	same; original smoke: Summon
+-1913127003	Sorcerer's Negation	same; original smoke: play
+-2137129258	Spellsword's Summoning	differ; original smoke: play
+533044821	Steelheart Vanquisher	same; original smoke: Slay
+1885848708	Thalmor Justiciar	original-fails; original smoke: ERROR InvalidOperationException: abilities ran (WhenCardIsPl
+-1481870431	Uncaged Wolf	same; original smoke: Summon
+-1366891703	Undying Dragon	same; original smoke: aura
+-88667885	Vision of the Tenth Eye	differ; original smoke: play
+1021773883	Warrior's Fury	differ; original smoke: play
+974780180	Wildfire Dragon	same; original smoke: Slay,Summon
+1186386421	Wolf Cage	original-fails; original smoke: ERROR InvalidOperationException: no legal activation target
+-648612380	Woodland Lookout	same; original smoke: WhenCardEntersBoard
+# Targeted Summons (OriginalTargetedSummonRules targeted on drop: the client lifts the card out of the hand, so PLAY_TO_BOARD found no card and the creature never appeared; owner 2026-11-06). The original Summon trigger lands first, then asks.
+1735315658	Allena Benoch	original Summon with optional target: land first, then the target prompt (Reborn order)
+1884147519	Sharpshooter Scout	original Summon with optional target: land first, then the target prompt (Reborn order)
+-1871307781	Sharpshooter Scout	original Summon with optional target: land first, then the target prompt (Reborn order)
+-1767873507	Valenwood Huntsman	original Summon with optional target: land first, then the target prompt (Reborn order)
+1863406899	Ash Servant	original Summon with optional target: land first, then the target prompt (Reborn order)
+-1249810974	Ash Servant	original Summon with optional target: land first, then the target prompt (Reborn order)
+1750084664	Shocking Wamasu	original Summon with optional target: land first, then the target prompt (Reborn order)
+-781594103	Frenzied Witchman	original Summon with optional target: land first, then the target prompt (Reborn order)
+1106955994	Morkul Gatekeeper	original Summon with optional target: land first, then the target prompt (Reborn order)
+-967450522	Murkwater Witch	original Summon with optional target: land first, then the target prompt (Reborn order)
+-463613369	Murkwater Witch	original Summon with optional target: land first, then the target prompt (Reborn order)
+-1621791439	Orc Clansman	original Summon with optional target: land first, then the target prompt (Reborn order)
+1826150536	Prowling Hunger	original Summon with optional target: land first, then the target prompt (Reborn order)
+-452943738	Sunhold Medic	original Summon with optional target: land first, then the target prompt (Reborn order)
+-1935845219	Wrothgar Artisan	original Summon with optional target: land first, then the target prompt (Reborn order)
+2052829044	Cleric of Kyne	original Summon with optional target: land first, then the target prompt (Reborn order)
+-12036977	Dwarven Sphere	original Summon with optional target: land first, then the target prompt (Reborn order)
+-710854512	Shrieking Harpy	original Summon with optional target: land first, then the target prompt (Reborn order)
+-1766587430	Shrieking Harpy	original Summon with optional target: land first, then the target prompt (Reborn order)
+575791787	Mace of Encumbrance	original Summon with optional target: land first, then the target prompt (Reborn order)
+-456767346	Icewing Dragon	original Summon with optional target: land first, then the target prompt (Reborn order)

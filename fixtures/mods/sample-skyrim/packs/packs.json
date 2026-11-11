@@ -1,0 +1,31 @@
+{
+ "format": 1,
+ "packs": [
+  {
+   "slug": "skyrim-heroes-pack",
+   "name": "Skyrim Heroes Pack",
+   "description": "Three cards from the Skyrim Heroes mod, the last one Rare or better.",
+   "price": 150,
+   "art": "skyrim-heroes-pack.png",
+   "cards": 3,
+   "pool": "mod",
+   "odds": {"common": 70, "rare": 25, "epic": 5, "legendary": 0},
+   "last_slot": {"rare": 85, "epic": 15},
+   "premium": 5
+  },
+  {
+   "slug": "nord-recruits",
+   "name": "Nord Recruits",
+   "description": "Five recruits: mostly Wolfcallers, sometimes a Housecarl.",
+   "price": 80,
+   "art": "skyrim-heroes-pack.png",
+   "cards": 5,
+   "cards_list": [
+    {"card": "Whiterun Wolfcaller", "weight": 6},
+    {"card": "Bleak Falls Draugr", "weight": 3},
+    {"card": "Jarl's Housecarl", "weight": 1}
+   ],
+   "premium": 0
+  }
+ ]
+}

@@ -1,0 +1,131 @@
+{
+ "format": 1,
+ "boards": [
+  {
+   "slug": "greenwood-table",
+   "name": "Greenwood Table",
+   "base": "Original",
+   "mode": "rotation",
+   "image": "greenwood-table.png",
+   "edits": {
+    "lighting": {
+     "brightness": 1.05,
+     "tint": [
+      0.91,
+      1.0,
+      0.878,
+      1.0
+     ]
+    },
+    "lights": {
+     "Lights/Crystal Light": {
+      "color": [
+       0.2,
+       1.0,
+       0.533,
+       1.0
+      ]
+     }
+    },
+    "particles": {
+     "BG/Playmat_Crystal_01/FX_Board_Playmat_Crystal_01": {
+      "color": [
+       0.4,
+       1.0,
+       0.6,
+       1.0
+      ]
+     }
+    },
+    "objects": {
+     "BG/Playmat_Skull_01": {
+      "hide": true
+     }
+    },
+    "add": [
+     {
+      "slug": "runestone",
+      "name": "Runestone",
+      "model": "greenwood-table/models/runestone/runestone.glb",
+      "pos": [
+       -29.871,
+       0.0,
+       12.814
+      ],
+      "fit": 7.0
+     },
+     {
+      "slug": "soul-gem",
+      "name": "Soul gem",
+      "model": "greenwood-table/models/soul-gem/soul-gem.glb",
+      "pos": [
+       28.795,
+       0.0,
+       -9.098
+      ],
+      "fit": 3.0,
+      "motion": {
+       "type": "float"
+      }
+     },
+     {
+      "slug": "crate",
+      "name": "Crate",
+      "model": "greenwood-table/models/crate/crate.obj",
+      "pos": [
+       -30.32,
+       0.0,
+       -2.359
+      ],
+      "fit": 6.0
+     },
+     {
+      "slug": "emblem",
+      "name": "Emblem",
+      "image": "greenwood-table/images/emblem.png",
+      "width": 9.0,
+      "pos": [
+       -19.458,
+       0.05,
+       -13.731
+      ]
+     },
+     {
+      "slug": "rune-glow",
+      "name": "Rune glow",
+      "light": {
+       "type": "point",
+       "color": [
+        0.267,
+        1.0,
+        0.6,
+        1.0
+       ],
+       "intensity": 2.0,
+       "range": 18.0,
+       "angle": 45.0
+      },
+      "pos": [
+       -29.674,
+       6.0,
+       12.379
+      ]
+     },
+     {
+      "slug": "fireflies",
+      "name": "Fireflies",
+      "particles": {
+       "preset": "fireflies",
+       "area": 10.0
+      },
+      "pos": [
+       -27.077,
+       0.5,
+       -3.89
+      ]
+     }
+    ]
+   }
+  }
+ ]
+}

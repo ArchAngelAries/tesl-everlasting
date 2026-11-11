@@ -1,0 +1,50 @@
+{
+ "format": 1,
+ "replace": [
+  {
+   "sound": "card-sfx:vile_imp_attack",
+   "label": "Fiery Imp - attacks",
+   "target": "vile_imp_attack_03",
+   "files": [
+    "vile-imp-attack-1.ogg"
+   ],
+   "volume": 1.0
+  },
+  {
+   "sound": "card-sfx:vile_imp_attack",
+   "label": "Fiery Imp - attacks",
+   "target": "vile_imp_attack",
+   "files": [
+    "vile-imp-attack-1.ogg"
+   ],
+   "volume": 1.0
+  },
+  {
+   "sound": "card-sfx:vile_imp_attack",
+   "label": "Fiery Imp - attacks",
+   "target": "vile_imp_attack_01",
+   "files": [
+    "vile-imp-attack-1.ogg"
+   ],
+   "volume": 1.0
+  },
+  {
+   "sound": "card-sfx:vile_imp_attack",
+   "label": "Fiery Imp - attacks",
+   "target": "vile_imp_attack_02",
+   "files": [
+    "vile-imp-attack-1.ogg"
+   ],
+   "volume": 1.0
+  },
+  {
+   "sound": "card-sfx:vile_imp_attack",
+   "label": "Fiery Imp - attacks",
+   "target": "vile_imp_attack_04",
+   "files": [
+    "vile-imp-attack-1.ogg"
+   ],
+   "volume": 1.0
+  }
+ ]
+}

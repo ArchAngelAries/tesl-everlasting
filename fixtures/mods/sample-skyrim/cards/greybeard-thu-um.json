@@ -1,0 +1,351 @@
+{
+ "ResourceId": {
+  "Id": -520245669,
+  "UniqueName": "greybeard-thu-um",
+  "CompletionType": "Complete"
+ },
+ "Production": true,
+ "Name": "Greybeard Thu'um",
+ "NameKey": {
+  "RawKey": "mod.sample-skyrim.greybeard-thu-um.title"
+ },
+ "Definition": "Action",
+ "Description": "Deal 3 damage.",
+ "DescriptionKey": {
+  "RawKey": "mod.sample-skyrim.greybeard-thu-um.text"
+ },
+ "AdditionalSearchTokensKey": {
+  "RawKey": ""
+ },
+ "Image": "Mods/sample-skyrim/greybeard-thu-um",
+ "PermanentHangers": [],
+ "MechanicsEntries": [],
+ "CardReferences": [],
+ "HuntTypes": [],
+ "Source": "Normal",
+ "SourceString": {
+  "RawKey": null
+ },
+ "AvailabilityString": {
+  "RawKey": null
+ },
+ "UpgradesInto": [],
+ "AlternateOfCard": {
+  "resourceId": 0
+ },
+ "IneligibleForRandomPools": false,
+ "InvalidArenaPick": false,
+ "SeasonId": 0,
+ "ExportCode": "~e0fdae5b",
+ "CanBeFirstEverSoloPick": false,
+ "PlayCardVO": null,
+ "DeathCardVO": null,
+ "AttackCardVO": null,
+ "HitCardVO": null,
+ "SuccessCardVO": null,
+ "FailureCardVO": null,
+ "Unique": false,
+ "MaxCopies": 3,
+ "MobilizeRecruitId": {
+  "CardIdReference": 0
+ },
+ "DefaultRareAttributes": [],
+ "PlayRequirements": {
+  "PlayerRequirements": []
+ },
+ "BetrayRequirements": {
+  "PlayerRequirements": []
+ },
+ "PlayWeight": {
+  "CommonWeights": [],
+  "LocalWeights": []
+ },
+ "ActionPlayInformation": [
+  {
+   "PlayTargetingType": "RequiredTarget",
+   "TargetSelectors": [
+    {
+     "DecisionType": "Card",
+     "CardConditionalExpressions": [
+      {
+       "Subtypes": [
+        "Creature",
+        "Avatar"
+       ],
+       "Is": "GreaterThan",
+       "Value": 0,
+       "$type": "SPTESL.CardConditionals+SubtypeCount"
+      },
+      {
+       "Check": "IsIn",
+       "ZoneTypeMask": {
+        "List": [
+         "Board"
+        ]
+       },
+       "$type": "SPTESL.CardConditionals+Zone"
+      }
+     ],
+     "LaneConditionalExpressions": []
+    }
+   ],
+   "AiTargetRules": {
+    "AllyRule": "TargetEnemies"
+   },
+   "ActionTargetWeight": {
+    "CommonWeights": [
+     {
+      "WeightType": "Damage",
+      "TriggerValue": {
+       "ValueMethod": "Constant",
+       "ConstantValue": 3,
+       "ConstantMultiplier": 0,
+       "MinRandom": 0,
+       "MaxRandom": 0,
+       "MinValue": 0,
+       "MaxValue": 0,
+       "AttributeName": "None",
+       "RareAttributeName": "None",
+       "CardRole": "Self",
+       "PlayerRole": "Self",
+       "Selectors": [],
+       "AllPlayers": false,
+       "JournalType": "Drawn",
+       "TimeWindow": "ThisTurn"
+      }
+     }
+    ],
+    "LocalWeights": []
+   },
+   "EffectGroup": {
+    "Effects": [
+     {
+      "ExecuteValueRequirements": [],
+      "ExecuteCardRequirements": [
+       {
+        "LhsCard": "Self",
+        "Conditional": {
+         "Check": "IsIn",
+         "ZoneTypeMask": {
+          "List": [
+           "Board"
+          ]
+         }
+        },
+        "$type": "SPTESL.CardRequirements+ZoneRequirement"
+       }
+      ],
+      "ExecutePlayerRequirements": [],
+      "ExecuteLaneRequirements": [],
+      "CardActions": [
+       {
+        "HashId": -1390536642,
+        "NameForHashing": "Action_NoName",
+        "CardFxDefinition": "Card_CrushingBlow_02",
+        "SelectorSort": {
+         "Method": "ByInstanceId",
+         "NumToReturn": {
+          "ValueMethod": "Constant",
+          "ConstantValue": 0,
+          "ConstantMultiplier": 0,
+          "MinRandom": 0,
+          "MaxRandom": 0,
+          "MinValue": 0,
+          "MaxValue": 0,
+          "AttributeName": "None",
+          "RareAttributeName": "None",
+          "CardRole": "Self",
+          "PlayerRole": "Self",
+          "Selectors": [],
+          "AllPlayers": false,
+          "JournalType": "Drawn",
+          "TimeWindow": "ThisTurn"
+         },
+         "SortAttribute": "None",
+         "Order": "LowestFirst",
+         "RequireUniqueNames": false
+        },
+        "Selectors": [
+         {
+          "Check": "Is",
+          "Role": "DecisionTarget",
+          "$type": "SPTESL.CardConditionals+CardRoleType"
+         },
+         {
+          "Check": "IsIn",
+          "ZoneTypeMask": {
+           "List": [
+            "Board"
+           ]
+          },
+          "$type": "SPTESL.CardConditionals+Zone"
+         }
+        ],
+        "Action": {
+         "HealthLoss": {
+          "ValueMethod": "Constant",
+          "ConstantValue": 3,
+          "ConstantMultiplier": 0,
+          "MinRandom": 0,
+          "MaxRandom": 0,
+          "MinValue": 0,
+          "MaxValue": 0,
+          "AttributeName": "None",
+          "RareAttributeName": "None",
+          "CardRole": "Self",
+          "PlayerRole": "Self",
+          "Selectors": [],
+          "AllPlayers": false,
+          "JournalType": "Drawn",
+          "TimeWindow": "ThisTurn"
+         },
+         "DamageSource": "Self",
+         "UseItemWielderAsDamageSource": false,
+         "SeparateLogMessages": false,
+         "$type": "SPTESL.CardActions+Damage"
+        },
+        "FailureCard": {
+         "BaseCard": {
+          "Id": 0,
+          "UniqueName": null,
+          "CompletionType": "Placeholder"
+         },
+         "Power": {
+          "ValueMethod": "Constant",
+          "ConstantValue": 0,
+          "ConstantMultiplier": 0,
+          "MinRandom": 0,
+          "MaxRandom": 0,
+          "MinValue": 0,
+          "MaxValue": 0,
+          "AttributeName": "None",
+          "RareAttributeName": "None",
+          "CardRole": "Self",
+          "PlayerRole": "Self",
+          "Selectors": [],
+          "AllPlayers": false,
+          "JournalType": "Drawn",
+          "TimeWindow": "ThisTurn"
+         }
+        },
+        "FailureCardOwner": "Self"
+       }
+      ],
+      "PlayerActions": [],
+      "NameForEditor": "3 damage"
+     }
+    ]
+   },
+   "CustomUiType": "None",
+   "OptionalCustomUiType": false,
+   "CustomUiEffectGroups": [],
+   "PostCustomUiEffectGroup": {
+    "Effects": []
+   },
+   "IsDamageOnly": true
+  }
+ ],
+ "AttackRequirements": {
+  "PlayerRequirements": [],
+  "CardRequirements": [],
+  "LaneRequirements": []
+ },
+ "StrongHintRequirements": {
+  "PlayerRequirements": [],
+  "CardRequirements": [],
+  "LaneRequirements": []
+ },
+ "CardFxRelations": [],
+ "Rarity": "Rare",
+ "ActivatedAbility": {
+  "TargetingType": "NoTarget",
+  "TargetSelectors": [],
+  "AiTargetRules": {
+   "AllyRule": "TargetBoth"
+  },
+  "AbilityWeight": {
+   "CommonWeights": [],
+   "LocalWeights": []
+  },
+  "ActivationPlayerRequirements": [],
+  "ActivationCardRequirements": [],
+  "AbilityGroups": []
+ },
+ "Subtypes": [
+  "Strength"
+ ],
+ "ArenaDraftSubtypes": [],
+ "TriggeredEffects": [],
+ "Auras": [],
+ "DoubleCardReferences": [],
+ "DynamicTextAssignments": [],
+ "ImageScale": 1.0,
+ "ImageOffsetX": 0.0,
+ "ImageOffsetY": 0.0,
+ "HangerImageScale": 1.5,
+ "HangerImageOffsetX": 0.0,
+ "HangerImageOffsetY": 0.0,
+ "HistoryLogItemImageScale": 1.75,
+ "HistoryLogItemImageOffsetX": 0.0,
+ "HistoryLogItemImageOffsetY": -0.08,
+ "ListImageScale": 1.0,
+ "ListImageOffsetX": 0.0,
+ "ListImageOffsetY": 0.12,
+ "IsPremiumOnly": false,
+ "ContentPackIndex": 0,
+ "AllowContentPackOverride": false,
+ "EntityAttributes": [
+  {
+   "Value": 2,
+   "Name": "ManaCost",
+   "$type": "SPTESL.IntAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "Prophecy",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "Deathtouch",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "Drain",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "Breakthrough",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "Betray",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "HasEmpower",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "ImmuneToBanish",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "ImmuneToSteal",
+   "$type": "SPTESL.BoolAttribute"
+  }
+ ],
+ "_mod": {
+  "mod": "sample-skyrim",
+  "template": -1576564883,
+  "template_name": "Fireball",
+  "rules_from": "Crushing Blow",
+  "created": "2026-11-03T05:54:14"
+ }
+}

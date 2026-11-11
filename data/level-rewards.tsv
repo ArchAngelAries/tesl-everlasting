@@ -1,0 +1,51 @@
+# Level-up rewards, UESP Legends:Leveling (2026-10-22). One copy per named card (count not documented: reconstruction).
+# corecard:<Rarity>:race|random = a Core Set card of that rarity (race = the selected avatar's race). deckonce = unless already owned.
+level_reward_2	card:Orc Clan Captain*1
+level_reward_3	card:Sunhold Medic*1
+level_reward_4	card:Hive Warrior*1
+level_reward_5	card:Dreugh Shell Armor*1
+level_reward_6	deckonce:Dunmer Avengers|card:Fighters Guild Recruit*1|corecard:Common:race
+level_reward_7	card:Camlorn Hero*1|corecard:Rare:race
+level_reward_8	card:Archein Venomtongue*1|corecard:Epic:random
+level_reward_9	deckonce:Imperial Might|corecard:Epic:race
+level_reward_10	gold:100|deckonce:Warriors of Hammerfell|pack:Core Set*1
+level_reward_11	card:Rihad Horseman*1
+level_reward_12	card:Orc Clan Shaman*1|corecard:Rare:race
+level_reward_13	card:Deathless Draugr*1|corecard:Epic:race
+level_reward_14	corecard:Rare:random
+level_reward_15	card:Ravenous Crocodile*1|pack:Core Set*1
+level_reward_16	card:Dres Tormentor*1|corecard:Epic:race
+level_reward_17	corecard:Rare:race
+level_reward_18	corecard:Rare:random
+level_reward_19	corecard:Epic:race
+level_reward_20	gold:100|pack:Core Set*1
+level_reward_21	card:Dune Smuggler*1|corecard:Rare:race
+level_reward_22	corecard:Rare:random
+level_reward_23	card:Night Predator*1|corecard:Epic:race
+level_reward_24	corecard:Legendary:race
+level_reward_25	corecard:Rare:random|pack:Core Set*1
+level_reward_26	corecard:Epic:race
+level_reward_27	corecard:Rare:random
+level_reward_28	corecard:Rare:race
+level_reward_29	corecard:Rare:race
+level_reward_30	gold:100|pack:Core Set*1
+level_reward_31	corecard:Epic:random
+level_reward_32	corecard:Legendary:race
+level_reward_33	corecard:Rare:random
+level_reward_34	corecard:Epic:race
+level_reward_35	corecard:Rare:random|pack:Core Set*1
+level_reward_36	corecard:Epic:race
+level_reward_37	corecard:Epic:random
+level_reward_38	corecard:Epic:race
+level_reward_39	corecard:Epic:random
+level_reward_40	gold:100|pack:Core Set*1
+level_reward_41	corecard:Rare:race
+level_reward_42	corecard:Epic:race
+level_reward_43	corecard:Epic:random
+level_reward_44	card:Stronghold Eradicator*1|corecard:Rare:race
+level_reward_45	corecard:Epic:random|pack:Core Set*1
+level_reward_46	corecard:Epic:race
+level_reward_47	corecard:Epic:random
+level_reward_48	corecard:Epic:race
+level_reward_49	corecard:Epic:random
+level_reward_50	gold:100|card:Blood Magic Lord*1|pack:Core Set*1

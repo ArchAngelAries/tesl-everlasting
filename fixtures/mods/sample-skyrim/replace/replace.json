@@ -1,0 +1,27 @@
+{
+ "format": 1,
+ "images": [
+  {
+   "asset": "ContentPack000/Cards/Visuals/Pyromaniac_Imp/Pyromaniac_Imp",
+   "file": "ContentPack000__Cards__Visuals__Pyromaniac_Imp__Pyromaniac_Imp.png",
+   "width": 1024,
+   "height": 1024,
+   "bundle_path": "Assets/ContentPack000/Cards/Visuals/Pyromaniac_Imp/Pyromaniac_Imp.png",
+   "original": {
+    "width": 512,
+    "height": 512,
+    "ppu": 100.0,
+    "pivot": [
+     0.5,
+     0.5
+    ],
+    "border": [
+     0.0,
+     0.0,
+     0.0,
+     0.0
+    ]
+   }
+  }
+ ]
+}

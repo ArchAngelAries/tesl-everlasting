@@ -1,0 +1,98 @@
+{
+ "name": "Skyrim Heroes",
+ "description": "",
+ "art_card": -1417084127,
+ "cards": [
+  {
+   "id": -1417084127,
+   "name": "Jarl's Housecarl",
+   "count": 3
+  },
+  {
+   "id": -1353236331,
+   "name": "Bleak Falls Draugr",
+   "count": 3
+  },
+  {
+   "id": -1519417470,
+   "name": "Bruma Profiteer",
+   "count": 3
+  },
+  {
+   "id": -1216391466,
+   "name": "Whiterun Protector",
+   "count": 3
+  },
+  {
+   "id": -1614622271,
+   "name": "Haunting Spirit",
+   "count": 3
+  },
+  {
+   "id": -1226235166,
+   "name": "Crushing Blow",
+   "count": 3
+  },
+  {
+   "id": 1516267000,
+   "name": "Archein Guerilla",
+   "count": 3
+  },
+  {
+   "id": 1908820511,
+   "name": "Auridon Paladin",
+   "count": 3
+  },
+  {
+   "id": 1151548217,
+   "name": "Cathay-raht Veteran",
+   "count": 3
+  },
+  {
+   "id": -926222237,
+   "name": "Cheydinhal Sapper",
+   "count": 3
+  },
+  {
+   "id": 2052829044,
+   "name": "Cleric of Kyne",
+   "count": 3
+  },
+  {
+   "id": -426404054,
+   "name": "Grim Shield-Brother",
+   "count": 3
+  },
+  {
+   "id": -1497585773,
+   "name": "Companion Harbinger",
+   "count": 3
+  },
+  {
+   "id": 338540522,
+   "name": "Mentor of the Watch",
+   "count": 3
+  },
+  {
+   "id": -643288632,
+   "name": "Restoration Tutor",
+   "count": 3
+  },
+  {
+   "id": 780490122,
+   "name": "Snowhawk Detachment",
+   "count": 3
+  },
+  {
+   "id": -229481561,
+   "name": "Stonehill Mammoth",
+   "count": 3
+  }
+ ],
+ "type_name": "mod.sample-skyrim.deck.skyrim-heroes",
+ "type_hash": 1188525255,
+ "deck_art": {
+  "tile": "skyrim-heroes-deck-tile.png",
+  "large": "skyrim-heroes-deck-large.png"
+ }
+}

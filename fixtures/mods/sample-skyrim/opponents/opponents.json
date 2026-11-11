@@ -1,0 +1,26 @@
+{
+ "format": 1,
+ "opponents": [
+  {
+   "slug": "greybeard-elder",
+   "name": "Greybeard Elder",
+   "title": "Keeper of the Way of the Voice",
+   "portrait": "greybeard-elder.png",
+   "deck": "mod.sample-skyrim.deck.skyrim-heroes",
+   "difficulty": "Adept",
+   "temperament": "Stoic",
+   "practice": true
+  },
+  {
+   "slug": "draugr-warlord",
+   "name": "Draugr Warlord",
+   "title": "Risen from Bleak Falls",
+   "portrait": "avatar:draugr",
+   "deck": "random",
+   "random_size": 30,
+   "difficulty": "chosen",
+   "temperament": "Cocky",
+   "practice": true
+  }
+ ]
+}

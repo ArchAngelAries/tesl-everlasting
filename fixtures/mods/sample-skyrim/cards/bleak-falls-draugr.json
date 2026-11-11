@@ -1,0 +1,598 @@
+{
+ "ResourceId": {
+  "Id": -1353236331,
+  "UniqueName": "bleak-falls-draugr",
+  "CompletionType": "Complete"
+ },
+ "Production": true,
+ "Name": "Bleak Falls Draugr",
+ "NameKey": {
+  "RawKey": "mod.sample-skyrim.bleak-falls-draugr.title"
+ },
+ "Definition": "Creature",
+ "Description": "<b><color=E9E0CD>Last Gasp:</color></b> Give a random friendly creature +3/+3.",
+ "DescriptionKey": {
+  "RawKey": "mod.sample-skyrim.bleak-falls-draugr.text"
+ },
+ "AdditionalSearchTokensKey": {
+  "RawKey": ""
+ },
+ "Image": "Mods/sample-skyrim/bleak-falls-draugr",
+ "PermanentHangers": [],
+ "MechanicsEntries": [
+  {
+   "MechanicType": "LastGasp",
+   "DisplayHanger": true,
+   "DisplayIcon": true
+  }
+ ],
+ "CardReferences": [],
+ "HuntTypes": [],
+ "Source": "Normal",
+ "SourceString": {
+  "RawKey": "generic.Promotional"
+ },
+ "AvailabilityString": {
+  "RawKey": ""
+ },
+ "UpgradesInto": [],
+ "AlternateOfCard": {
+  "resourceId": 0
+ },
+ "IneligibleForRandomPools": false,
+ "InvalidArenaPick": false,
+ "SeasonId": 0,
+ "ExportCode": "~af574095",
+ "CanBeFirstEverSoloPick": false,
+ "PlayCardVO": "haunting_spirit_enter_play",
+ "DeathCardVO": "haunting_spirit_last_gasp",
+ "AttackCardVO": "haunting_spirit_attack",
+ "HitCardVO": "haunting_spirit_hit",
+ "SuccessCardVO": null,
+ "FailureCardVO": null,
+ "Unique": false,
+ "MaxCopies": 3,
+ "MobilizeRecruitId": {
+  "CardIdReference": 0
+ },
+ "DefaultRareAttributes": [],
+ "PlayRequirements": {
+  "PlayerRequirements": []
+ },
+ "BetrayRequirements": {
+  "PlayerRequirements": []
+ },
+ "PlayWeight": {
+  "CommonWeights": [],
+  "LocalWeights": []
+ },
+ "ActionPlayInformation": [],
+ "AttackRequirements": {
+  "PlayerRequirements": [],
+  "CardRequirements": [],
+  "LaneRequirements": []
+ },
+ "StrongHintRequirements": {
+  "PlayerRequirements": [],
+  "CardRequirements": [],
+  "LaneRequirements": []
+ },
+ "CardFxRelations": [],
+ "Rarity": "Rare",
+ "ActivatedAbility": {
+  "TargetingType": "NoTarget",
+  "TargetSelectors": [],
+  "AiTargetRules": {
+   "AllyRule": "TargetBoth"
+  },
+  "AbilityWeight": {
+   "CommonWeights": [],
+   "LocalWeights": []
+  },
+  "ActivationPlayerRequirements": [],
+  "ActivationCardRequirements": [],
+  "AbilityGroups": []
+ },
+ "Subtypes": [
+  "Spirit",
+  "Endurance",
+  "Undead",
+  "MonsterHunterTarget"
+ ],
+ "ArenaDraftSubtypes": [],
+ "TriggeredEffects": [
+  {
+   "EffectGroup": {
+    "Effects": [
+     {
+      "ExecuteValueRequirements": [],
+      "ExecuteCardRequirements": [],
+      "ExecutePlayerRequirements": [],
+      "ExecuteLaneRequirements": [],
+      "CardActions": [
+       {
+        "HashId": 429648849,
+        "NameForHashing": "Action_NoName",
+        "CardFxDefinition": "Card_Buff_Undead_Spirit",
+        "SelectorSort": {
+         "Method": "Random",
+         "NumToReturn": {
+          "ValueMethod": "Constant",
+          "ConstantValue": 1,
+          "ConstantMultiplier": 0,
+          "MinRandom": 0,
+          "MaxRandom": 0,
+          "MinValue": 0,
+          "MaxValue": 0,
+          "AttributeName": "None",
+          "RareAttributeName": "None",
+          "CardRole": "Self",
+          "PlayerRole": "Self",
+          "Selectors": [],
+          "AllPlayers": false,
+          "JournalType": "Drawn",
+          "TimeWindow": "ThisTurn"
+         },
+         "SortAttribute": "None",
+         "Order": "LowestFirst",
+         "RequireUniqueNames": false
+        },
+        "Selectors": [
+         {
+          "OtherCard": "Self",
+          "Are": "Friends",
+          "$type": "SPTESL.CardConditionals+Relationship"
+         },
+         {
+          "Check": "IsIn",
+          "ZoneTypeMask": {
+           "List": [
+            "Board"
+           ]
+          },
+          "$type": "SPTESL.CardConditionals+Zone"
+         },
+         {
+          "Check": "Is",
+          "SubtypeName": "Creature",
+          "TestSubtypesOfDouble": false,
+          "$type": "SPTESL.CardConditionals+Subtype"
+         }
+        ],
+        "Action": {
+         "Enchantment": {
+          "NameForEditor": null,
+          "DisplayTitle": {
+           "RawKey": "a08fefb0-1371-11e5-b60b-1697f925ec7b-display_buff_title"
+          },
+          "DisplayText": {
+           "RawKey": "a08fefb0-1371-11e5-b60b-1697f925ec7b-display_buff_text"
+          },
+          "MaxTurns": 0,
+          "DeferApplication": false,
+          "DeferApplicationLast": false,
+          "BasicItemEnchantment": false,
+          "KeepWhenMovesOffBoard": false,
+          "ExpiresAtStartOfTurn": false,
+          "ExpiresAtStartOfSourcesTurn": false,
+          "ExpiresAtEndOfTurn": false,
+          "ExpiresAtEndOfFight": false,
+          "ExpiresOnAttack": false,
+          "ExpiresOnIncomingDamage": false,
+          "ExpiresAtEndOfProphecy": false,
+          "ExpiresAtEndOfTurnAfterNotAttacking": false,
+          "ExpiresAfterRuneBreak": false,
+          "PermanentExpiresOnLeavingBoard": false,
+          "PermanentExpiresOnChange": false,
+          "ResetWoundedState": false,
+          "AttributeModifications": [
+           {
+            "ModificationType": "Add",
+            "AttributeName": "Attack",
+            "Value": 3,
+            "DynamicValue": 0,
+            "LockedDynamicValue": false
+           },
+           {
+            "ModificationType": "Add",
+            "AttributeName": "MaxHealth",
+            "Value": 3,
+            "DynamicValue": 0,
+            "LockedDynamicValue": false
+           }
+          ],
+          "GrantedEffects": [],
+          "GrantedAuras": [],
+          "AddedCreatureSubtypes": [],
+          "NewColorSubtypes": [],
+          "SubcardDistributionSubtypes": [],
+          "MechanicsEntries": [],
+          "CardReferences": [],
+          "TagReferences": []
+         },
+         "IgnoreInClientLog": false,
+         "SanitizeRule": "Default",
+         "SimultaneousFx": false,
+         "$type": "SPTESL.CardActions+Buff"
+        },
+        "FailureCard": {
+         "BaseCard": {
+          "Id": 0,
+          "UniqueName": null,
+          "CompletionType": "Placeholder"
+         },
+         "Power": {
+          "ValueMethod": "Constant",
+          "ConstantValue": 0,
+          "ConstantMultiplier": 0,
+          "MinRandom": 0,
+          "MaxRandom": 0,
+          "MinValue": 0,
+          "MaxValue": 0,
+          "AttributeName": "None",
+          "RareAttributeName": "None",
+          "CardRole": "Self",
+          "PlayerRole": "Self",
+          "Selectors": [],
+          "AllPlayers": false,
+          "JournalType": "Drawn",
+          "TimeWindow": "ThisTurn"
+         }
+        },
+        "FailureCardOwner": "Self"
+       }
+      ],
+      "PlayerActions": [],
+      "NameForEditor": "gasp"
+     }
+    ]
+   },
+   "TriggerType": "LastGaspTrigger",
+   "SortOrder": "StateChanges_CardAttributes_IncreaseAttack",
+   "AfterRuneBreaks": false,
+   "AreaEffect": false,
+   "AllowReentrancy": false,
+   "IgnoredByClientLog": false,
+   "UseGenericIcon": false,
+   "CanMergeEffectsWithSelf": false,
+   "ComplexMergeEffectsWithSelf": false,
+   "SanitizeRule": "Default",
+   "ClientTargetingType": "NoTarget",
+   "TargetSelectors": [],
+   "OpponentChooses": false,
+   "SecretTarget": false,
+   "ItemUsesWielderAsEffectSource": false,
+   "AiTargetRules": {
+    "AllyRule": "TargetBoth"
+   },
+   "EffectTargetWeight": {
+    "CommonWeights": [],
+    "LocalWeights": []
+   },
+   "TargetingPrompt": {
+    "RawKey": null
+   },
+   "CustomUiType": "None",
+   "OptionalCustomUiType": false,
+   "CustomUiPrompt": {
+    "RawKey": null
+   },
+   "CustomUiEffectGroups": [],
+   "PostCustomUiEffectGroup": {
+    "Effects": []
+   },
+   "TriggerValueRequirements": [],
+   "TriggerCardRequirements": [],
+   "TriggerPlayerRequirements": [],
+   "BeforeTargetingCardRequirements": [],
+   "BeforeTargetingPlayerRequirements": []
+  }
+ ],
+ "Auras": [],
+ "DoubleCardReferences": [],
+ "DynamicTextAssignments": [],
+ "ImageScale": 1.025,
+ "ImageOffsetX": -0.02,
+ "ImageOffsetY": 0.0,
+ "HangerImageScale": 1.5,
+ "HangerImageOffsetX": 0.0,
+ "HangerImageOffsetY": -0.11,
+ "HistoryLogItemImageScale": 1.75,
+ "HistoryLogItemImageOffsetX": 0.0,
+ "HistoryLogItemImageOffsetY": -0.08,
+ "ListImageScale": 1.0,
+ "ListImageOffsetX": 0.0,
+ "ListImageOffsetY": -0.31,
+ "IsPremiumOnly": false,
+ "ContentPackIndex": 0,
+ "AllowContentPackOverride": true,
+ "EntityAttributes": [
+  {
+   "Value": 2,
+   "Name": "ManaCost",
+   "$type": "SPTESL.IntAttribute"
+  },
+  {
+   "Value": 2,
+   "Name": "Attack",
+   "$type": "SPTESL.IntAttribute"
+  },
+  {
+   "Value": 1,
+   "Name": "NumAttacksPerTurn",
+   "$type": "SPTESL.IntAttribute"
+  },
+  {
+   "Value": 3,
+   "Name": "MaxHealth",
+   "$type": "SPTESL.IntAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "Charge",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "Taunt",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "Deathtouch",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "CannotAttack",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "Immune",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "Freeze",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "DamageAvatarOfAttackedCreature",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "IgnoreTaunt",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "Untouchable",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "FirstStrike",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "Unstoppable",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "Prophecy",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "Ward",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "Breakthrough",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "Cover",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "Regenerate",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "ImmuneToLethal",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "ImmuneToFreeze",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "ImmuneToSilence",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "CanAttackOtherLane",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "CanAttackFriendlies",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "Wounded",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "Drain",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "ImmuneToCover",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "ImmuneToEnemyActionTargeting",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "ImmuneToActionDamage",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "ImmuneToSupportDamage",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "ImmuneToEnemyDragons",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": 0,
+   "Name": "Rally",
+   "$type": "SPTESL.IntAttribute"
+  },
+  {
+   "Value": 0,
+   "Name": "ExaltCost",
+   "$type": "SPTESL.IntAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "Exalted",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "ImmuneToEnemyCliffCreatures",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "CanOnlyAttackCreatures",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "GuardsBothLanes",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "MoveToAttackOtherLane",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "Reanimated",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "PermFreeze",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "IceFreeze",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "WebFreeze",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "ImmuneMusic",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "BoardSplash",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "DrainOnBothTurns",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": 0,
+   "Name": "PreventOpponentManaPlay",
+   "$type": "SPTESL.IntAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "ImmuneToWounded",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "ImmuneToBanish",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "ImmuneToSteal",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "CanAttackFriendFace",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "Colossal",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "CanBeAttackedFromAnyLane",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "ImmuneToEnemyKeywords",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": 0,
+   "Name": "OblivionGateLevel",
+   "$type": "SPTESL.IntAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "SlayOnBothTurns",
+   "$type": "SPTESL.BoolAttribute"
+  }
+ ],
+ "_mod": {
+  "mod": "sample-skyrim",
+  "template": -1614622271,
+  "template_name": "Haunting Spirit",
+  "rules_from": null,
+  "created": "2026-11-03T05:54:14"
+ }
+}

@@ -1,0 +1,800 @@
+{
+ "ResourceId": {
+  "Id": -219964603,
+  "UniqueName": "whiterun-wolfcaller",
+  "CompletionType": "Complete"
+ },
+ "Production": true,
+ "Name": "Whiterun Wolfcaller",
+ "NameKey": {
+  "RawKey": "mod.sample-skyrim.whiterun-wolfcaller.title"
+ },
+ "Definition": "Creature",
+ "Description": "When Whiterun Wolfcaller attacks, deal 3 damage to your opponent.<br><b><color=E9E0CD>Summon:</color></b> Summon two 1/1 <b><color=E9E0CD>Young Wolves</color></b> in the other lane.",
+ "DescriptionKey": {
+  "RawKey": "mod.sample-skyrim.whiterun-wolfcaller.text"
+ },
+ "AdditionalSearchTokensKey": {
+  "RawKey": ""
+ },
+ "Image": "Mods/sample-skyrim/whiterun-wolfcaller",
+ "PermanentHangers": [],
+ "MechanicsEntries": [
+  {
+   "MechanicType": "Summon",
+   "DisplayHanger": true,
+   "DisplayIcon": false
+  }
+ ],
+ "CardReferences": [],
+ "HuntTypes": [],
+ "Source": "Normal",
+ "SourceString": {
+  "RawKey": null
+ },
+ "AvailabilityString": {
+  "RawKey": null
+ },
+ "UpgradesInto": [],
+ "AlternateOfCard": {
+  "resourceId": 0
+ },
+ "IneligibleForRandomPools": false,
+ "InvalidArenaPick": false,
+ "SeasonId": 0,
+ "ExportCode": "~f2e39b45",
+ "CanBeFirstEverSoloPick": false,
+ "PlayCardVO": "pack_wolf_summon",
+ "DeathCardVO": "wolf_last_gasp",
+ "AttackCardVO": "wolf_attack",
+ "HitCardVO": "wolf_hit",
+ "SuccessCardVO": null,
+ "FailureCardVO": null,
+ "Unique": false,
+ "MaxCopies": 3,
+ "MobilizeRecruitId": {
+  "CardIdReference": 0
+ },
+ "DefaultRareAttributes": [],
+ "PlayRequirements": {
+  "PlayerRequirements": []
+ },
+ "BetrayRequirements": {
+  "PlayerRequirements": []
+ },
+ "PlayWeight": {
+  "CommonWeights": [],
+  "LocalWeights": []
+ },
+ "ActionPlayInformation": [],
+ "AttackRequirements": {
+  "PlayerRequirements": [],
+  "CardRequirements": [],
+  "LaneRequirements": []
+ },
+ "StrongHintRequirements": {
+  "PlayerRequirements": [],
+  "CardRequirements": [],
+  "LaneRequirements": []
+ },
+ "CardFxRelations": [],
+ "Rarity": "Common",
+ "ActivatedAbility": {
+  "TargetingType": "NoTarget",
+  "TargetSelectors": [],
+  "AbilityGroups": []
+ },
+ "Subtypes": [
+  "Wolf",
+  "Willpower",
+  "Animal"
+ ],
+ "ArenaDraftSubtypes": [],
+ "TriggeredEffects": [
+  {
+   "EffectGroup": {
+    "Effects": [
+     {
+      "ExecuteValueRequirements": [],
+      "ExecuteCardRequirements": [
+       {
+        "LhsCard": "Self",
+        "Conditional": {
+         "Check": "IsIn",
+         "ZoneTypeMask": {
+          "List": [
+           "Board",
+           "Deck",
+           "Cemetery",
+           "Hand",
+           "Purgatory",
+           "View",
+           "Prophecy",
+           "Deathrattle"
+          ]
+         }
+        },
+        "$type": "SPTESL.CardRequirements+ZoneRequirement"
+       }
+      ],
+      "ExecutePlayerRequirements": [],
+      "ExecuteLaneRequirements": [],
+      "CardActions": [
+       {
+        "HashId": -1542809736,
+        "NameForHashing": "Action_NoName",
+        "CardFxDefinition": "Card_Fireball_01",
+        "SelectorSort": {
+         "Method": "ByInstanceId",
+         "NumToReturn": {
+          "ValueMethod": "Constant",
+          "ConstantValue": 0,
+          "ConstantMultiplier": 0,
+          "MinRandom": 0,
+          "MaxRandom": 0,
+          "MinValue": 0,
+          "MaxValue": 0,
+          "AttributeName": "None",
+          "RareAttributeName": "None",
+          "CardRole": "Self",
+          "PlayerRole": "Self",
+          "Selectors": [],
+          "AllPlayers": false,
+          "JournalType": "Drawn",
+          "TimeWindow": "ThisTurn"
+         },
+         "SortAttribute": "None",
+         "Order": "LowestFirst",
+         "RequireUniqueNames": false
+        },
+        "Selectors": [
+         {
+          "OtherCard": "Self",
+          "Are": "Enemies",
+          "$type": "SPTESL.CardConditionals+Relationship"
+         },
+         {
+          "Check": "Is",
+          "SubtypeName": "Avatar",
+          "TestSubtypesOfDouble": false,
+          "$type": "SPTESL.CardConditionals+Subtype"
+         },
+         {
+          "Check": "IsIn",
+          "ZoneTypeMask": {
+           "List": [
+            "Board"
+           ]
+          },
+          "$type": "SPTESL.CardConditionals+Zone"
+         }
+        ],
+        "Action": {
+         "HealthLoss": {
+          "ValueMethod": "Constant",
+          "ConstantValue": 3,
+          "ConstantMultiplier": 0,
+          "MinRandom": 0,
+          "MaxRandom": 0,
+          "MinValue": 0,
+          "MaxValue": 0,
+          "AttributeName": "None",
+          "RareAttributeName": "None",
+          "CardRole": "Self",
+          "PlayerRole": "Self",
+          "Selectors": [],
+          "AllPlayers": false,
+          "JournalType": "Drawn",
+          "TimeWindow": "ThisTurn"
+         },
+         "DamageSource": "Self",
+         "UseItemWielderAsDamageSource": false,
+         "SeparateLogMessages": false,
+         "$type": "SPTESL.CardActions+Damage"
+        },
+        "FailureCard": {
+         "BaseCard": {
+          "Id": 0,
+          "UniqueName": null,
+          "CompletionType": "Placeholder"
+         },
+         "Power": {
+          "ValueMethod": "Constant",
+          "ConstantValue": 0,
+          "ConstantMultiplier": 0,
+          "MinRandom": 0,
+          "MaxRandom": 0,
+          "MinValue": 0,
+          "MaxValue": 0,
+          "AttributeName": "None",
+          "RareAttributeName": "None",
+          "CardRole": "Self",
+          "PlayerRole": "Self",
+          "Selectors": [],
+          "AllPlayers": false,
+          "JournalType": "Drawn",
+          "TimeWindow": "ThisTurn"
+         }
+        },
+        "FailureCardOwner": "Self"
+       }
+      ],
+      "PlayerActions": [],
+      "NameForEditor": "2 damage"
+     }
+    ]
+   },
+   "TriggerType": "WhenCardPreparesAttack",
+   "SortOrder": "StateChanges_DealDamage_WithoutBreakthrough",
+   "AfterRuneBreaks": false,
+   "AreaEffect": false,
+   "AllowReentrancy": false,
+   "IgnoredByClientLog": false,
+   "UseGenericIcon": true,
+   "CanMergeEffectsWithSelf": false,
+   "ComplexMergeEffectsWithSelf": false,
+   "SanitizeRule": "Default",
+   "ClientTargetingType": "NoTarget",
+   "TargetSelectors": [],
+   "OpponentChooses": false,
+   "SecretTarget": false,
+   "ItemUsesWielderAsEffectSource": false,
+   "AiTargetRules": {
+    "AllyRule": "TargetBoth"
+   },
+   "EffectTargetWeight": {
+    "CommonWeights": [],
+    "LocalWeights": []
+   },
+   "TargetingPrompt": {
+    "RawKey": null
+   },
+   "CustomUiType": "None",
+   "OptionalCustomUiType": false,
+   "CustomUiPrompt": {
+    "RawKey": null
+   },
+   "CustomUiEffectGroups": [],
+   "PostCustomUiEffectGroup": {
+    "Effects": []
+   },
+   "TriggerValueRequirements": [],
+   "TriggerCardRequirements": [
+    {
+     "LhsCard": "Self",
+     "Conditional": {
+      "Check": "Is",
+      "Role": "Inciter"
+     },
+     "$type": "SPTESL.CardRequirements+EventRoleRequirement"
+    },
+    {
+     "LhsCard": "Self",
+     "Conditional": {
+      "Check": "IsIn",
+      "ZoneTypeMask": {
+       "List": [
+        "Board"
+       ]
+      }
+     },
+     "$type": "SPTESL.CardRequirements+ZoneRequirement"
+    }
+   ],
+   "TriggerPlayerRequirements": [],
+   "BeforeTargetingCardRequirements": [],
+   "BeforeTargetingPlayerRequirements": []
+  },
+  {
+   "EffectGroup": {
+    "Effects": [
+     {
+      "ExecuteValueRequirements": [],
+      "ExecuteCardRequirements": [],
+      "ExecutePlayerRequirements": [],
+      "ExecuteLaneRequirements": [],
+      "CardActions": [],
+      "PlayerActions": [
+       {
+        "HashId": -1,
+        "NameForHashing": "Action_NoName",
+        "CardFxDefinition": null,
+        "Selectors": [
+         {
+          "Check": "Is",
+          "Role": "Self",
+          "$type": "SPTESL.PlayerConditionals+PlayerRoleType"
+         }
+        ],
+        "Action": {
+         "CardReference": {
+          "ReferenceStyle": "Specific",
+          "CardIdReference": 858815917,
+          "CardRole": "Self",
+          "RandomCreationSelectors": [],
+          "CustomUiCardIndex": 0
+         },
+         "CreateInZoneType": "Board",
+         "NumTokens": {
+          "ValueMethod": "Constant",
+          "ConstantValue": 2,
+          "ConstantMultiplier": 0,
+          "MinRandom": 0,
+          "MaxRandom": 0,
+          "MinValue": 0,
+          "MaxValue": 0,
+          "AttributeName": "None",
+          "RareAttributeName": "None",
+          "CardRole": "Self",
+          "PlayerRole": "Self",
+          "Selectors": [],
+          "AllPlayers": false,
+          "JournalType": "Drawn",
+          "TimeWindow": "ThisTurn"
+         },
+         "FillLane": false,
+         "SanitizeRule": "Default",
+         "InsertPosition": {
+          "Type": "Relative",
+          "Comparison": "OtherLane",
+          "Lane": "Left",
+          "Lhs": "Self",
+          "InsertionType": "Bottom",
+          "LaneType": "None",
+          "UseOtherLaneIfFull": false
+         },
+         "RareAttributes": [],
+         "TokenBuff": {
+          "NameForEditor": null,
+          "DisplayTitle": {
+           "RawKey": null
+          },
+          "DisplayText": {
+           "RawKey": null
+          },
+          "MaxTurns": 0,
+          "DeferApplication": false,
+          "DeferApplicationLast": false,
+          "BasicItemEnchantment": false,
+          "KeepWhenMovesOffBoard": false,
+          "ExpiresAtStartOfTurn": false,
+          "ExpiresAtStartOfSourcesTurn": false,
+          "ExpiresAtEndOfTurn": false,
+          "ExpiresAtEndOfFight": false,
+          "ExpiresOnAttack": false,
+          "ExpiresOnIncomingDamage": false,
+          "ExpiresAtEndOfProphecy": false,
+          "ExpiresAtEndOfTurnAfterNotAttacking": false,
+          "ExpiresAfterRuneBreak": false,
+          "PermanentExpiresOnLeavingBoard": false,
+          "PermanentExpiresOnChange": false,
+          "ResetWoundedState": false,
+          "AttributeModifications": [],
+          "GrantedEffects": [],
+          "GrantedAuras": [],
+          "AddedCreatureSubtypes": [],
+          "NewColorSubtypes": [],
+          "SubcardDistributionSubtypes": [],
+          "MechanicsEntries": [],
+          "CardReferences": [],
+          "TagReferences": []
+         },
+         "FailureCard": {
+          "BaseCard": {
+           "Id": 0,
+           "UniqueName": null,
+           "CompletionType": "Placeholder"
+          },
+          "Power": {
+           "ValueMethod": "Constant",
+           "ConstantValue": 0,
+           "ConstantMultiplier": 0,
+           "MinRandom": 0,
+           "MaxRandom": 0,
+           "MinValue": 0,
+           "MaxValue": 0,
+           "AttributeName": "None",
+           "RareAttributeName": "None",
+           "CardRole": "Self",
+           "PlayerRole": "Self",
+           "Selectors": [],
+           "AllPlayers": false,
+           "JournalType": "Drawn",
+           "TimeWindow": "ThisTurn"
+          }
+         },
+         "MergeTokenMessages": false,
+         "RevealToken": false,
+         "$type": "SPTESL.PlayerActions+CreateToken"
+        }
+       }
+      ],
+      "NameForEditor": "wolf summon"
+     }
+    ]
+   },
+   "TriggerType": "Summon",
+   "SortOrder": "NonDestroyMove_Play_CreateAndPlay_Creature",
+   "AfterRuneBreaks": false,
+   "AreaEffect": false,
+   "AllowReentrancy": false,
+   "IgnoredByClientLog": false,
+   "UseGenericIcon": false,
+   "CanMergeEffectsWithSelf": false,
+   "ComplexMergeEffectsWithSelf": false,
+   "SanitizeRule": "Default",
+   "ClientTargetingType": "NoTarget",
+   "TargetSelectors": [],
+   "OpponentChooses": false,
+   "SecretTarget": false,
+   "ItemUsesWielderAsEffectSource": false,
+   "AiTargetRules": {
+    "AllyRule": "TargetBoth"
+   },
+   "EffectTargetWeight": {
+    "CommonWeights": [],
+    "LocalWeights": []
+   },
+   "TargetingPrompt": {
+    "RawKey": null
+   },
+   "CustomUiType": "None",
+   "OptionalCustomUiType": false,
+   "CustomUiPrompt": {
+    "RawKey": null
+   },
+   "CustomUiEffectGroups": [],
+   "PostCustomUiEffectGroup": {
+    "Effects": []
+   },
+   "TriggerValueRequirements": [],
+   "TriggerCardRequirements": [
+    {
+     "LhsCard": "Self",
+     "Conditional": {
+      "Check": "IsIn",
+      "ZoneTypeMask": {
+       "List": [
+        "Board"
+       ]
+      }
+     },
+     "$type": "SPTESL.CardRequirements+ZoneRequirement"
+    }
+   ],
+   "TriggerPlayerRequirements": [],
+   "BeforeTargetingCardRequirements": [],
+   "BeforeTargetingPlayerRequirements": []
+  }
+ ],
+ "Auras": [],
+ "DoubleCardReferences": [],
+ "DynamicTextAssignments": [],
+ "ImageScale": 0.865,
+ "ImageOffsetX": 0.04,
+ "ImageOffsetY": 0.1,
+ "HangerImageScale": 1.5,
+ "HangerImageOffsetX": 0.0,
+ "HangerImageOffsetY": 0.0,
+ "HistoryLogItemImageScale": 1.75,
+ "HistoryLogItemImageOffsetX": 0.0,
+ "HistoryLogItemImageOffsetY": -0.08,
+ "ListImageScale": 1.0,
+ "ListImageOffsetX": 0.03,
+ "ListImageOffsetY": -0.12,
+ "IsPremiumOnly": false,
+ "ContentPackIndex": 0,
+ "AllowContentPackOverride": false,
+ "EntityAttributes": [
+  {
+   "Value": 4,
+   "Name": "ManaCost",
+   "$type": "SPTESL.IntAttribute"
+  },
+  {
+   "Value": 3,
+   "Name": "Attack",
+   "$type": "SPTESL.IntAttribute"
+  },
+  {
+   "Value": 1,
+   "Name": "NumAttacksPerTurn",
+   "$type": "SPTESL.IntAttribute"
+  },
+  {
+   "Value": 4,
+   "Name": "MaxHealth",
+   "$type": "SPTESL.IntAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "Charge",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": true,
+   "Name": "Taunt",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "Deathtouch",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "CannotAttack",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "Immune",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "Freeze",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "DamageAvatarOfAttackedCreature",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "IgnoreTaunt",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "Untouchable",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "FirstStrike",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "Unstoppable",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "Prophecy",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "Ward",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "Breakthrough",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "Cover",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "Regenerate",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "ImmuneToLethal",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "ImmuneToFreeze",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "ImmuneToSilence",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "CanAttackOtherLane",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "CanAttackFriendlies",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "Wounded",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "Drain",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "ImmuneToCover",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "ImmuneToEnemyActionTargeting",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "ImmuneToActionDamage",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "ImmuneToSupportDamage",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "ImmuneToEnemyDragons",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": 0,
+   "Name": "Rally",
+   "$type": "SPTESL.IntAttribute"
+  },
+  {
+   "Value": 0,
+   "Name": "ExaltCost",
+   "$type": "SPTESL.IntAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "Exalted",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "ImmuneToEnemyCliffCreatures",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "CanOnlyAttackCreatures",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "GuardsBothLanes",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "MoveToAttackOtherLane",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "Reanimated",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "PermFreeze",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "IceFreeze",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "WebFreeze",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "ImmuneMusic",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "BoardSplash",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "DrainOnBothTurns",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": 0,
+   "Name": "PreventOpponentManaPlay",
+   "$type": "SPTESL.IntAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "ImmuneToWounded",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "ImmuneToBanish",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "ImmuneToSteal",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "CanAttackFriendFace",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "Colossal",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "CanBeAttackedFromAnyLane",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "ImmuneToEnemyKeywords",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": 0,
+   "Name": "OblivionGateLevel",
+   "$type": "SPTESL.IntAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "SlayOnBothTurns",
+   "$type": "SPTESL.BoolAttribute"
+  }
+ ],
+ "_mod": {
+  "mod": "sample-skyrim",
+  "template": 775516546,
+  "template_name": "Pack Wolf",
+  "rules_from": null,
+  "abilities": [
+   {
+    "card": "Fiery Imp",
+    "ability": "triggered:0",
+    "params": {
+     "EffectGroup.Effects.0.CardActions.0.Action.HealthLoss.ConstantValue": 3
+    }
+   },
+   {
+    "card": "Pack Wolf",
+    "ability": "triggered:0",
+    "params": {
+     "EffectGroup.Effects.0.PlayerActions.0.Action.NumTokens.ConstantValue": 2
+    }
+   }
+  ],
+  "keywords": {
+   "Guard": true
+  },
+  "created": "2026-11-04T02:38:56"
+ },
+ "audio": {
+  "Play": "audio/cards/whiterun-wolfcaller-play.ogg",
+  "Attack": "audio/cards/whiterun-wolfcaller-attack.ogg"
+ }
+}

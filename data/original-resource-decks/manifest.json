@@ -1,0 +1,96 @@
+{
+  "schema": 1,
+  "source_sha256": "7E5D229592E05D3B01ECA241ECFEBDFD8CBD630B1A0BC71A109961CD4FE4D101",
+  "records": [
+    {
+      "asset_name": "Lightblade_Deck",
+      "file": "00-Lightblade_Deck.json",
+      "source_file": "The Elder Scrolls Legends_Data/resources.assets",
+      "script_offset": 2649424,
+      "script_length": 2133,
+      "sha256": "86F8FDD952AD11E27294C099406BDB0803BB2E54B4FF664428821E9BFE5930E6",
+      "name": "Lightblade",
+      "size": 30
+    },
+    {
+      "asset_name": "Greysteel_Deck",
+      "file": "01-Greysteel_Deck.json",
+      "source_file": "The Elder Scrolls Legends_Data/resources.assets",
+      "script_offset": 2665912,
+      "script_length": 1517,
+      "sha256": "BCE94DB08DE7D57B8267262837D61F4E08E7EA8D55357E1884F6E8D0CE3FB703",
+      "name": "Greysteel",
+      "size": 30
+    },
+    {
+      "asset_name": "IvoryCrusader_Deck",
+      "file": "02-IvoryCrusader_Deck.json",
+      "source_file": "The Elder Scrolls Legends_Data/resources.assets",
+      "script_offset": 2667588,
+      "script_length": 1989,
+      "sha256": "7FE742B84715156D686DD882F2C73812C2FA1A64D3F071AFBFC1D8955CBBA0B7",
+      "name": "Ivory Crusader",
+      "size": 30
+    },
+    {
+      "asset_name": "TheWoodsman_Deck",
+      "file": "03-TheWoodsman_Deck.json",
+      "source_file": "The Elder Scrolls Legends_Data/resources.assets",
+      "script_offset": 2669608,
+      "script_length": 1364,
+      "sha256": "4DE01A94930E1764AE0260DB22FB0E90C69B9BEE54E84284D9CC023B60B7F960",
+      "name": "The Woodsman",
+      "size": 47
+    },
+    {
+      "asset_name": "DwemerDefense_Deck",
+      "file": "04-DwemerDefense_Deck.json",
+      "source_file": "The Elder Scrolls Legends_Data/resources.assets",
+      "script_offset": 2777820,
+      "script_length": 1601,
+      "sha256": "2EF9C622C96D513135B1B2385CC4E16A713E61BB7D19EB02EFAC38AB26E735FC",
+      "name": "Dwemer Defense",
+      "size": 47
+    },
+    {
+      "asset_name": "HandOfTyr_Deck",
+      "file": "05-HandOfTyr_Deck.json",
+      "source_file": "The Elder Scrolls Legends_Data/resources.assets",
+      "script_offset": 2779448,
+      "script_length": 2215,
+      "sha256": "70E429F72ABD923525B544F31ED641C7DB3DE0C17B5381BF52E7D86AAE550509",
+      "name": "Hand of Tyr",
+      "size": 50
+    },
+    {
+      "asset_name": "DefaultDeck",
+      "file": "06-DefaultDeck.json",
+      "source_file": "The Elder Scrolls Legends_Data/resources.assets",
+      "script_offset": 2781684,
+      "script_length": 1582,
+      "sha256": "2D796587F79F117419B86F54105AF78AF9B13374184655ED09DC6734A86CCB60",
+      "name": "Default",
+      "size": 30
+    },
+    {
+      "asset_name": "TheRisingStampede_Deck",
+      "file": "07-TheRisingStampede_Deck.json",
+      "source_file": "The Elder Scrolls Legends_Data/resources.assets",
+      "script_offset": 2783304,
+      "script_length": 1599,
+      "sha256": "73A79958C714F9ED890CB7269DD7C8E8D9E9F3007BC43FF79108D2B87CFC0891",
+      "name": "The Rising Stampede",
+      "size": 30
+    },
+    {
+      "asset_name": "Shoreborn_Deck",
+      "file": "08-Shoreborn_Deck.json",
+      "source_file": "The Elder Scrolls Legends_Data/resources.assets",
+      "script_offset": 2784928,
+      "script_length": 1283,
+      "sha256": "573809765E2AB94E59DBD06767153C5AF3A5511F618C1367E969431EB62CF8AC",
+      "name": "Shoreborn",
+      "size": 28
+    }
+  ]
+}

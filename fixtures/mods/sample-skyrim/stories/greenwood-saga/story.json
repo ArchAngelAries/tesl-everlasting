@@ -1,0 +1,292 @@
+{
+ "format": 1,
+ "slug": "greenwood-saga",
+ "name": "The Greenwood Saga",
+ "description": "A sample mod story: the Jarl's call, the draugr of Bleak Falls, and a choice that changes the fight.",
+ "template": "DBH",
+ "icon": "asset:ContentPack000/Images/CampaignIcons/Campaign_Icon_DBH",
+ "acts": [
+  {
+   "slug": "whiterun",
+   "name": "Whiterun",
+   "description": "Answer the Jarl's call.",
+   "chapters": [
+    {
+     "slug": "the-call",
+     "name": "Episode 1: The Call",
+     "subtitle": "The Jarl needs a champion",
+     "map": "asset:ContentPack000/Images/CampaignMaps/DBH_Wayrest_map-rev2",
+     "intro": [
+      {
+       "speaker": "Narrator",
+       "text": "Snow falls on Whiterun. Word of restless dead has reached the Jarl."
+      }
+     ],
+     "events": [
+      {
+       "slug": "housecarl",
+       "name": "The Jarl's Housecarl",
+       "x": 0.3,
+       "y": 0.45,
+       "coin": "housecarl.png",
+       "intro": [
+        {
+         "speaker": "Housecarl",
+         "text": "The Jarl has need of you, traveller. Draugr stir beneath Bleak Falls.",
+         "portrait": "housecarl.png",
+         "voice": "housecarl-1.wav"
+        },
+        {
+         "speaker": "Housecarl",
+         "text": "Take what you need for the road.",
+         "portrait": "housecarl.png",
+         "choices": [
+          {
+           "text": "Take the wolf",
+           "card": "Whiterun Wolfcaller"
+          },
+          {
+           "text": "Take the gold",
+           "gold": 50
+          }
+         ]
+        }
+       ]
+      },
+      {
+       "slug": "draugr",
+       "name": "Bleak Falls Barrow",
+       "x": 0.65,
+       "y": 0.35,
+       "coin": "draugr.png",
+       "requires": [
+        {
+         "event": "housecarl"
+        }
+       ],
+       "intro": [
+        {
+         "speaker": "Housecarl",
+         "text": "The barrow is ahead. Steel yourself.",
+         "portrait": "housecarl.png"
+        }
+       ],
+       "battle": {
+        "lanes": [
+         {
+          "type": "Default",
+          "size": 4
+         },
+         {
+          "type": "Plunder",
+          "size": 4
+         }
+        ],
+        "player": {
+         "deck": "own"
+        },
+        "opponent": {
+         "deck": "practice",
+         "cards": {
+          "lane1": [
+           "Bleak Falls Draugr"
+          ]
+         },
+         "health": 20
+        },
+        "first": "player",
+        "difficulty": "Novice",
+        "opponent_name": "Draugr Deathlord",
+        "board": "sample-skyrim/greenwood-table",
+        "opponent_portrait": "draugr.png",
+        "briefing": "The Deathlord guards the barrow. Plunder lane: creatures summoned there gain a random item.",
+        "victory_lines": [
+         {
+          "text": "The dead... return... to rest."
+         }
+        ]
+       },
+       "ending": [
+        {
+         "speaker": "Housecarl",
+         "text": "Well fought. The Jarl will hear of this.",
+         "portrait": "housecarl.png"
+        }
+       ],
+       "rewards": [
+        {
+         "gold": 100
+        },
+        {
+         "card": "Bleak Falls Draugr"
+        }
+       ]
+      },
+      {
+       "slug": "bandits",
+       "name": "Bandit Toll",
+       "x": 0.5,
+       "y": 0.7,
+       "requires": [
+        {
+         "event": "housecarl",
+         "choice": 2
+        }
+       ],
+       "intro": [
+        {
+         "speaker": "Bandit",
+         "text": "That's a heavy purse. Hand it over!"
+        }
+       ],
+       "battle": {
+        "player": {
+         "deck": "own"
+        },
+        "opponent": {
+         "deck": "random",
+         "random_size": 30,
+         "health": 15
+        },
+        "difficulty": "Novice",
+        "opponent_name": "Highway Bandit",
+        "opponent_portrait": "asset:ContentPack000/Images/AIPortraits/DBH_Opponent_Portraits/DBH_NPC_CRDL_02_284_avatar_png"
+       },
+       "rewards": [
+        {
+         "gold": 25
+        }
+       ]
+      }
+     ],
+     "ending": [
+      {
+       "speaker": "Narrator",
+       "text": "The barrow falls silent. But something older waits beyond."
+      }
+     ],
+     "coin": "asset:ContentPack000/Images/CampaignCoins/DBH_Location_Discs/DBH_LOC_CRDL_02_317_avatar_png"
+    },
+    {
+     "slug": "the-barrow",
+     "name": "Episode 2: The Barrow",
+     "map": "asset:ContentPack000/Images/CampaignMaps/DBH_Falkreath_Map-rev2",
+     "events": [
+      {
+       "slug": "gate",
+       "name": "The Sealed Gate",
+       "x": 0.45,
+       "y": 0.5,
+       "intro": [
+        {
+         "speaker": "Housecarl",
+         "text": "You kept the wolf. It sniffs at the gate.",
+         "portrait": "housecarl.png",
+         "requires": [
+          {
+           "event": "the-call/housecarl",
+           "choice": 1
+          }
+         ]
+        },
+        {
+         "speaker": "Housecarl",
+         "text": "Your purse is lighter after the bandits. No matter.",
+         "portrait": "housecarl.png",
+         "requires": [
+          {
+           "event": "the-call/housecarl",
+           "choice": 2
+          }
+         ]
+        },
+        {
+         "speaker": "Housecarl",
+         "text": "How do we go in?",
+         "portrait": "housecarl.png",
+         "choices": [
+          {
+           "text": "Sneak in",
+           "description": "Two shadow lanes"
+          },
+          {
+           "text": "Charge",
+           "description": "Siege lanes, more health"
+          }
+         ],
+         "voice": "housecarl-1.wav"
+        }
+       ],
+       "battles": [
+        {
+         "requires": [
+          {
+           "event": "gate",
+           "choice": 1
+          }
+         ],
+         "lanes": [
+          {
+           "type": "Stealth",
+           "size": 4
+          },
+          {
+           "type": "Stealth",
+           "size": 4
+          }
+         ],
+         "player": {
+          "deck": "own"
+         },
+         "opponent": {
+          "deck": "practice"
+         },
+         "difficulty": "Adept",
+         "opponent_name": "Barrow Guardian",
+         "opponent_portrait": "draugr.png"
+        },
+        {
+         "requires": [
+          {
+           "event": "gate",
+           "choice": 2
+          }
+         ],
+         "lanes": [
+          {
+           "type": "Siege",
+           "size": 4
+          },
+          {
+           "type": "Default",
+           "size": 4
+          }
+         ],
+         "player": {
+          "deck": "own",
+          "health": 35
+         },
+         "opponent": {
+          "deck": "practice"
+         },
+         "difficulty": "Adept",
+         "opponent_name": "Barrow Guardian",
+         "opponent_portrait": "draugr.png"
+        }
+       ],
+       "rewards": [
+        {
+         "pack": "skyrim"
+        },
+        {
+         "xp": 50
+        }
+       ]
+      }
+     ],
+     "coin": "asset:ContentPack000/Images/CampaignCoins/DBH_Location_Discs/DBH_LOC_CRDL_02_317_avatar_png"
+    }
+   ]
+  }
+ ]
+}

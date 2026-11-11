@@ -1,0 +1,12 @@
+Store pack art, downloaded 2026-10-22 from the UESP wiki (https://en.uesp.net/wiki/Legends:Card_Packs),
+with the user's approval to source store art from the wikis. These are official in-game pack renders
+(game art (c) Bethesda Softworks / ZeniMax; UESP page content CC BY-SA 2.5). Personal offline restoration use.
+pack_core.png         <- File:LG-pack-Core.png
+pack_skyrim.png       <- File:LG-misc-Skyrim_card_pack.png (512 px version, re-fetched 2026-11-09: the full-size file on the server is cut short)
+pack_morrowind.png    <- File:LG-pack-Houses_of_Morrowind.png
+pack_alliancewar.png  <- File:LG-pack-Alliance_War.png
+pack_sage.png         <- File:LG-pack-Moons_of_Elsweyr.png
+pack_crisis.png       <- File:LG-pack-Jaws_of_Oblivion.png
+
+cardbacks/*.png (Moon Gate, Legend premium, Thieves Guild normal/premium) <- rendered by TESL: Everlasting from the
+game's own card back prefabs (layered/animated backs with no single texture), for store tiles.

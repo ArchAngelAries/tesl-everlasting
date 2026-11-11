@@ -1,0 +1,17 @@
+{
+ "format": 1,
+ "tracks": [
+  {
+   "slug": "hearth-theme",
+   "name": "Hearth Theme",
+   "file": "hearth-theme.ogg",
+   "contexts": [
+    "MainMenuState",
+    "DeckEditorState",
+    "Board:sample-skyrim/greenwood-table"
+   ],
+   "mode": "replace",
+   "volume": 1.0
+  }
+ ]
+}

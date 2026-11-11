@@ -1,0 +1,55 @@
+{
+ "format": 1,
+ "modes": [
+  {
+   "slug": "skyrim-brawl",
+   "ai": "sample-skyrim/draugr-warlord",
+   "name": "Skyrim Brawl",
+   "description": "Fast and loot-heavy: Plunder and Windy lanes, an extra card each turn, random reinforcements.",
+   "lanes": [
+    {
+     "type": "Plunder",
+     "size": 4
+    },
+    {
+     "type": "Windy",
+     "size": 4
+    }
+   ],
+   "player": {
+    "health": 25,
+    "magicka": 3,
+    "runes": 3,
+    "deck": "own",
+    "cards": {
+     "hand": [
+      "Bleak Falls Draugr"
+     ],
+     "lane1": [
+      "Whiterun Wolfcaller"
+     ]
+    }
+   },
+   "opponent": {
+    "health": 25,
+    "magicka": 3,
+    "runes": 3,
+    "deck": "practice",
+    "cards": {
+     "lane2": [
+      "Bleak Falls Draugr"
+     ]
+    }
+   },
+   "first": "player",
+   "difficulty": "Novice",
+   "rules": {
+    "draw_per_turn": 1,
+    "random_creature_every": 3
+   },
+   "opponent_name": "Ulfric's Warband",
+   "board": "sample-skyrim/greenwood-table",
+   "reward_gold": 50
+  }
+ ]
+}

@@ -1,0 +1,11 @@
+# Build outputs and binaries
+build/
+*.dll
+*.check.dll
+ref/
+# Diagnostics, logs and runtime state
+exports/
+checkpoints/
+diagnostic*.json
+*.log
+*.pid
