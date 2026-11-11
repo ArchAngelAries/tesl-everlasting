@@ -1,5 +1,7 @@
 # TESL: Everlasting
 
+![TESL: Everlasting](https://raw.githubusercontent.com/ArchAngelAries/tesl-everlasting/main/docs/screenshots/banner-1300x372.png)
+
 **The Elder Scrolls: Legends, playable again.** TESL: Everlasting brings back the whole game in a complete, end-to-end
 offline mode on your own PC: the stories, puzzles, arenas, casual and ranked play against the AI, quests, rewards,
 levels, titles, the store and pack opening. Every one of the game's 1,718 cards plays with its full rules. No server, no
@@ -61,6 +63,19 @@ TESL Reborn is a separate community project that brings back online play. Our to
 folder: with it installed, the F10 menu switches between offline play and online play, and online launches use only
 local visual and audio mods. We are not part of TESL Reborn and it has its own team, support and rules. **Please don't
 contact the TESL Reborn team about our mods or tools**; report problems on our pages instead.
+
+<!-- screenshots:start -->
+## Screenshots
+
+| | |
+|---|---|
+| ![Main menu](https://raw.githubusercontent.com/ArchAngelAries/tesl-everlasting/main/docs/screenshots/00-everlasting.jpg)<br>Main menu | ![A match against the AI](https://raw.githubusercontent.com/ArchAngelAries/tesl-everlasting/main/docs/screenshots/06-battle.jpg)<br>A match against the AI |
+| ![Every story campaign](https://raw.githubusercontent.com/ArchAngelAries/tesl-everlasting/main/docs/screenshots/01-stories.jpg)<br>Every story campaign | ![Prophecy, as in the original](https://raw.githubusercontent.com/ArchAngelAries/tesl-everlasting/main/docs/screenshots/07-prophecy.jpg)<br>Prophecy, as in the original |
+| ![The store and pack opening](https://raw.githubusercontent.com/ArchAngelAries/tesl-everlasting/main/docs/screenshots/12-store.jpg)<br>The store and pack opening | ![Custom game modes from mods](https://raw.githubusercontent.com/ArchAngelAries/tesl-everlasting/main/docs/screenshots/13-custom-modes.jpg)<br>Custom game modes from mods |
+| ![AI opponents that emote](https://raw.githubusercontent.com/ArchAngelAries/tesl-everlasting/main/docs/screenshots/14-emotes.jpg)<br>AI opponents that emote | ![Mod avatars in the picker](https://raw.githubusercontent.com/ArchAngelAries/tesl-everlasting/main/docs/screenshots/15-mod-avatars.jpg)<br>Mod avatars in the picker |
+
+More in [docs/screenshots](docs/screenshots).
+<!-- screenshots:end -->
 
 ## Requirements
 
