@@ -109,9 +109,7 @@ for playing an unofficial copy of a free-to-play game that its makers no longer 
 
 ## Independently developed
 
-All code, tools and new assets were developed independently for these projects. No game program files are included.
-TESL: Everlasting ships the original card rule data and six store pack pictures it needs to run offline, as separate data
-files; its NOTICE file says where they came from.
+All code, tools and new assets were developed independently for these projects. Neither download includes the game.
 
 ## Made with AI tools
 
