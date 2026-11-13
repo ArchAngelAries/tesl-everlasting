@@ -430,7 +430,10 @@ namespace OfflineEngine
                 // UESP Legends:Veteran: "After this creature first attacks and survives". Raised as the native direct
                 // Veteran trigger once, after the first resolved attack, only while the attacker is alive on the board.
                 if (attacker.QueryGameJournalCount(CardJournal.Attacked) == 1 && !attacker.IsDying() && attacker.CurrentGameZoneType == GameZoneType.Board)
+                {
                     ServerEffectUtilities.TriggerDirectEffectEvent(gs, new ServerEffectUtilities.TriggerEvent(EffectTriggerType.Veteran, attacker, defender, s.Players));
+                    OfflineTitleHooks.Veteran(attacker);
+                }
                 s.HistoryLog.AddInstant(new HistoryItem { Type = HistoryType.ActionEndAttack, ActorCardNetUid = attacker.NetUid.Id, TargetCardNetUid = defender.NetUid.Id, AssetHash = -1 });
             }
             return Simulation.DecisionStatus.Complete;

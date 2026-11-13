@@ -16,6 +16,7 @@ namespace OfflineEngine
                 new HarmonyMethod(typeof(CatalogMovementRestoration).GetMethod("TransferPrefix")), null, null, null, null);
             harmony.Patch(AccessTools.Method(typeof(CardActions.ReturnToHand), "StaticExecute"), null,
                 new HarmonyMethod(typeof(CatalogMovementRestoration).GetMethod("DrawCopyPostfix")), null, null, null);
+            OfflineTitleHooks.Install(harmony);   // title conditions the original server tracked (quest-event observer)
         }
 
         // ReturnToHand's explicit DrawCopies path creates the copy from RemoveFromGame. Ordinary

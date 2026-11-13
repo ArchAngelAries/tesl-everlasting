@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.0.2 — more titles, quieter creatures
+
+- **45 more titles can be earned offline:** the card titles such as The Golden, The Mastermind, The Dawnbreaker, The Forger,
+  The Engineer and The Archmage, the Isle of Madness, Alliance War, Moons of Elsweyr and Jaws of Oblivion card titles, and
+  The Lone Warrior, The Pastry Chef, The Scrupulous, The Ironic, The Troublemaker, Pact Warleader, Imperial Tactician,
+  Covenant Armsmaster, Servant of Destruction and The Artist.
+- **Creature opponents no longer talk:** wolves, spiders, mammoths, Dwemer constructs, dragons and other creatures don't
+  emote with a borrowed person's voice any more.
+- **For modders:** TESL Forge can now preview a card's deck-list row as the game draws it.
+
 ## 1.0.1 — fixes
 
 - **Pure-Blood Elder** works: "When you gain max magicka, double the amount you gain" now doubles the magicka you gain each

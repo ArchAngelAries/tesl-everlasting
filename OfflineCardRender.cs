@@ -19,6 +19,7 @@ namespace OfflineEngine
     //   back:<card back key> or "backs"    -> back_<key>.png   a card's back face with that card back (as in packs and decks)
     //   deck:<deck type name> or "decks"   -> deck_<name>.png  the deck's banner: the game's own deck tile (name, attributes, art)
     //   board:<board key> or "boards"      -> board_<key>.png  the board prefab of its base mat with the mod image, seen from above
+    //   tile:<card id> or "tiles"          -> tile_<id>.png    the card's row in deck lists (small deck card, uses ListImage* framing)
     public static class OfflineCardRender
     {
         public const string Flag = "--tesl-render-cards=";
@@ -46,6 +47,7 @@ namespace OfflineEngine
             while (Time.realtimeSinceStartup - start < 240f && Singleton<FXFactory>.Instance.IsLoading()) yield return null;
             List<int> ids = new List<int>();
             List<string> backs = new List<string>(), decks = new List<string>(), boards = new List<string>();
+            List<int> tiles = new List<int>();
             string list = Path.Combine(folder, "cards.txt");
             foreach (string line in File.Exists(list) ? File.ReadAllLines(list) : new string[] { "mod" })
             {
@@ -57,6 +59,8 @@ namespace OfflineEngine
                 else if (l.StartsWith("back:", StringComparison.Ordinal)) backs.Add(l.Substring(5));
                 else if (l.StartsWith("deck:", StringComparison.Ordinal)) decks.Add(l.Substring(5));
                 else if (l.StartsWith("board:", StringComparison.Ordinal)) boards.Add(l.Substring(6));
+                else if (l == "tiles") tiles.AddRange(OfflineMods.CardIds);
+                else if (l.StartsWith("tile:", StringComparison.Ordinal)) { int t; if (int.TryParse(l.Substring(5), out t)) tiles.Add(t); }
                 else if (int.TryParse(l, out id)) ids.Add(id);
             }
             Camera cam = new GameObject("TESL Forge card camera").AddComponent<Camera>();
@@ -107,7 +111,8 @@ namespace OfflineEngine
             if (backs.Count > 0) yield return RenderBacks(folder, backs, cam, light, log, counts);
             if (decks.Count > 0) yield return RenderDecks(folder, decks, cam, light, log, counts);
             if (boards.Count > 0) yield return RenderBoards(folder, boards, cam, light, log, counts);
-            others = backs.Count + decks.Count + boards.Count;
+            if (tiles.Count > 0) yield return RenderTiles(folder, tiles, cam, light, log, counts);
+            others = backs.Count + decks.Count + boards.Count + tiles.Count;
             Finish(folder, "rendered " + (n + counts[0]) + " of " + (ids.Count - warmups + others), log);
         }
 
@@ -156,6 +161,51 @@ namespace OfflineEngine
                 UnityEngine.Object.Destroy(card.gameObject);
                 yield return null;
             }
+        }
+
+        // Deck-list rows: the game's own small deck card (CardFactory.CloneDeckCardSmall, as in the deck builder), framed by the card's ListImage* fields.
+        private static IEnumerator RenderTiles(string folder, List<int> ids, Camera cam, Light light, List<string> log, int[] counts)
+        {
+            if (Singleton<CardFactory>.Instance == null) { foreach (int id in ids) log.Add("tile:" + id + "\tno card factory"); yield break; }
+            GameObject holder = new GameObject("TESL Forge tile canvas");
+            holder.transform.position = new Vector3(-5000f, -5000f, 5000f);
+            Canvas canvas = holder.AddComponent<Canvas>();
+            canvas.renderMode = RenderMode.WorldSpace; canvas.worldCamera = cam;
+            foreach (int id in ids)
+            {
+                Card def = GameManager.Instance.GetCard(id);
+                if (def == null) { log.Add("tile:" + id + "\tunknown card"); continue; }
+                DeckCardSmall small = Singleton<CardFactory>.Instance.CloneDeckCardSmall(holder.transform);
+                if (small == null) { log.Add("tile:" + id + "\tno small deck card"); continue; }
+                GameObject row = small.gameObject;
+                row.SetActive(true);
+                Exception failed = null;
+                try { small.SetData(def, 1, false, false, null); small.UpdateCardArt(); } catch (Exception e) { failed = e; }
+                if (failed != null) { log.Add("tile:" + id + "\t" + failed.Message); UnityEngine.Object.Destroy(row); continue; }
+                float settle = Time.realtimeSinceStartup;
+                while (Time.realtimeSinceStartup - settle < 2f) yield return null;
+                try
+                {
+                    SetLayer(holder.transform);
+                    RectTransform rect = (RectTransform)row.transform;
+                    float pw = UnityEngine.UI.LayoutUtility.GetPreferredWidth(rect), ph = UnityEngine.UI.LayoutUtility.GetPreferredHeight(rect);
+                    rect.anchorMin = rect.anchorMax = rect.pivot = new Vector2(0.5f, 0.5f);
+                    if (rect.rect.width < 2f || rect.rect.height < 2f) rect.sizeDelta = new Vector2(pw > 1f ? pw : 300f, ph > 1f ? ph : 48f);
+                    UnityEngine.UI.LayoutRebuilder.ForceRebuildLayoutImmediate(rect);
+                    Canvas.ForceUpdateCanvases();
+                    Vector3[] corners = new Vector3[4]; rect.GetWorldCorners(corners);
+                    Vector3 center = (corners[0] + corners[2]) * 0.5f;
+                    float w = (corners[3] - corners[0]).magnitude, h = (corners[1] - corners[0]).magnitude;
+                    if (w <= 0f || h <= 0f) throw new InvalidOperationException("tile has no size");
+                    Shoot(cam, light, center, -holder.transform.forward, holder.transform.up, w, h, Mathf.Clamp(Mathf.RoundToInt(1024f * h / w), 32, 1024),
+                        Path.Combine(folder, "tile_" + id + ".png"));
+                    counts[0]++; log.Add("tile:" + id + "\tok\t" + def.Name + "\tsize " + w.ToString("F1") + "x" + h.ToString("F1"));
+                }
+                catch (Exception e) { log.Add("tile:" + id + "\t" + e.Message); }
+                UnityEngine.Object.Destroy(row);
+                yield return null;
+            }
+            UnityEngine.Object.Destroy(holder);
         }
 
         // Deck banners: the game's own deck tile (UIDeckTile, as in deck pickers) on a world-space canvas.

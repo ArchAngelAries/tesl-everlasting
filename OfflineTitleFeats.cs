@@ -168,6 +168,7 @@ namespace OfflineEngine
         {
             seen = new Seen();
             humanId = human == null ? int.MinValue : human.NetId.Id;
+            OfflineTitleHooks.Begin(humanId);
             damageQuests.Clear(); fleshQuest = null;
             if (human == null || quests == null || players == null) return;
             foreach (PlayerState p in players)
@@ -207,6 +208,7 @@ namespace OfflineEngine
         public static void Observe(ServerCardCatalog catalog, List<PlayerState> players)
         {
             if (seen == null || catalog == null || players == null) return;
+            OfflineTitleHooks.Sample(catalog);
             ReadEvents();
             PlayerState human = null, foe = null;
             foreach (PlayerState p in players) { if (p.NetId.Id == humanId) human = p; else foe = p; }
@@ -257,6 +259,7 @@ namespace OfflineEngine
             seen.TookDamage = seen.DamageTaken > 0 || seen.HealthDropped;
             seen.ChapterEventId = chapterEventId; seen.ScenarioName = scenarioName; seen.Mastery = mastery;
             earned = Judge(seen, d);
+            earned.AddRange(OfflineTitleHooks.Judge(d, seen.Won, scenarioName, mastery));
             seen = null; humanId = int.MinValue; damageQuests.Clear(); fleshQuest = null;
             return earned;
         }
@@ -312,7 +315,7 @@ namespace OfflineEngine
                 case "title_the_runebreaker": return "opponent rune breaks (CheckForRuneBreaks), lifetime >= 500";
                 case "title_the_centurion": return "100 wins with an all-Neutral starting deck";
             }
-            return StoryDescribe(key);
+            return OfflineTitleHooks.Describe(key) ?? StoryDescribe(key);
         }
 
         // StartingDeckColors comes from the installed Deck.GetDeckCardColors(false), which excludes Neutral.

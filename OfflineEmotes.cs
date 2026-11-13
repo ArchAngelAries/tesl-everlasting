@@ -326,10 +326,49 @@ namespace OfflineEngine
         {
             BoardInputController board = UnityEngine.Object.FindObjectOfType<BoardInputController>();
             if (board == null) return false;
+            if (OpponentIsCreature(board)) return false;   // beasts, monsters and constructs have no voice of their own
             board.ReceiveInputInstantMessage(PlayerControllerType.Opponent, CcgRpc.HistoryType.InputInstantEmote,
                 new CcgRpc.HistoryInputVisualization { EmoteType = (int)type });
             AiEmotesSent++;
             return true;
+        }
+
+        // An AiOpponent with no race that its name or portrait shows to be a creature (2026-11-13: 302 of 718 opponents have no
+        // race; beasts and monsters used to emote with a random person's voice). Groups of people keep a voice.
+        private static readonly string[] CreatureWords = { "wolf", "wolves", "bear", "spider", "troll", "mammoth", "skeever", "mudcrab",
+            "dragon", "skeleton", "zombie", "draugr", "atronach", "centurion", "sphere", "automaton", "fabricant", "netch", "kwama",
+            "guar", "horker", "giant ", "frostbite", "slaughterfish", "chaurus", "falmer", "hagraven", "wisp", "spriggan", "beast",
+            "sabre cat", "sabrecat", "senche-tiger", "crocodile", "ogre", "imp ", "scamp", "clannfear", "daedroth", "harpy",
+            "nix-hound", "cliff racer", "dreugh", "lurker", "seeker", "gargoyle", "golem", "construct", "crab", "rat ", "goat",
+            "mudcrabs", "snake", "serpent", "wamasu", "hackwing", "durzog", "echatere", "minotaur", "colossus", "hound" };
+
+        public static bool IsCreatureOpponent(MatchPlayerData data)
+        {
+            if (data == null || GameManager.Instance == null || GameManager.Instance.Config == null) return false;
+            List<AiOpponent> opponents = GameManager.Instance.Config.AiOpponents;
+            AiOpponent ai = opponents == null || string.IsNullOrEmpty(data.AvatarUniqueName) ? null
+                : opponents.Find(delegate(AiOpponent x) { return x != null && x.ResourceId.UniqueName == data.AvatarUniqueName; });
+            if (ai == null) return false;
+            if (VoiceForPortrait(GameManager.Instance.Config.AvatarCollection, data, 0) != null) return false;   // a race or a pictured avatar
+            string words = OpponentWords(ai, data.Name);
+            // whole words only ("guar" is not "guards"); people named after a creature (a Dragon Priest) keep their voice
+            HashSet<string> tokens = new HashSet<string>(System.Text.RegularExpressions.Regex.Split(words, "[^a-z'-]+"));
+            foreach (string person in new[] { "priest", "cultist", "caller", "beastcaller", "herder", "heder", "scout", "hunter", "tamer", "rider", "keeper", "master", "handler", "trainer" })
+                if (tokens.Contains(person) || tokens.Contains(person + "s")) return false;
+            foreach (string raw in CreatureWords)
+            {
+                string w = raw.Trim();
+                if (w.Contains(" ") ? words.Contains(" " + w + " ") || words.Contains(" " + w + "s ") : tokens.Contains(w) || tokens.Contains(w + "s") || tokens.Contains(w + "es"))
+                    return true;
+            }
+            return false;
+        }
+
+        private static bool OpponentIsCreature(BoardInputController board)
+        {
+            BoardConductor conductor = (BoardConductor)AccessTools.Field(typeof(BoardInputController), "_boardConductor").GetValue(board);
+            MatchPlayerData data = conductor == null || conductor.BoardState == null ? null : conductor.BoardState.FindMatchPlayerData(PlayerControllerType.Opponent);
+            return data != null && data.isAIPlayer && IsCreatureOpponent(data);
         }
 
         private static bool OpponentIsAi(BoardInputController board)

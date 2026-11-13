@@ -76,6 +76,11 @@ namespace OfflineEngine
                 { g.Add(new Guild { Key = key, Giver = giver, Count = int.Parse(x.Groups[1].Value) }); kind = "guild"; goalText = giver + " " + x.Groups[1].Value; }
                 else if (l.StartsWith("complete ", StringComparison.Ordinal) && MetaRequired(l.Substring(9)) != null)
                 { m.Add(new Meta { Key = key, Required = MetaRequired(l.Substring(9)) }); kind = "meta"; goalText = string.Join("+", m[m.Count - 1].Required.ToArray()); }
+                else if (CardEventGoal(key) != null)
+                {
+                    QuestGoal goal = CardEventGoal(key);
+                    t.Add(new Tracker { Key = key, Quest = new Quest { Goal = goal, QuestType = QuestType.Title } }); kind = "counter"; goalText = goal.Type + " " + goal.Value;
+                }
                 else
                 {
                     QuestGoal goal = ParseGoal(l);
@@ -97,6 +102,58 @@ namespace OfflineEngine
             UnityEngine.Debug.Log("OFFLINE TITLES: " + t.Count + " counters, " + g.Count + " guild, " + m.Count + " meta, " + s.Count + " starting/supporter, "
                 + one.Count + " single-game, " + sets.Count + " collection.");
         }
+
+        // Titles whose card raises its own quest event (CardActions.IncrementQuestProgress in the original card graphs). The card
+        // checks the condition itself (5-cost, 10 items at once, 100 damage at once, a named target...), so the goal is the
+        // description's count, or 1 for "once" titles. The installed title quests ship without goals (2026-11-13).
+        private static readonly Dictionary<string, KeyValuePair<QuestGoalType, int>> CardEvents = new Dictionary<string, KeyValuePair<QuestGoalType, int>> {
+            { "title_the_archmage", new KeyValuePair<QuestGoalType, int>(QuestGoalType.FiveCostWinterhold, 1) },
+            { "title_the_dawnbreaker", new KeyValuePair<QuestGoalType, int>(QuestGoalType.Dawnbreaker30Undead, 30) },
+            { "title_the_director_of_despair", new KeyValuePair<QuestGoalType, int>(QuestGoalType.DirectorOfDespairCount, 50) },
+            { "title_the_engineer", new KeyValuePair<QuestGoalType, int>(QuestGoalType.EngineerFactotum, 1) },
+            { "title_the_forger", new KeyValuePair<QuestGoalType, int>(QuestGoalType.WrothgarForgerCount, 30) },
+            { "title_the_genius_gardener", new KeyValuePair<QuestGoalType, int>(QuestGoalType.GeniusGardenerCount, 50) },
+            { "title_the_golden", new KeyValuePair<QuestGoalType, int>(QuestGoalType.GoldenCount, 1) },
+            { "title_the_hortator", new KeyValuePair<QuestGoalType, int>(QuestGoalType.UniteTheHousesCount, 1) },
+            { "title_the_king_of_orsinium", new KeyValuePair<QuestGoalType, int>(QuestGoalType.KingOfOrsiniumCount, 30) },
+            { "title_the_mastermind", new KeyValuePair<QuestGoalType, int>(QuestGoalType.MastermindCount, 50) },
+            { "title_the_red_mountain", new KeyValuePair<QuestGoalType, int>(QuestGoalType.RedYearDamageCount, 1) },
+            { "title_the_skirmisher", new KeyValuePair<QuestGoalType, int>(QuestGoalType.SkirmisherDamageCount, 30) },
+            { "title_the_thief_of_dreams", new KeyValuePair<QuestGoalType, int>(QuestGoalType.ThiefOfDreamsCount, 10) },
+            { "title_the_true_high_king", new KeyValuePair<QuestGoalType, int>(QuestGoalType.TrueHighKingCount, 50) },
+            { "title_thieves_guild_recruiter", new KeyValuePair<QuestGoalType, int>(QuestGoalType.ThievesGuildRecruiterCount, 30) },
+            { "title_IOM_the_chamberlain", new KeyValuePair<QuestGoalType, int>(QuestGoalType.HaskillActivationCount, 20) },
+            { "title_IOM_the_transmogrifier", new KeyValuePair<QuestGoalType, int>(QuestGoalType.TransmogrifierCount, 10) },
+            { "title_IOM_the_sadist", new KeyValuePair<QuestGoalType, int>(QuestGoalType.TorturerActivationCount, 30) },
+            { "title_IOM_the_heretic", new KeyValuePair<QuestGoalType, int>(QuestGoalType.HereticConjurerTransformCount, 50) },
+            { "title_AW_nirns_doom", new KeyValuePair<QuestGoalType, int>(QuestGoalType.NirnsDoomCount, 1) },
+            { "title_AW_the_telekinetic", new KeyValuePair<QuestGoalType, int>(QuestGoalType.TelekineticCount, 1) },
+            { "title_MoE_MoonCatcher", new KeyValuePair<QuestGoalType, int>(QuestGoalType.MoonCatcherCount, 100) },
+            { "title_MoE_TheDragonSeeker", new KeyValuePair<QuestGoalType, int>(QuestGoalType.DragonSeekerCount, 20) },
+            { "title_MoE_TheUsurper", new KeyValuePair<QuestGoalType, int>(QuestGoalType.UsurperCount, 1) },
+            { "title_MoE_TheShriven", new KeyValuePair<QuestGoalType, int>(QuestGoalType.ShrivenCount, 1) },
+            { "title_Jaws_ChosenOfAkatosh", new KeyValuePair<QuestGoalType, int>(QuestGoalType.ChosenOfAkatoshCount, 1) },
+            { "title_Jaws_TheLearned", new KeyValuePair<QuestGoalType, int>(QuestGoalType.TheLearnedCount, 50) },
+            // Raised by the installed shared Avatar / Creature definitions ("prodigy title check", "Pocket Emptier check", "Perfect check").
+            { "title_AW_the_arcane_prodigy", new KeyValuePair<QuestGoalType, int>(QuestGoalType.ProdigyCount, 1) },
+            { "title_MoE_ThePocketEmptier", new KeyValuePair<QuestGoalType, int>(QuestGoalType.PocketEmptierCount, 1) },
+            { "title_Jaws_Perfect", new KeyValuePair<QuestGoalType, int>(QuestGoalType.PerfectCount, 1) },
+            // Dedicated events of the Isle of Madness lanes and scenarios (raised by their lane / scenario rules, not by cards).
+            { "title_IOM_duke_of_mania", new KeyValuePair<QuestGoalType, int>(QuestGoalType.ManiaActivationCount, 40) },
+            { "title_IOM_duchess_of_dementia", new KeyValuePair<QuestGoalType, int>(QuestGoalType.DementiaActivationCount, 40) },
+            { "title_the_risen", new KeyValuePair<QuestGoalType, int>(QuestGoalType.TheRisenCount, 1) },
+            { "title_IOM_the_strategist", new KeyValuePair<QuestGoalType, int>(QuestGoalType.TheStrategistCount, 1) },
+        };
+
+        public static QuestGoal CardEventGoal(string key)
+        {
+            // Mankar Camoran's own Invades: the native InvadeCount event names the invading card.
+            if (key == "title_Jaws_ParadiseChosen") return WithCard(new QuestGoal { Type = QuestGoalType.InvadeCount, Value = 50 }, CardRole.Self, "Mankar Camoran");
+            KeyValuePair<QuestGoalType, int> e;
+            return CardEvents.TryGetValue(key, out e) ? new QuestGoal { Type = e.Key, Value = e.Value } : null;
+        }
+
+        public static IEnumerable<string> CardEventTitles() { List<string> k = new List<string>(CardEvents.Keys); k.Add("title_Jaws_ParadiseChosen"); return k; }
 
         // ---- goals --------------------------------------------------------------------------------
         public static string Normalize(string text)
