@@ -33,6 +33,7 @@ namespace OfflineEngine
             FriendlyAttackTests.Run(config, test);
             AttackTimingTests.Run(config, test);
             ChargeAttackTests.Run(config, test);
+            MagickaAndStealTests.Run(config, test);
             DuneSmugglerTests.Run(config, test);
             DrawAndDeathEventTests.Run(config, test);
             EventValueTests.Run(config, test);

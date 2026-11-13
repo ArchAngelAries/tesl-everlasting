@@ -124,9 +124,11 @@ namespace OfflineEngine
                 player.NetId, GameZoneName.AvatarBoard);
             if (avatar == null || !avatar.QueryAttribute(AttributeType.MaxMana).HasAttribute)
                 throw new NotSupportedException("Turn-start magicka requires a board avatar with native MaxMana.");
-            if (player.CheatMana != 0 || player.QueryAttribute(AttributeType.DoubleMaxManaGained).Value != 0
-                || avatar.QueryAttribute(AttributeType.DoubleMaxManaGained).Value != 0)
-                throw new NotSupportedException("Turn-start magicka with cheats or DoubleMaxManaGained is not validated.");
+            // DoubleMaxManaGained (Pure-Blood Elder's aura on the avatar) is applied by the game itself: ServerCard.AddEnchantment
+            // multiplies every positive MaxMana Add enchantment by 2^value, so the natural +1 below becomes +2 (decompiled
+            // ServerCard, 2026-11-13). A player-level value has no native reader and stays gated.
+            if (player.CheatMana != 0 || player.QueryAttribute(AttributeType.DoubleMaxManaGained).Value != 0)
+                throw new NotSupportedException("Turn-start magicka with cheats or a player-level DoubleMaxManaGained is not validated.");
             int turns = player.QueryAttribute(AttributeType.TurnCount).Value;
             if (turns < 0 || turns == Int32.MaxValue)
                 throw new NotSupportedException("Invalid native player TurnCount for magicka growth.");

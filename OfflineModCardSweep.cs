@@ -58,6 +58,21 @@ namespace OfflineEngine
             return null;
         }
 
+        private static void Conditions(GameConfiguration config, OriginalTargetedSummonTests.LifecycleFixture f, int me, int enemy, ServerCard foe)
+        {
+            f.Create(Crab, me, GameZoneName.Cemetery);
+            int item = 0;
+            foreach (CardSet set in config.CardCollection)
+                foreach (Card c in set.Cards)
+                    if (item == 0 && c != null && c.Definition == "Item" && (c.Name == "Steel Sword" || c.Name == "Iron Sword")) item = c.ResourceId.Id;
+            if (item != 0)
+            {
+                ServerCard sword = f.CreateIn(item, enemy, GameZoneName.ItemBoard, 0);
+                f.Event(delegate { CardActions.Equip.StaticExecute(DecisionRestoration.State(f.Sim, f.Sim._turnStateStack.Peek()), sword, foe, 0); });
+            }
+            foe.SetAttribute(AttributeType.Taunt, 1);   // Guard is Taunt in the game data
+        }
+
         private static ServerCard Pick(OriginalTargetedSummonTests.LifecycleFixture f, IList<int> targets, ServerCard foe, ServerCard friend)
         {
             if (targets == null || targets.Count == 0) return null;
@@ -97,7 +112,14 @@ namespace OfflineEngine
                 ServerCard src = f.Create(card.ResourceId.Id, me, GameZoneName.Hand);
                 f.Mana(me, 30); f.Refresh(me);
                 CardCommandState s = StateOf(f, src);
-                if (s == null) throw new InvalidOperationException("not playable from hand with 30 magicka");
+                if (s == null)
+                {   // Cards with a play condition (a creature in the discard pile, an enemy with an item, a target with a keyword):
+                    // give the bench what they ask for, then try again (2026-11-13: Amaranth, Let Me Guess, Succubus' Kiss).
+                    Conditions(config, f, me, enemy, foe);
+                    f.Refresh(me);
+                    s = StateOf(f, src);
+                }
+                if (s == null) throw new InvalidOperationException("not playable from hand with 30 magicka, even with a creature in the discard pile, an equipped enemy and a keyword");
                 Step(f, "play", delegate {
                     switch (card.Definition)
                     {

@@ -89,8 +89,8 @@ More in [docs/screenshots](docs/screenshots).
 
 1. Back up the `.offline-user-data` folder in your game folder, if it exists.
 2. Find your game folder (Steam: right-click the game > Manage > Browse local files).
-3. Download **TESL-Everlasting-1.0.0-with-BepInEx.zip** if the game folder has no `BepInEx` folder yet, or
-   **TESL-Everlasting-1.0.0.zip** (plugin only) if it does.
+3. Download **TESL-Everlasting-1.0.1-with-BepInEx.zip** if the game folder has no `BepInEx` folder yet, or
+   **TESL-Everlasting-1.0.1.zip** (plugin only) if it does.
 4. Extract the zip into the game folder, next to `The Elder Scrolls Legends.exe`. Install it by hand; mod managers such as
    Vortex don't support this game.
 5. Double-click **Play TESL Everlasting.cmd** in the game folder (or start the game as usual). A new profile begins with

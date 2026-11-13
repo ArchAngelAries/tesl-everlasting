@@ -332,13 +332,14 @@ namespace OfflineEngine
                         && f.Avatar(0).QueryAttribute(AttributeType.MaxMana).Value == Simulation.MaxManaUnbuffed_ + 3
                         && f.Sim.Players[0].QueryAttribute(AttributeType.Mana).Value == Simulation.MaxManaUnbuffed_ + 3,
                         "Natural cap or native bonus refill differs. " + f.Summary());
+                    // Past the natural cap, doubling has nothing to double: the turn counter advances, max magicka stays.
                     int before = f.Sim.Players[0].QueryAttribute(AttributeType.TurnCount).Value;
+                    int maxBefore = f.Avatar(0).QueryAttribute(AttributeType.MaxMana).Value;
                     f.Avatar(0).SetAttribute(AttributeType.DoubleMaxManaGained, 1);
-                    bool gated = false;
-                    try { DecisionRestoration.RestoreStartTurnMagicka(f.Sim, f.Sim._turnStateStack.Peek(), f.Sim.Players[0]); }
-                    catch (NotSupportedException) { gated = true; }
-                    Require(gated && f.Sim.Players[0].QueryAttribute(AttributeType.TurnCount).Value == before,
-                        "Unvalidated doubling modifier must gate before incrementing the turn counter.");
+                    DecisionRestoration.RestoreStartTurnMagicka(f.Sim, f.Sim._turnStateStack.Peek(), f.Sim.Players[0]);
+                    Require(f.Sim.Players[0].QueryAttribute(AttributeType.TurnCount).Value == before + 1
+                        && f.Avatar(0).QueryAttribute(AttributeType.MaxMana).Value == maxBefore,
+                        "Doubling past the natural cap differs. " + f.Summary());
                 }
             });
             test("native-avatar-immortal-and-terminal-loss", delegate

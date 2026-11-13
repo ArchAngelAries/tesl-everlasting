@@ -89,9 +89,13 @@ namespace OfflineEngine
                 CardNetUid uid = card.NetUid;
                 if (from.ZoneType != to.ZoneType || from.Visibility == GameZone.VisibilityRule.Hidden)
                     uid = ServerCardCatalog.GenerateNewCardNetUid(state.CardCatalog);
+                List<ServerCard> items = ownerChanged && from.Name == GameZoneName.CreatureBoard && to.Name == GameZoneName.CreatureBoard
+                    ? state.CardCatalog.GatherCardList(delegate(ServerCard c) { return c.ItemTarget == card.InstanceId && c.CurrentGameZoneName == GameZoneName.ItemBoard; })
+                    : null;
                 card.ChangeZone(to, targetLane.GetCardLaneType(), targetLane.GetExtraCardLaneType(), owner,
                     destination.LaneIndex, uid, operation == ServerCardCatalog.MoveOperationType.TransformCard);
                 BreakLinks(state, card, from, to, ownerChanged);
+                if (items != null) foreach (ServerCard item in items) FollowWielder(state, item, ownerId);
                 foreach (EffectTriggerType type in after) Emit(state, card, type);
                 return true;
             }
@@ -100,6 +104,18 @@ namespace OfflineEngine
                 Restore(cardSnapshot, sourceSnapshot, targetSnapshot, owner, stats, state, uidCounter, active, pending, afterQueue);
                 throw;
             }
+        }
+
+        // Moves an item to its stolen wielder's new owner; ItemTarget and the item's enchantments on the wielder are kept.
+        private static void FollowWielder(ServerEffectUtilities.TriggerGameState state, ServerCard item, PlayerUniqueId newOwner)
+        {
+            GameZone from = state.CardCatalog.FindGameZone(item.OwnerNetId, GameZoneName.ItemBoard);
+            GameZone to = state.CardCatalog.FindGameZone(newOwner, GameZoneName.ItemBoard);
+            if (from == null || to == null || to.LaneList.Count == 0)
+                throw new NotSupportedException("Offline movement: no item board for a stolen creature's equipment.");
+            GameZone.Position end = new GameZone.Position { LaneIndex = 0, CardIndex = to.LaneList[0].GetCurrentLength() };
+            if (!Transfer(state, item.InstanceId, from, to, newOwner, end, ServerCardCatalog.MoveOperationType.Untyped, true))
+                throw new InvalidOperationException("Offline movement: a stolen creature's equipment did not follow it.");
         }
 
         // Shared nonmutating gate for orchestration that will sacrifice/pay before a
@@ -135,7 +151,10 @@ namespace OfflineEngine
             bool ownerChanged = card.OwnerNetId != ownerId;
             bool leftBoard = from.ZoneType == GameZoneType.Board && to.ZoneType != GameZoneType.Board;
             bool leftHand = from.ZoneType == GameZoneType.Hand && to.ZoneType != GameZoneType.Hand;
-            if (ownerChanged && state.CardCatalog.GatherCardList(delegate(ServerCard c) { return c.ItemTarget == card.InstanceId; }).Count > 0)
+            // A creature stolen onto the other side keeps its items: they follow it to the new owner's item board (Transfer below;
+            // the game's ReturnToBoardNewOwner logs the items' new state after the move). Other owner changes stay gated.
+            bool stolenOnBoard = from.Name == GameZoneName.CreatureBoard && to.Name == GameZoneName.CreatureBoard;
+            if (ownerChanged && !stolenOnBoard && state.CardCatalog.GatherCardList(delegate(ServerCard c) { return c.ItemTarget == card.InstanceId; }).Count > 0)
                 throw new NotSupportedException("Offline movement: ownership transfer of attached equipment has not been validated.");
             before = new List<EffectTriggerType>(); after = new List<EffectTriggerType>();
             if (leftBoard) before.Add(EffectTriggerType.BeforeCardLeavesBoard);

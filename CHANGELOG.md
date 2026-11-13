@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.1 — fixes
+
+- **Pure-Blood Elder** works: "When you gain max magicka, double the amount you gain" now doubles the magicka you gain each
+  turn, as in the original. Before, the match could stop at the start of a turn while it was in play.
+- **Stealing an equipped creature** (for example with Miraak, Dragonborn) works: the creature's items come with it, as in the
+  original. Before, the match could stop.
+
 ## 1.0.0 — first public release
 
 The Elder Scrolls: Legends, playable offline against the in-game AI, with nothing from the original servers needed.
