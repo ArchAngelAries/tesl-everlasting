@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using SPTESL;
 
 namespace OfflineEngine
@@ -59,6 +60,29 @@ namespace OfflineEngine
                 if (directory != null) AssertRecoveredDefault(config, directory);
             });
         }
+        // Reddit report: a Bethesda.net/TESL Reborn install's resources.assets differs elsewhere (whole-file hash) but holds the
+        // same deck scripts; startup stopped. Now each deck is verified on its own: a whole-file mismatch is ignored, a moved deck
+        // is found by its asset name, and one whose bytes differ is skipped instead of stopping the engine.
+        private static void AssertOtherBuildDecks(string directory)
+        {
+            string manifest = Path.Combine(Path.Combine(directory, "original-resource-decks"), "manifest.json");
+            if (!File.Exists(manifest)) manifest = Path.Combine(OfflinePaths.DataNear(directory, "original-resource-decks"), "manifest.json");
+            string text = File.ReadAllText(manifest);
+            int sha = text.IndexOf("\"source_sha256\"", StringComparison.Ordinal);
+            int open = text.IndexOf('"', text.IndexOf(':', sha) + 1), close = text.IndexOf('"', open + 1);
+            text = text.Substring(0, open + 1) + new string('0', 64) + text.Substring(close);
+            Require(text.Contains("2649424") && text.Contains("BCE94DB08DE7D57B8267262837D61F4E08E7EA8D55357E1884F6E8D0CE3FB703"), "deck manifest test anchors moved");
+            text = text.Replace("2649424", "2649428").Replace("BCE94DB08DE7D57B8267262837D61F4E08E7EA8D55357E1884F6E8D0CE3FB703", new string('1', 64));
+            string other = Path.Combine(Path.Combine(directory, "other-build-decks-test"), "original-resource-decks");
+            Directory.CreateDirectory(other);
+            File.WriteAllText(Path.Combine(other, "manifest.json"), text);
+            List<OriginalResourceDeckRecovery.Recipe> read = OriginalResourceDeckRecovery.Read(Path.GetDirectoryName(other));
+            Require(read.Count == 8, "expected 8 verified decks (one with changed bytes skipped), got " + read.Count);
+            Require(read.Exists(delegate(OriginalResourceDeckRecovery.Recipe r) { return r.AssetName == "Lightblade_Deck" && r.Offset == 2649424; }), "a moved deck was not found by its name");
+            Require(!read.Exists(delegate(OriginalResourceDeckRecovery.Recipe r) { return r.AssetName == "Greysteel_Deck"; }), "a deck with changed bytes was accepted");
+            Require(read.Exists(delegate(OriginalResourceDeckRecovery.Recipe r) { return r.AssetName == "DefaultDeck"; }), "the default deck was lost");
+        }
+
         public static void AssertRecoveredDefault(GameConfiguration config, string directory)
         {
             OfflineDeckCatalog.Load(config, directory);
@@ -67,6 +91,7 @@ namespace OfflineEngine
             Require(original != null && original.Offset == 2781684 && original.Deck.Name == "Default"
                 && original.Deck.Size == 30 && original.Deck.Cards.Count == 19, "Exact original Resources DefaultDeck recipe was changed or mistaken for a fifty-card deck.");
             foreach (DeckCardInfo c in original.Deck.Cards) Require(RuleImporter.IsSupported(c.Id), "Original Resources DefaultDeck still lacks rule support for " + c.Id + ".");
+            AssertOtherBuildDecks(directory);
             Deck copy = OfflineDeckCatalog.Clone(original.Deck);
             Require(copy.Size == 30 && copy.Cards.Count == 19, "Original Resources clone expanded/removed source cards.");
             for (int i = 0; i < copy.Cards.Count; i++) Require(copy.Cards[i].Id == original.Deck.Cards[i].Id

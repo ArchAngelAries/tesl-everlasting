@@ -101,6 +101,7 @@ namespace OfflineEngine
             host.StartCoroutine(PublishQuestsWhenLocalized());
             host.StartCoroutine(OfflineMods.PredecodeCards(14f));   // mod cards decoded while the client boots (ApplyMods reuses them)
             OfflineNameEntry.Install(harmony, host, state);
+            OfflineWindowList.Install(harmony); OfflineNoIdleKick.Install(harmony);
             OfflineCheatMenu.Install(host, state);
             OfflineMods.Install(harmony);
             OfflineStories.Install(harmony);
@@ -357,6 +358,9 @@ namespace OfflineEngine
         // before that one (first choices taken) once the main menu shows, so the coin map plays it next; with
         // --tesl-offline-diagnostic-autowin the human wins each match at its first decision (the offline Win cheat).
         private static int StoryJumpEvent; private static bool StoryJumpMaster, AutoWinDiagnostic;
+        private static bool choiceHidden = true;
+        // --tesl-offline-diagnostic-minutes=N: a long hidden run (a whole story): N minutes and 30 screens a minute.
+        private static float DiagnosticSeconds = 1500f; private static int DiagnosticSteps = 400;
         private static bool jumpEpisodeOpened;
 
         // The main menu's events widget, pressed through its own button handler once the live event has loaded (up to 30 s).
@@ -376,6 +380,7 @@ namespace OfflineEngine
             }
             Debug.LogWarning("OFFLINE NATIVE: no events widget on the main menu");
         }
+        private static float episodeDoneAt = -1f, lastEpisode = -100f;
         private static int JumpChapterId()
         {
             foreach (SPTESL.Campaign c in SPTESL.GameManager.Instance.Config.Campaigns) foreach (SPTESL.Act a in c.Acts) foreach (SPTESL.Chapter ch in a.Chapters)
@@ -392,6 +397,9 @@ namespace OfflineEngine
                     int.TryParse(p[0], out StoryJumpEvent); StoryJumpMaster = p.Length > 1 && p[1] == "master";
                 }
                 if (arg == "--tesl-offline-diagnostic-autowin") AutoWinDiagnostic = true;
+                int minutes;
+                if (arg.StartsWith("--tesl-offline-diagnostic-minutes=", StringComparison.Ordinal) && int.TryParse(arg.Substring("--tesl-offline-diagnostic-minutes=".Length), out minutes) && minutes > 0)
+                { DiagnosticSeconds = minutes * 60f; DiagnosticSteps = minutes * 30; MaxStoryMatches = 1000; }
                 if (arg == "--tesl-offline-native-menu=collection")
                 {
                     MenuLabels = new string[] { "COLLECTION" };
@@ -697,6 +705,13 @@ namespace OfflineEngine
                     MenuButtonNames = new string[0];
                     coinMaps = true;
                 }
+                if (arg == "--tesl-offline-native-menu=tutorial")
+                {   // a new player's whole guided flow: the onboarding store and pack steps, then back into The Forgotten Hero
+                    // (the onboarding enables only the button it points at, so the labels never compete)
+                    MenuLabels = new string[] { "PLAY", "SOLO PLAY", "STORIES", "THE FORGOTTEN HERO", "CHOOSE",
+                        "STORE", "PACKS", "CORE SET", "CORE SET PACK", "OPEN", "OPEN PACKS", "DONE", "BACK" };
+                    MenuButtonNames = new string[] { "Btn_Buy", "Item_Currency_Packs" };
+                }
                 if (arg == "--tesl-offline-native-menu=story")
                 {
                     MenuLabels = new string[] { "PLAY", "SOLO PLAY", "STORIES", "THE FORGOTTEN HERO", "CHOOSE" };
@@ -734,7 +749,7 @@ namespace OfflineEngine
             string last = null; int step = 0;
             StringBuilder parity = new StringBuilder("seconds\tserver_phase\tturns\tstatus\tserver_board\tclient_board\n");
             float resultAt = -1f; int results = 0;
-            while (Time.realtimeSinceStartup - start < 1500f && step < 400)
+            while (Time.realtimeSinceStartup - start < DiagnosticSeconds && step < DiagnosticSteps)
             {
                 SPTESL.Simulation sim = OfflineNativeMatch.CurrentSimulation;
                 bool inMatch = sim != null && sim.Players.Count == 2 && sim._gameState != null && sim._gameState.GamePhase == SPTESL.GamePhase.MainLoop;
@@ -758,6 +773,8 @@ namespace OfflineEngine
                 }
                 settledCaptured = false;
                 last = signature; step++;
+                // the idle stop counts from the last screen change (a chapter's rewards, cinematics and deck pick outlast 150 s)
+                if (resultAt > 0f) resultAt = Time.realtimeSinceStartup;
                 float seconds = Time.realtimeSinceStartup - start;
                 texts.Append(step).Append('\t').Append(seconds.ToString("0")).Append('\t').Append(state).Append("\t(state)\n");
                 foreach (string line in visible) texts.Append(step).Append('\t').Append(seconds.ToString("0")).Append('\t').Append(state).Append('\t').AppendLine(line);
@@ -1145,9 +1162,12 @@ namespace OfflineEngine
             }
             // Story card choice (e.g. Spare/Execute): the first option, through the window's own
             // choice handler (what a card click calls).
+            // The client reuses one choice window for every choice: press again each time it reappears.
             StoryCardChoiceWin choiceWin = UnityEngine.Object.FindObjectOfType<StoryCardChoiceWin>();
-            if (choiceWin != null && choiceWin.isActiveAndEnabled && openedRewards.Add(choiceWin.GetInstanceID()))
+            if (choiceWin == null || !choiceWin.isActiveAndEnabled) choiceHidden = true;
+            if (choiceWin != null && choiceWin.isActiveAndEnabled && choiceHidden)
             {
+                choiceHidden = false;
                 texts.Append(step).Append("\t-\t(press)\tSTORY CHOICE 1\n");
                 AccessTools.Method(typeof(StoryCardChoiceWin), "OnChoiceMade").Invoke(choiceWin, new object[] { 0 });
                 return;
@@ -1239,10 +1259,11 @@ namespace OfflineEngine
                 SPTESL.Chapter chapter = null;
                 foreach (SPTESL.Campaign c in SPTESL.GameManager.Instance.Config.Campaigns) foreach (SPTESL.Act a in c.Acts) foreach (SPTESL.Chapter ch in a.Chapters) if (ch.ResourceId.Id == chapterId) chapter = ch;
                 SparkleServices.Campaign.IUserChapterData user = chapter == null ? null : OfflineCampaignService.FindChapter(OfflineNativeMatch.State.Snapshot(), campaignId, actId, chapterId, (bool)AccessTools.Field(typeof(global::StoryState), "_isMastery").GetValue(story));
-                if (chapter != null && user != null)
+                if (chapter != null)
+                {
                     foreach (SPTESL.ChapterEvent e in chapter.ChapterEvents)
                     {
-                        SparkleServices.Campaign.IUserChapterEventData done = Array.Find(user.chapterEventData, delegate(SparkleServices.Campaign.IUserChapterEventData x) { return x.chapterEventId == e.ResourceId.Id; });
+                        SparkleServices.Campaign.IUserChapterEventData done = user == null ? null : Array.Find(user.chapterEventData, delegate(SparkleServices.Campaign.IUserChapterEventData x) { return x.chapterEventId == e.ResourceId.Id; });
                         // Mod stories: every revealed, unfinished event (dialogue too); originals: battle events.
                         bool mod = OfflineStories.IsModChapter(chapter.ResourceId.Id);
                         if (mod ? done == null || done.isComplete : e.GatedScenarios.Count == 0 || (done != null && done.isComplete)) continue;
@@ -1251,6 +1272,56 @@ namespace OfflineEngine
                         AccessTools.Method(typeof(global::StoryState), "OnEventCoinPressed").Invoke(story, new object[] { e, null });
                         return;
                     }
+                    // Whole-story runs: an episode with every battle won goes back to the episode screen, as a player does.
+                    if (StoryJumpEvent == 0 && !OfflineStories.IsModChapter(chapter.ResourceId.Id))
+                    {
+                        if (episodeDoneAt < 0f) episodeDoneAt = Time.realtimeSinceStartup;
+                        else if (Time.realtimeSinceStartup - episodeDoneAt > 15f)
+                            foreach (UnityEngine.UI.Button back in UnityEngine.Object.FindObjectsOfType<UnityEngine.UI.Button>())
+                                if (back.isActiveAndEnabled && back.interactable && back.name == "Core_Btn_Back" && back.transform.parent != null && back.transform.parent.name == "MainMenuNavWin")
+                                {
+                                    episodeDoneAt = -1f;
+                                    texts.Append(step).Append("\t-\t(press)\tEPISODE DONE, BACK\n");
+                                    back.onClick.Invoke();
+                                    return;
+                                }
+                    }
+                }
+            }
+            else episodeDoneAt = -1f;
+            // Whole-story runs: on the episode screen open the first unlocked episode (story order) with a battle not yet won.
+            if (coinMaps && StoryJumpEvent == 0 && OfflineNativeMatch.CurrentSimulation == null)
+            {
+                EpisodeSelectButton[] episodes = UnityEngine.Object.FindObjectsOfType<EpisodeSelectButton>();
+                bool shown = false;
+                foreach (EpisodeSelectButton b in episodes) if (b.isActiveAndEnabled) shown = true;
+                if (shown && Time.realtimeSinceStartup - lastEpisode > 10f)
+                {
+                    OfflinePlayerStateData snap = OfflineNativeMatch.State.Snapshot();
+                    foreach (SPTESL.Campaign c in SPTESL.GameManager.Instance.Config.Campaigns) foreach (SPTESL.Act a in c.Acts) foreach (SPTESL.Chapter ch in a.Chapters)
+                    {
+                        if (OfflineStories.IsModChapter(ch.ResourceId.Id)) continue;
+                        SparkleServices.Campaign.IUserChapterData u = OfflineCampaignService.FindChapter(snap, c.ResourceId.Id, a.ResourceId.Id, ch.ResourceId.Id, false);
+                        bool open = false;
+                        foreach (SPTESL.ChapterEvent e in ch.ChapterEvents)
+                        {
+                            if (e.GatedScenarios.Count == 0) continue;
+                            SparkleServices.Campaign.IUserChapterEventData d = u == null ? null : Array.Find(u.chapterEventData, delegate(SparkleServices.Campaign.IUserChapterEventData x) { return x.chapterEventId == e.ResourceId.Id; });
+                            if (d == null || !d.isComplete) { open = true; break; }
+                        }
+                        if (!open) continue;
+                        foreach (EpisodeSelectButton b in episodes)
+                        {
+                            if (!b.isActiveAndEnabled || b.IsLocked() || (int)AccessTools.Field(typeof(EpisodeSelectButton), "_chapterId").GetValue(b) != ch.ResourceId.Id) continue;
+                            UnityEngine.UI.Button button = b.GetButton();
+                            if (button == null || !button.interactable) continue;
+                            lastEpisode = Time.realtimeSinceStartup;
+                            texts.Append(step).Append("\t-\t(press)\tNEXT EPISODE ").AppendLine(ch.ResourceId.UniqueName);
+                            button.onClick.Invoke();
+                            return;
+                        }
+                    }
+                }
             }
             // Then flip each dealt card through its own click callback, one per tick.
             if (seed != null && packDropped)
@@ -1261,6 +1332,15 @@ namespace OfflineEngine
                     card.onClick();
                     return;
                 }
+            // Every card flipped: leave the pack screen with its back arrow, as a player does (the tutorial then returns to the menu).
+            if (seed != null && packDropped && (CurrentState().StartsWith("PackOpenState") || CurrentState().StartsWith("StoreState")))
+                foreach (UnityEngine.UI.Button back in UnityEngine.Object.FindObjectsOfType<UnityEngine.UI.Button>())
+                    if (back.isActiveAndEnabled && back.interactable && back.name == "Core_Btn_Back")
+                    {
+                        texts.Append(step).Append("\t-\t(press)\tBACK FROM PACKS\n");
+                        back.onClick.Invoke();
+                        return;
+                    }
             SPTESL.RewardsWin rewardsWin = UnityEngine.Object.FindObjectOfType<SPTESL.RewardsWin>();
             UnityEngine.UI.Button rewardsContinue = rewardsWin == null ? null : rewardsWin.GetContinueButton();
             if (rewardsContinue != null && rewardsContinue.isActiveAndEnabled && rewardsContinue.interactable)
@@ -1289,8 +1369,21 @@ namespace OfflineEngine
                 int rank = int.MaxValue;
                 if (play && button.name == "Btn_Play" && button.transform.parent != null && button.transform.parent.name == "Layout_Bottom_Buttons") rank = -1;
                 else if (label == "OK" || label == "CONTINUE" || label == "KEEP HAND" || label == "SELECT" || play) rank = 0;
+                // A reward deck's window (RewardsWin ShowNewDeckWin) closes with its own button.
+                else if (label != null && (label.ToUpperInvariant() == "ADD TO COLLECTION" || label.ToUpperInvariant() == "CLAIM")) rank = 0;
+                // "<Ally> has joined you" (NewAllyWin) closes with a click on its background; a chapter cinematic skips with a click.
+                else if (button.transform.parent != null && button.name == "Bkd" && button.transform.parent.name == "NewAllyWin") rank = -2;
+                else if (button.transform.parent != null && button.name == "VideoContainer" && button.transform.parent.name == "CinematicPlayer") rank = 0;
+                // A story's own choice ("Play as Laaneth." / "Play as Swims-At-Night."): its first option, so a run never stalls on it.
+                else if (button.transform.parent != null && button.name == "Btn_Choice" && button.transform.parent.name == "Section_ChoiceButtons") rank = 0;
                 // The post-match quest progress popup (labelled with the quest text) is dismissed by a click.
                 else if (button.name == "QuestWin(Clone)" && !string.IsNullOrEmpty(label) && label != "DAILY QUESTS") rank = 0;
+                // The onboarding's Daily Quests introduction (a QuestWin under DynamicUiContent) is dismissed by a click too.
+                else if (button.name == "QuestWin(Clone)" && label == "DAILY QUESTS" && button.transform.parent != null && button.transform.parent.name == "DynamicUiContent") rank = 0;
+                // Once the tutorial's pack is open, the store labels are only leftovers of a closing store screen.
+                else if (packDropped && (Array.IndexOf(new string[] { "STORE", "PACKS", "CORE SET", "CORE SET PACK" }, label) >= 0 || Array.IndexOf(MenuButtonNames, button.name) >= 0)) continue;
+                // Whole coin-map story runs choose their episode above (next unfinished one), never the first button found.
+                else if (coinMaps && StoryJumpEvent == 0 && button.name.StartsWith("Item_Chapter_Episode", StringComparison.Ordinal)) continue;
                 else if (seed != null && Array.IndexOf(MenuButtonNames, button.name) >= 0) rank = 1;
                 else if (seed != null && Array.IndexOf(MenuLabels, label) >= 0) rank = 2 + MenuLabels.Length - Array.IndexOf(MenuLabels, label);
                 if (rank < bestRank) { best = button; bestLabel = label; bestRank = rank; }

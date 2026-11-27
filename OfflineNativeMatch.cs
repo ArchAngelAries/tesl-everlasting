@@ -517,7 +517,12 @@ namespace OfflineEngine
                     OfflineGraphics.Timed("OfflineDeckCatalog.Load", delegate { OfflineDeckCatalog.Load(config, exportDirectory); });
                     defaultDeck = OfflineDeckCatalog.Entries.Find(delegate(OfflineDeckCatalog.Entry entry) {
                         return entry.Key.StartsWith("resource/DefaultDeck/", StringComparison.Ordinal) && entry.CanPlay; });
-                    if (defaultDeck == null) throw new InvalidOperationException("The installed default deck is unavailable.");
+                    // Never stop startup: without a verifiable original default deck, use the practice deck (as Practice does).
+                    if (defaultDeck == null)
+                    {
+                        Debug.LogWarning("OFFLINE DECKS: the original default deck could not be verified in this install; using the practice deck.");
+                        defaultDeck = new OfflineDeckCatalog.Entry { Key = "practice/default", Name = "Practice deck", CanPlay = true, Deck = OfflineDeckCatalog.CreatePracticeDeck(config) };
+                    }
                     engineInstalled = true;
                     break;
             }

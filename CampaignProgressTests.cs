@@ -11,6 +11,8 @@ namespace OfflineEngine
         {
             test("story-rewards-arrive-in-each-storys-own-container", delegate {
                 // GitHub issue 1: every story reward came in the story scroll. The client ships a book per later story.
+                // Bundle contents load with the card index (at startup in the game); a bundle without contents gets no container.
+                OfflineRewardsService.PublishCards(config, Path.Combine(output, "story-container-bundle-validation.tsv"));
                 Dictionary<string, SparkleServices.Rewards.RewardContainer> want = new Dictionary<string, SparkleServices.Rewards.RewardContainer> {
                     { "TFH", SparkleServices.Rewards.RewardContainer.StoryScroll }, { "DBH", SparkleServices.Rewards.RewardContainer.DBBook },
                     { "CWC", SparkleServices.Rewards.RewardContainer.CWCBook }, { "IOM", SparkleServices.Rewards.RewardContainer.IOMBook } };
@@ -27,6 +29,101 @@ namespace OfflineEngine
                     SparkleServices.Rewards.RewardContainer got = d.rewards[d.rewards.Count - 1].rewardPasses[0].rewardContainerType;
                     Require(got == w.Value, w.Key + " rewards arrive in " + got + ", expected " + w.Value);
                 }
+            });
+            test("story-scroll-screens-hold-only-scrolls-and-every-claim-is-answered", delegate {
+                // GitHub issue 1: a reward screen holding a story scroll opens only scrolls (Rewards3d story mode), and a
+                // claim with no answer left the scroll empty with Continue stuck.
+                ChapterEvent rewarded = FirstRewarded(config, "TFH");
+                Require(rewarded != null, "TFH has no rewarded event");
+                OfflinePlayerStateData d = new OfflinePlayerStateData();
+                Require(OfflineRewardsService.GrantEvent(d, rewarded.ResourceId.Id, false), "TFH reward not granted");
+                SparkleServices.Rewards.RewardDescription scroll = d.rewards[d.rewards.Count - 1];
+                SparkleServices.Rewards.RewardDescription bag = new SparkleServices.Rewards.RewardDescription();
+                bag.rewardId = ++d.nextRewardId; bag.source = SparkleServices.Rewards.RewardSource.Quest;
+                bag.rewardPasses = new List<SparkleServices.Rewards.RewardPassDescription> { new SparkleServices.Rewards.RewardPassDescription {
+                    rewardPassIndex = 0, bundleKey = "arena_gold_25", bundleCount = 1, rewardContainerType = SparkleServices.Rewards.RewardContainer.Bag } };
+                d.rewards.Add(bag);
+                List<SparkleServices.Rewards.RewardDescription> listed = OfflineRewardsService.Listed(d);
+                Require(listed.Count == 1 && listed[0] == scroll, "a bag was listed beside a waiting story scroll (" + listed.Count + " listed)");
+                List<SparkleServices.Rewards.RewardId> ids = new List<SparkleServices.Rewards.RewardId>();
+                foreach (SparkleServices.Rewards.RewardPassDescription pass in scroll.rewardPasses)
+                    ids.Add(new SparkleServices.Rewards.RewardId { rewardId = scroll.rewardId, passIndex = pass.rewardPassIndex });
+                List<SparkleServices.Rewards.AcceptRewardResponse.AcceptRewardResult> first = OfflineRewardsService.Accept(d, ids.ToArray());
+                Require(first.Count == ids.Count, "claims answered " + first.Count + " of " + ids.Count);
+                Require(OfflineRewardsService.Listed(d).Exists(delegate(SparkleServices.Rewards.RewardDescription r) { return r.rewardId == bag.rewardId; }),
+                    "the bag stayed hidden after the scrolls were opened");
+                int gold = d.gold;
+                List<SparkleServices.Rewards.AcceptRewardResponse.AcceptRewardResult> again = OfflineRewardsService.Accept(d, new SparkleServices.Rewards.RewardId[] {
+                    ids[0], new SparkleServices.Rewards.RewardId { rewardId = 987654321, passIndex = 3 } });
+                Require(again.Count == 2, "a repeated or unknown claim got no answer");
+                Require(again[0] == first[0], "a repeated claim did not get its contents back");
+                Require(d.gold == gold, "a repeated claim paid again");
+            });
+            test("story-rewards-keep-their-container-when-they-show-something", delegate {
+                // Mod stories build prefixed keys (OfflineStories.Rewards); they must keep their scroll, not be claimed silently.
+                OfflineRewardsService.PublishCards(config, Path.Combine(output, "shows-bundle-validation.tsv"));
+                foreach (string key in new string[] { "story_choice_card_652289987", "story_choice_gold_10", "arena_gems_5", "quest_pack_cardpack_core",
+                    "onboarding_game_1_bundle", "onboarding_game_3_bundle_gold", "deck_random_skyrim", "onboarding_game_8_bundle_title" })
+                    Require(OfflineRewardsService.Shows(key), key + " would be claimed without being shown");
+                foreach (string key in new string[] { "xp_50", "onboarding_game_8_bundle_quests", "onboarding_game_14_bundle_quests", "onboarding_game_20_bundle_quests", "", null })
+                    Require(!OfflineRewardsService.Shows(key), (key ?? "null") + " would open an empty scroll");
+            });
+            test("rewards-saved-by-older-versions-never-open-an-empty-scroll", delegate {
+                // A player upgrading from 1.0.4/1.0.5 with an unclaimed chapter reward saved as scrolls, including its quests-only pass.
+                OfflineRewardsService.PublishCards(config, Path.Combine(output, "saved-scroll-bundle-validation.tsv"));
+                OfflinePlayerStateData d = new OfflinePlayerStateData();
+                SparkleServices.Rewards.RewardDescription old = new SparkleServices.Rewards.RewardDescription();
+                old.rewardId = ++d.nextRewardId; old.source = SparkleServices.Rewards.RewardSource.Campaign;
+                old.rewardPasses = new List<SparkleServices.Rewards.RewardPassDescription>();
+                string[] keys = { "onboarding_game_8_bundle_quests", "onboarding_game_8_bundle_title", "onboarding_game_3_bundle_gold" };
+                for (int i = 0; i < keys.Length; i++)
+                    old.rewardPasses.Add(new SparkleServices.Rewards.RewardPassDescription { rewardPassIndex = i, bundleKey = keys[i], bundleCount = 1,
+                        rewardContainerType = SparkleServices.Rewards.RewardContainer.StoryScroll });
+                d.rewards.Add(old);
+                SparkleServices.Rewards.RewardDescription listed = OfflineRewardsService.Listed(d).Find(delegate(SparkleServices.Rewards.RewardDescription r) { return r.rewardId == old.rewardId; });
+                Require(listed != null, "the saved chapter reward is no longer listed");
+                Require(listed.rewardPasses[0].rewardContainerType == SparkleServices.Rewards.RewardContainer.None, "a saved quests-only pass would still open an empty scroll");
+                Require(listed.rewardPasses[1].rewardContainerType == SparkleServices.Rewards.RewardContainer.StoryScroll
+                    && listed.rewardPasses[2].rewardContainerType == SparkleServices.Rewards.RewardContainer.StoryScroll, "a saved pass with contents lost its scroll");
+            });
+            test("chapter-endings-announce-each-title-once", delegate {
+                OfflinePlayerStateData d = new OfflinePlayerStateData();
+                SparkleServices.Rewards.RewardDescription title = new SparkleServices.Rewards.RewardDescription();
+                title.rewardId = ++d.nextRewardId; title.source = SparkleServices.Rewards.RewardSource.Campaign;
+                title.rewardPasses = new List<SparkleServices.Rewards.RewardPassDescription> { new SparkleServices.Rewards.RewardPassDescription {
+                    rewardPassIndex = 0, bundleKey = OfflineTitles.TitleBundlePrefix + "test", bundleCount = 1, rewardContainerType = SparkleServices.Rewards.RewardContainer.Bag } };
+                d.rewards.Add(title);
+                Require(OfflineRewardsService.ChapterEndingRewards(d).Count == 1, "the title was not announced");
+                Require(OfflineRewardsService.ChapterEndingRewards(d).Count == 0, "the same title was announced at the next chapter ending");
+            });
+            test("every-story-reward-container-shows-something", delegate {
+                // GitHub issue 1: an empty scroll. Every original story and puzzle reward pass, Normal and Master, from a new
+                // profile: a pass with a container must give something it can show; one that cannot is claimed silently.
+                OfflineRewardsService.PublishCards(config, Path.Combine(output, "story-scroll-bundle-validation.tsv"));
+                int checkedPasses = 0, tfh = 0;
+                List<string> problems = new List<string>();
+                foreach (SPTESL.Campaign campaign in config.Campaigns)
+                    foreach (Act a in campaign.Acts) foreach (Chapter ch in a.Chapters) foreach (ChapterEvent e in ch.ChapterEvents)
+                        foreach (bool master in new bool[] { false, true })
+                        {
+                            OfflinePlayerStateData d = new OfflinePlayerStateData();
+                            if (!OfflineRewardsService.GrantEvent(d, e.ResourceId.Id, master)) continue;
+                            SparkleServices.Rewards.RewardDescription r = d.rewards[d.rewards.Count - 1];
+                            foreach (SparkleServices.Rewards.RewardPassDescription pass in r.rewardPasses)
+                            {
+                                if (pass.bundleKey.EndsWith("_quests", StringComparison.Ordinal) && pass.rewardContainerType != SparkleServices.Rewards.RewardContainer.None)
+                                    problems.Add(pass.bundleKey + " would open an empty scroll");
+                                if (pass.rewardContainerType == SparkleServices.Rewards.RewardContainer.None) continue;
+                                SparkleServices.Rewards.AcceptRewardResponse.AcceptRewardResult got = OfflineRewardsService.Apply(d, pass);
+                                if (!(got.gold > 0 || got.gems > 0 || got.tickets > 0 || (got.items != null && got.items.Count > 0)))
+                                    problems.Add(campaign.ResourceId.UniqueName + (master ? " master " : " ") + pass.bundleKey + " opens empty");
+                                checkedPasses++;
+                                if (campaign.ResourceId.UniqueName == "TFH") tfh++;
+                            }
+                            if (d.pendingGrants.Count > 0) problems.Add(campaign.ResourceId.UniqueName + " reward not restored: " + string.Join(", ", d.pendingGrants.ToArray()));
+                        }
+                Require(problems.Count == 0, problems.Count + " problem(s): " + string.Join("; ", problems.ToArray()));
+                Require(tfh > 20 && checkedPasses > 100, "only " + checkedPasses + " passes (" + tfh + " TFH) checked");
             });
             test("campaign-result-completes-only-matching-difficulty", delegate {
                 Campaign.IUserChapterEventData normal = new Campaign.IUserChapterEventData { chapterEventId = 12345 };
@@ -218,5 +315,14 @@ namespace OfflineEngine
                     chapterEventData = new Campaign.IUserChapterEventData[] { e } } } };
         }
         private static void Require(bool condition, string message) { if (!condition) throw new InvalidOperationException(message); }
+
+        private static ChapterEvent FirstRewarded(GameConfiguration config, string campaignName)
+        {
+            SPTESL.Campaign campaign = config.Campaigns.Find(delegate(SPTESL.Campaign c) { return c.ResourceId.UniqueName == campaignName; });
+            if (campaign == null) return null;
+            foreach (Act a in campaign.Acts) foreach (Chapter ch in a.Chapters) foreach (ChapterEvent e in ch.ChapterEvents)
+                if (!string.IsNullOrEmpty(e.RewardsBundleKey)) return e;
+            return null;
+        }
     }
 }

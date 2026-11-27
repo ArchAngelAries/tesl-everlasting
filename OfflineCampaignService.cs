@@ -120,9 +120,7 @@ namespace OfflineEngine
                     // The chapter ending is where a story opens the client's reward screen (StoryState waits for these
                     // rewards): a story-choice title earned in the chapter (e.g. Kingslayer) is announced there.
                     if (request.modalType == Campaign.IDialogModalType.Ending && request.seen)
-                        waiting = d.rewards.FindAll(delegate(Rewards.RewardDescription r) {
-                            return r.rewardPasses != null && r.rewardPasses.Exists(delegate(Rewards.RewardPassDescription x) {
-                                return !x.claimed && x.bundleKey != null && x.bundleKey.StartsWith(OfflineTitles.TitleBundlePrefix, StringComparison.Ordinal); }); });
+                        waiting = OfflineRewardsService.ChapterEndingRewards(d);
                     Campaign.IUserChapterData chapter = FindChapter(d, request.campaignId, request.actId, request.chapterId, request.isMastery);
                     if (chapter == null) return;
                     if (request.modalType == Campaign.IDialogModalType.Intro) chapter.hasIntroBeenShown = request.seen;

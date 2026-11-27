@@ -13,7 +13,7 @@ using UnityEngine;
 
 namespace OfflineEngine
 {
-    [BepInPlugin("local.tesl.offline", "TESL: Everlasting", "1.0.5")]   // The Elder Scrolls: Legends - Everlasting (the GUID stays)
+    [BepInPlugin("local.tesl.offline", "TESL: Everlasting", "1.0.6")]   // The Elder Scrolls: Legends - Everlasting (the GUID stays)
     [BepInDependency("TeslRebornPlugin", BepInDependency.DependencyFlags.SoftDependency)]
     public sealed class OfflineBootstrapPlugin : BaseUnityPlugin
     {

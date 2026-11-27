@@ -1,0 +1,21 @@
+{
+    "schema": 1,
+    "level": 1,
+    "nextRewardId": 1,
+    "rewards": [
+        {
+            "rewardId": 1,
+            "source": 4,
+            "rewardPasses": [
+                {
+                    "rewardPassIndex": 0,
+                    "claimed": false,
+                    "bundleKey": "arena_gold_25",
+                    "bundleCount": 1,
+                    "rarity": 0,
+                    "rewardContainerType": 1
+                }
+            ]
+        }
+    ]
+}

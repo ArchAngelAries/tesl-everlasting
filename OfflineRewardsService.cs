@@ -91,7 +91,8 @@ namespace OfflineEngine
             {
                 string[] parts = line.Split('\t');
                 if (parts.Length != 2 || parts[0] == "key" || Bundles.ContainsKey(parts[0])) continue;
-                Bundles[parts[0]] = parts[1].Split('|'); loaded++;
+                // An entry with no contents (unknown original reward) is kept empty so it is claimed silently, never an empty scroll.
+                Bundles[parts[0]] = parts[1].Split(new char[] { '|' }, StringSplitOptions.RemoveEmptyEntries); loaded++;
             }
             Debug.Log("OFFLINE REWARDS: loaded " + loaded + " bundle definitions from " + path);
         }
@@ -148,37 +149,129 @@ namespace OfflineEngine
             services.Register("rewards/list", delegate {
                 Rewards.ListRewardsResponse response = new Rewards.ListRewardsResponse();
                 response.resultCode = ResultCode.Ok;
-                response.rewards = state.Snapshot().rewards;
+                response.rewards = Listed(state.Snapshot());
                 return JsonUtility.ToJson(response); });
             services.Register("rewards/acceptReward", delegate(string m, string p, string body) {
                 Rewards.AcceptRewardRequest request = JsonUtility.FromJson<Rewards.AcceptRewardRequest>(body);
                 List<Rewards.AcceptRewardResponse.AcceptRewardResult> results = new List<Rewards.AcceptRewardResponse.AcceptRewardResult>();
                 if (request != null && request.rewards != null)
-                    state.Mutate(delegate(OfflinePlayerStateData d) {
-                        foreach (Rewards.RewardId id in request.rewards)
-                        {
-                            Rewards.RewardDescription reward = d.rewards.Find(delegate(Rewards.RewardDescription r) { return r.rewardId == id.rewardId; });
-                            Rewards.RewardPassDescription pass = reward == null ? null : reward.rewardPasses.Find(delegate(Rewards.RewardPassDescription x) { return x.rewardPassIndex == id.passIndex; });
-                            if (pass == null || pass.claimed) continue;
-                            pass.claimed = true;
-                            // One reward that cannot be applied must not block the rest: before, an exception here undid the
-                            // whole claim, so the client showed the same (empty) reward screen again forever.
-                            try { results.Add(Apply(d, pass)); }
-                            catch (Exception e)
-                            {
-                                Debug.LogError("OFFLINE REWARDS: reward " + id.rewardId + " pass " + id.passIndex + " (" + pass.bundleKey + ") could not be applied; skipped: " + e);
-                                Rewards.AcceptRewardResponse.AcceptRewardResult empty = new Rewards.AcceptRewardResponse.AcceptRewardResult();
-                                empty.bundleCount = 1; empty.items = new List<Rewards.AcceptRewardResponse.AcceptRewardResult.ItemType>();
-                                results.Add(empty);
-                            }
-                        }
-                        d.rewards.RemoveAll(delegate(Rewards.RewardDescription r) { return r.rewardPasses.TrueForAll(delegate(Rewards.RewardPassDescription x) { return x.claimed; }); });
-                        OfflineArenaService.AfterRewardsClaimed(d);
-                    });
+                    state.Mutate(delegate(OfflinePlayerStateData d) { results = Accept(d, request.rewards); });
                 Rewards.AcceptRewardResponse response = new Rewards.AcceptRewardResponse();
                 response.resultCode = ResultCode.Ok;
                 response.results = results.ToArray();
                 return JsonUtility.ToJson(response); });
+        }
+
+        // Whether a story reward pass has something its scroll or book can show: every key form Apply gives a card, gold,
+        // gems, a pack, a deck or a title for (mod stories use the prefixed forms). XP alone and keys with no known
+        // contents show nothing, so they are claimed silently (container None) instead of opening an empty scroll.
+        internal static bool Shows(string key)
+        {
+            if (string.IsNullOrEmpty(key) || key.StartsWith(OfflineLevelService.XpPrefix, StringComparison.Ordinal)) return false;
+            foreach (string prefix in new string[] { ChoiceCardPrefix, ChoiceGoldPrefix, "arena_gold_", "arena_gems_", OfflineRankedService.BattleCardPrefix,
+                OfflineTitles.TitleBundlePrefix, "quest_pack_" })
+                if (key.StartsWith(prefix, StringComparison.Ordinal)) return true;
+            string[] entries;
+            if (Bundles.TryGetValue(key, out entries)) return entries.Length > 0;
+            entries = EverlastingHost.Bundle(key);
+            return key == "arena_pack" || (entries != null && entries.Length > 0);
+        }
+
+        private static bool StandardSource(Rewards.RewardSource source)
+        {
+            // RewardsState._standardRewardSources: the sources the main reward screen shows together.
+            return source == Rewards.RewardSource.Game || source == Rewards.RewardSource.LevelUp || source == Rewards.RewardSource.Unknown
+                || source == Rewards.RewardSource.Campaign || source == Rewards.RewardSource.TwitchDrop || source == Rewards.RewardSource.Quest
+                || source == Rewards.RewardSource.EventRank || source == Rewards.RewardSource.EventWins;
+        }
+
+        private static bool ScrollOrHidden(Rewards.RewardPassDescription x)
+        {
+            return x.claimed || x.rewardContainerType == Rewards.RewardContainer.StoryScroll || x.rewardContainerType == Rewards.RewardContainer.None;
+        }
+
+        // The rewards the client lists. A reward screen that holds a story scroll runs in story mode (Rewards3d): it opens
+        // only the scrolls, one at a time, and never shows or claims the other rewards on it. So while a scroll waits, the
+        // other rewards of the same screen are held back; they are listed (and shown) once the scrolls are opened.
+        internal static List<Rewards.RewardDescription> Listed(OfflinePlayerStateData d)
+        {
+            // Saved by an earlier version (a player upgrading while stuck): an unclaimed scroll pass with nothing to show is
+            // listed as containerless, so the client claims it quietly instead of opening an empty scroll.
+            foreach (Rewards.RewardDescription r in d.rewards)
+                if (r.rewardPasses != null)
+                    foreach (Rewards.RewardPassDescription x in r.rewardPasses)
+                        if (!x.claimed && x.rewardContainerType == Rewards.RewardContainer.StoryScroll && !Shows(x.bundleKey))
+                            x.rewardContainerType = Rewards.RewardContainer.None;
+            bool scroll = d.rewards.Exists(delegate(Rewards.RewardDescription r) {
+                return StandardSource(r.source) && r.rewardPasses != null && r.rewardPasses.Exists(delegate(Rewards.RewardPassDescription x) {
+                    return !x.claimed && x.rewardContainerType == Rewards.RewardContainer.StoryScroll; }); });
+            if (!scroll) return d.rewards;
+            return d.rewards.FindAll(delegate(Rewards.RewardDescription r) {
+                return !StandardSource(r.source) || r.rewardPasses == null || r.rewardPasses.TrueForAll(ScrollOrHidden); });
+        }
+
+        // What each claimed pass gave, for this run: a repeated claim (the client's list was out of date) gets the same
+        // contents back. Before, it got no answer at all, so a story scroll opened empty and Continue never moved on.
+        private static readonly Dictionary<string, Rewards.AcceptRewardResponse.AcceptRewardResult> claimed =
+            new Dictionary<string, Rewards.AcceptRewardResponse.AcceptRewardResult>();
+
+        private static Rewards.AcceptRewardResponse.AcceptRewardResult Empty()
+        {
+            Rewards.AcceptRewardResponse.AcceptRewardResult empty = new Rewards.AcceptRewardResponse.AcceptRewardResult();
+            empty.bundleCount = 1; empty.items = new List<Rewards.AcceptRewardResponse.AcceptRewardResult.ItemType>();
+            return empty;
+        }
+
+        // One result per requested pass, always, in request order (the client reads result[0] for the pass it opened).
+        internal static List<Rewards.AcceptRewardResponse.AcceptRewardResult> Accept(OfflinePlayerStateData d, Rewards.RewardId[] ids)
+        {
+            List<Rewards.AcceptRewardResponse.AcceptRewardResult> results = new List<Rewards.AcceptRewardResponse.AcceptRewardResult>();
+            foreach (Rewards.RewardId id in ids)
+            {
+                if (id == null) continue;
+                string key = id.rewardId + ":" + id.passIndex;
+                Rewards.RewardDescription reward = d.rewards.Find(delegate(Rewards.RewardDescription r) { return r.rewardId == id.rewardId; });
+                Rewards.RewardPassDescription pass = reward == null || reward.rewardPasses == null ? null
+                    : reward.rewardPasses.Find(delegate(Rewards.RewardPassDescription x) { return x.rewardPassIndex == id.passIndex; });
+                if (pass == null || pass.claimed)
+                {
+                    Rewards.AcceptRewardResponse.AcceptRewardResult again;
+                    if (!claimed.TryGetValue(key, out again))
+                    {
+                        again = Empty();
+                        Debug.LogWarning("OFFLINE REWARDS: reward " + key + " is already claimed or unknown; answered empty so the reward screen moves on");
+                    }
+                    results.Add(again);
+                    continue;
+                }
+                pass.claimed = true;
+                Rewards.AcceptRewardResponse.AcceptRewardResult result;
+                // One reward that cannot be applied must not block the rest: before, an exception here undid the
+                // whole claim, so the client showed the same (empty) reward screen again forever.
+                try { result = Apply(d, pass); }
+                catch (Exception e)
+                {
+                    Debug.LogError("OFFLINE REWARDS: reward " + key + " (" + pass.bundleKey + ") could not be applied; skipped: " + e);
+                    result = Empty();
+                }
+                claimed[key] = result;
+                results.Add(result);
+            }
+            d.rewards.RemoveAll(delegate(Rewards.RewardDescription r) { return r.rewardPasses.TrueForAll(delegate(Rewards.RewardPassDescription x) { return x.claimed; }); });
+            OfflineArenaService.AfterRewardsClaimed(d);
+            return results;
+        }
+
+        // Rewards a chapter ending announces (StoryState opens its reward screen only when this is not empty): an earned
+        // story-choice title, each one once. Before, every chapter ending returned every unclaimed title again.
+        internal static List<Rewards.RewardDescription> ChapterEndingRewards(OfflinePlayerStateData d)
+        {
+            d.announcedRewards.RemoveAll(delegate(long id) { return !d.rewards.Exists(delegate(Rewards.RewardDescription r) { return r.rewardId == id; }); });
+            List<Rewards.RewardDescription> waiting = d.rewards.FindAll(delegate(Rewards.RewardDescription r) {
+                return !d.announcedRewards.Contains(r.rewardId) && r.rewardPasses != null && r.rewardPasses.Exists(delegate(Rewards.RewardPassDescription x) {
+                    return !x.claimed && x.bundleKey != null && x.bundleKey.StartsWith(OfflineTitles.TitleBundlePrefix, StringComparison.Ordinal); }); });
+            foreach (Rewards.RewardDescription r in waiting) d.announcedRewards.Add(r.rewardId);
+            return waiting;
         }
 
         // A story dialogue choice's reward: the chosen option's CardChoice (one copy) or GoldChoice.
@@ -267,7 +360,9 @@ namespace OfflineEngine
                 pass.rewardPassIndex = reward.rewardPasses.Count;
                 pass.bundleKey = key; pass.bundleCount = 1;
                 pass.rarity = Rewards.RewardRarity.Common;
-                pass.rewardContainerType = container;
+                // A bundle with no known contents (e.g. onboarding_game_8_bundle_quests, which unlocked quests on the
+                // original server) gets no container: the client claims it silently instead of opening an empty scroll.
+                pass.rewardContainerType = Shows(key) ? container : Rewards.RewardContainer.None;
                 reward.rewardPasses.Add(pass);
             }
             if (reward.rewardPasses.Count == 0) return false;

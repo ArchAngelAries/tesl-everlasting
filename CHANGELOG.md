@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.0.6 — the tutorial plays through, Bethesda.net installs start
+
+- **The tutorial no longer gets stuck after the third chapter:** a closed window left behind in the game's window list made
+  PLAY and the tutorial's next step do nothing. Closed windows are now cleared out, and The Forgotten Hero plays from the
+  first chapter to the finale, with the store, card pack and Daily Quests steps in between. Thanks for the report on GitHub
+  (issue #1).
+- **Story reward scrolls show their rewards:** an Elder Scroll now opens only for rewards it can show. Other rewards wait
+  for the normal reward screen, every scroll opens with its cards, gold, gems, packs, decks or titles, Continue always moves
+  on, and a new title is announced once. Rewards with no contents are added quietly instead of opening an empty scroll.
+- **Bethesda.net installs (such as TESL Reborn's) start offline:** loading no longer stops at about 90%. That version of the
+  game signs in differently and its game files differ slightly from the Steam version; both are handled now.
+- **No disconnect after an hour away:** the game no longer disconnects offline after an hour without input, which left it
+  unable to continue.
+
 ## 1.0.5 — faster start, changed cards
 
 - **No more getting stuck on a reward screen:** if a reward cannot be applied, the game now logs it and moves on instead of

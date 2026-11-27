@@ -52,6 +52,8 @@ namespace OfflineEngine
         public List<string> titleProgressKeys = new List<string>();
         public List<int> titleProgressValues = new List<int>();
         public List<string> pendingTitleRewards = new List<string>();
+        // Title rewards a chapter ending has already announced (OfflineRewardsService.ChapterEndingRewards), each once.
+        public List<long> announcedRewards = new List<long>();
         // The player has seen the in-game name entry (OfflineNameEntry) at least once.
         public bool nameChosen;
         // First Grand Champion arena rank (either arena) has granted the premium Adoring Fan.
@@ -131,6 +133,7 @@ namespace OfflineEngine
             if (data.titleProgressKeys == null || data.titleProgressValues == null || data.titleProgressKeys.Count != data.titleProgressValues.Count)
             { data.titleProgressKeys = new List<string>(); data.titleProgressValues = new List<int>(); }
             if (data.pendingTitleRewards == null) data.pendingTitleRewards = new List<string>();
+            if (data.announcedRewards == null) data.announcedRewards = new List<long>();
             if (data.ratings == null) data.ratings = new List<SparkleServices.Profile.ProfileRating>();
             if (data.maxRatings == null) data.maxRatings = new List<SparkleServices.Profile.ProfileRating>();
             if (data.rollovers == null) data.rollovers = new List<SparkleServices.Profile.SeasonRollOverStruct>();

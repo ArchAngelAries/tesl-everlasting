@@ -49,6 +49,10 @@ namespace OfflineEngine
             File.WriteAllText(logPath, "utc\tmethod\tpath\tstatus\troute\n");
             Register("config.json", Config);
             Register("authDev", AuthDev);
+            // The Bethesda.net launcher build (TESL Reborn installs) has no developer sign-in: it signs in with a launcher game
+            // code, then a login token. A bare OK left it with no token, so every later request waited (stuck loading).
+            Register("account/bnetGamecodeLogin", AuthDev);
+            Register("account/bnetLoginTokenLogin", AuthDev);
             // Fully formed defaults of the client's own response classes (empty lists,
             // default nested objects, resultCode Ok). Real data handlers replace these.
             foreach (KeyValuePair<string, string> pair in new Dictionary<string, string> {
