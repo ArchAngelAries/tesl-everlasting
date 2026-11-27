@@ -1,4 +1,4 @@
-param([int]$Seconds = 150, [string]$Seed = '', [string]$Menu = '', [string]$ModsList = '')
+﻿param([int]$Seconds = 150, [string]$Seed = '', [string]$Menu = '', [string]$ModsList = '', [string[]]$Extra = @())
 $ErrorActionPreference = 'Stop'
 # Hidden native first-run verification: original boot/menus against local services,
 # batch mode with graphics, no window, no user input.
@@ -15,6 +15,9 @@ $offset = if (Test-Path -LiteralPath $bepLog) { (Get-Item -LiteralPath $bepLog).
 $arguments = @('--tesl-offline-native','--tesl-offline-native-diagnostic','-batchmode','-screen-width','1280','-screen-height','720','-logFile',('"' + $logPath + '"'))
 if ($Menu) { $arguments = @('--tesl-offline-native-menu=' + $Menu) + $arguments }
 if ($Seed) { $arguments = @('--tesl-offline-native-seed=' + $Seed) + $arguments }
+# Optional extra switches, e.g. --tesl-offline-story-jump=<eventId> --tesl-offline-diagnostic-autowin (story reward checks)
+$Extra = @($Extra | ForEach-Object { $_ -split ',' } | Where-Object { $_ })
+if ($Extra.Count -gt 0) { $arguments = $Extra + $arguments }
 # Optional: a mod list file (as TESL Forge writes) instead of the player's enabled mods; the player's list is not changed.
 if ($ModsList) { $arguments = @('"--tesl-mods-list=' + $ModsList + '"') + $arguments }
 $process = Start-Process -FilePath $exe -ArgumentList $arguments -WorkingDirectory $gameRoot -WindowStyle Hidden -PassThru

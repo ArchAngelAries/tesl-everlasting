@@ -193,6 +193,7 @@ namespace OfflineEngine
                 OfflineTitles.Grant(d, "title_x");
                 OfflineTitles.Grant(d, "title_x");
                 Require(d.rewards.Count == 1 && d.rewards[0].rewardPasses[0].bundleKey == OfflineTitles.TitleBundlePrefix + "title_x", "Title grant reward wrong or duplicated.");
+                Require(d.rewards[0].rewardPasses[0].rewardContainerType == SparkleServices.Rewards.RewardContainer.Bag, "A title reward without a container is never shown by the client.");
             });
             test("title-feats-story-arena-collection", delegate {
                 OfflineTitles.Publish(config, null);

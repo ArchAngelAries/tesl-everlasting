@@ -115,7 +115,14 @@ namespace OfflineEngine
                 return Ok(); });
             services.Register("campaigns/setChapterDialogStatus", delegate(string m, string p, string body) {
                 Campaign.SetChapterDialogStatusRequest request = JsonUtility.FromJson<Campaign.SetChapterDialogStatusRequest>(body);
+                List<Rewards.RewardDescription> waiting = new List<Rewards.RewardDescription>();
                 if (request != null) state.Mutate(delegate(OfflinePlayerStateData d) {
+                    // The chapter ending is where a story opens the client's reward screen (StoryState waits for these
+                    // rewards): a story-choice title earned in the chapter (e.g. Kingslayer) is announced there.
+                    if (request.modalType == Campaign.IDialogModalType.Ending && request.seen)
+                        waiting = d.rewards.FindAll(delegate(Rewards.RewardDescription r) {
+                            return r.rewardPasses != null && r.rewardPasses.Exists(delegate(Rewards.RewardPassDescription x) {
+                                return !x.claimed && x.bundleKey != null && x.bundleKey.StartsWith(OfflineTitles.TitleBundlePrefix, StringComparison.Ordinal); }); });
                     Campaign.IUserChapterData chapter = FindChapter(d, request.campaignId, request.actId, request.chapterId, request.isMastery);
                     if (chapter == null) return;
                     if (request.modalType == Campaign.IDialogModalType.Intro) chapter.hasIntroBeenShown = request.seen;
@@ -127,7 +134,7 @@ namespace OfflineEngine
                     }
                     Advance(d, request.campaignId, request.isMastery); });
                 Campaign.SetChapterDialogResult result = new Campaign.SetChapterDialogResult();
-                result.resultCode = ResultCode.Ok; result.rewards = new List<Rewards.RewardDescription>();
+                result.resultCode = ResultCode.Ok; result.rewards = waiting;
                 return JsonUtility.ToJson(result); });
             services.Register("campaigns/setChapterEventChoice", delegate(string m, string p, string body) {
                 Campaign.SetChapterEventChoiceRequest request = JsonUtility.FromJson<Campaign.SetChapterEventChoiceRequest>(body);
@@ -290,6 +297,53 @@ namespace OfflineEngine
                             if (e.chapterEventId == chapterEventId) { e.isComplete = true; Advance(d, campaign.campaignId, act.isMastery); return true; }
                 }
             return false;
+        }
+
+        // Diagnostics (ENG-1): completes every event of the target's campaign that comes before it in content order (acts,
+        // chapters, events), the first choice taken where a dialogue offers one, so the story map plays the target next.
+        // Master jumps complete the Normal tree first. Returns a short report.
+        public static string JumpBefore(OfflinePlayerStateData d, int chapterEventId, bool mastery)
+        {
+            if (content == null) return "no campaign content";
+            foreach (SPTESL.Campaign source in content)
+            {
+                bool found = false;
+                foreach (SPTESL.Act a in source.Acts) foreach (SPTESL.Chapter c in a.Chapters) foreach (SPTESL.ChapterEvent e in c.ChapterEvents)
+                    if (e.ResourceId.Id == chapterEventId) found = true;
+                if (!found) continue;
+                foreach (SPTESL.Act a in source.Acts) GrantAct(d, source, a);
+                int done = 0;
+                if (mastery) done += CompleteUntil(d, source, 0, false);
+                done += CompleteUntil(d, source, chapterEventId, mastery);
+                Campaign.IUserCampaignData user = d.campaigns.Find(delegate(Campaign.IUserCampaignData x) { return x.campaignId == source.ResourceId.Id; });
+                foreach (Campaign.IUserCampaignData other in d.campaigns) other.isActive = other == user;
+                return source.ResourceId.UniqueName + ": " + done + " events completed";
+            }
+            return "event not found";
+        }
+
+        // Completes events in content order until stopAt (0 = the whole tree); returns how many were completed.
+        private static int CompleteUntil(OfflinePlayerStateData d, SPTESL.Campaign source, int stopAt, bool mastery)
+        {
+            int done = 0;
+            foreach (SPTESL.Act a in source.Acts)
+                foreach (SPTESL.Chapter c in a.Chapters)
+                {
+                    foreach (SPTESL.ChapterEvent e in c.ChapterEvents)
+                    {
+                        if (e.ResourceId.Id == stopAt) return done;
+                        Campaign.IUserChapterData chapter = FindChapter(d, source.ResourceId.Id, a.ResourceId.Id, c.ResourceId.Id, mastery);
+                        Campaign.IUserChapterEventData ue = chapter == null ? null : Array.Find(chapter.chapterEventData, delegate(Campaign.IUserChapterEventData x) { return x.chapterEventId == e.ResourceId.Id; });
+                        if (ue == null || ue.isComplete) continue;
+                        if (ue.introChoice == Campaign.IUserCampaignChoice.None) ue.introChoice = Campaign.IUserCampaignChoice.First;
+                        if (ue.endingChoice == Campaign.IUserCampaignChoice.None) ue.endingChoice = Campaign.IUserCampaignChoice.First;
+                        chapter.hasIntroBeenShown = true;
+                        if (CompleteEvent(d, e.ResourceId.Id, mastery)) done++;
+                    }
+                    Campaign.IUserChapterData whole = FindChapter(d, source.ResourceId.Id, a.ResourceId.Id, c.ResourceId.Id, mastery);
+                    if (whole != null) { whole.hasIntroBeenShown = true; whole.hasEndingBeenShown = true; }
+                }
+            return done;
         }
 
         // Completion and unlocking, in content order, until stable.

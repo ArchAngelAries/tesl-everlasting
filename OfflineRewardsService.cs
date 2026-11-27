@@ -288,7 +288,7 @@ namespace OfflineEngine
                 if (!d.ownedTitles.Contains(titleKey)) d.ownedTitles.Add(titleKey);
                 OfflineTitles.AfterOwned(d, titleKey);
                 Rewards.AcceptRewardResponse.AcceptRewardResult.ItemType title = new Rewards.AcceptRewardResponse.AcceptRewardResult.ItemType();
-                title.type = "inventory"; title.typeId = OfflineCosmetics.TitleId(titleKey); title.count = 1; title.description = titleKey;
+                title.type = "inventory"; title.typeId = OfflineCosmetics.TitleId(titleKey); title.count = 1; title.description = "";   // empty: the window keeps the title's own description
                 result.items.Add(title); return result;
             }
             if (bundleKey.StartsWith("quest_pack_", StringComparison.Ordinal))

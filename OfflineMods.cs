@@ -605,10 +605,15 @@ namespace OfflineEngine
         {
             Texture2D tex;
             if (textures.TryGetValue(path, out tex) && tex != null) return tex;
-            tex = new Texture2D(2, 2, TextureFormat.RGBA32, false);
+            tex = new Texture2D(2, 2, TextureFormat.RGBA32, true);
             if (!ImageConversion.LoadImage(tex, File.ReadAllBytes(file), false)) throw new InvalidOperationException("Mod art is not a readable image: " + file);
             tex.name = Path.GetFileNameWithoutExtension(file);
             tex.wrapMode = TextureWrapMode.Clamp;   // as the original card art (no edge bleed from the opposite side)
+            // GPU-compressed with mipmaps like the original art (2026-11-13): sharp when drawn small, about a quarter of the
+            // memory of raw RGBA. Block compression needs sides that are multiples of 4; other sizes stay uncompressed.
+            tex.Apply(true, false);
+            if (tex.width % 4 == 0 && tex.height % 4 == 0) tex.Compress(false);
+            tex.Apply(false, true);
             textures[path] = tex;
             return tex;
         }

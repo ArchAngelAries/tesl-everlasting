@@ -346,10 +346,27 @@ namespace OfflineEngine
         // Seeded menu scripts (--tesl-offline-native-menu=<name>): labels (later first) and object names.
         private static string[] MenuLabels = { "STORE", "CORE SET PACK", "OPEN", "OPEN PACKS", "DONE" };
         private static string[] MenuButtonNames = { "Btn_Buy", "Item_Currency_Packs" };
+        // Story reward diagnostics (ENG-1): --tesl-offline-story-jump=<chapterEventId>[:master] completes every story event
+        // before that one (first choices taken) once the main menu shows, so the coin map plays it next; with
+        // --tesl-offline-diagnostic-autowin the human wins each match at its first decision (the offline Win cheat).
+        private static int StoryJumpEvent; private static bool StoryJumpMaster, AutoWinDiagnostic;
+        private static bool jumpEpisodeOpened;
+        private static int JumpChapterId()
+        {
+            foreach (SPTESL.Campaign c in SPTESL.GameManager.Instance.Config.Campaigns) foreach (SPTESL.Act a in c.Acts) foreach (SPTESL.Chapter ch in a.Chapters)
+                foreach (SPTESL.ChapterEvent e in ch.ChapterEvents) if (e.ResourceId.Id == StoryJumpEvent) return ch.ResourceId.Id;
+            return 0;
+        }
         private static void SelectMenuScript()
         {
             foreach (string arg in Environment.GetCommandLineArgs())
             {
+                if (arg.StartsWith("--tesl-offline-story-jump=", StringComparison.Ordinal))
+                {
+                    string[] p = arg.Substring("--tesl-offline-story-jump=".Length).Split(':');
+                    int.TryParse(p[0], out StoryJumpEvent); StoryJumpMaster = p.Length > 1 && p[1] == "master";
+                }
+                if (arg == "--tesl-offline-diagnostic-autowin") AutoWinDiagnostic = true;
                 if (arg == "--tesl-offline-native-menu=collection")
                 {
                     MenuLabels = new string[] { "COLLECTION" };
@@ -652,6 +669,26 @@ namespace OfflineEngine
                     MenuLabels = new string[] { "PLAY", "SOLO PLAY", "STORIES", "THE FORGOTTEN HERO", "CHOOSE" };
                     MenuButtonNames = new string[0];
                 }
+            }
+            // --tesl-offline-story-choice=<LABEL>[;<LABEL>]: story choice buttons to press (e.g. KILL), after the menu's own labels
+            foreach (string arg in Environment.GetCommandLineArgs())
+                if (arg.StartsWith("--tesl-offline-story-choice=", StringComparison.Ordinal))
+                {
+                    List<string> labels = new List<string>(MenuLabels);
+                    // '_' stands for a space, so a label survives the launcher's unquoted arguments (USE_THE_HEART)
+                    labels.AddRange(arg.Substring("--tesl-offline-story-choice=".Length).Replace('_', ' ').Split(new[] { ';' }, StringSplitOptions.RemoveEmptyEntries));
+                    MenuLabels = labels.ToArray();
+                }
+            if (StoryJumpEvent != 0 && OneShot == null)
+            {
+                OneShotState = "MainMenu";
+                OneShot = delegate {
+                    string report = null;
+                    EverlastingHost.Mutate(delegate(OfflinePlayerStateData d) { report = OfflineCampaignService.JumpBefore(d, StoryJumpEvent, StoryJumpMaster); });
+                    Debug.Log("OFFLINE NATIVE: story jump to " + StoryJumpEvent + (StoryJumpMaster ? " (Master)" : "") + ": " + report);
+                    ServicesManager sm = Pixelplacement.Singleton<ServicesManager>.Instance;
+                    if (sm != null && sm.Campaign != null) sm.Campaign.Refresh();
+                };
             }
         }
 
@@ -988,6 +1025,15 @@ namespace OfflineEngine
                 parity.Append("-\temote-settings\t-\tautoMute=" + Pixelplacement.Singleton<SettingsManager>.Instance.AutoMuteEmotes + "\t\n");
                 parity.Append("-\temotes\t-\tboard=" + (board != null) + " aiEmotes " + before + "->" + OfflineEmotes.AiEmotesSent + "\t\n");
             }
+            if (AutoWinDiagnostic && OfflineCheats.Unavailable(sim) == null && sim.Players[sim._turnStateStack.Peek().ActivePlayerIndex] == human)
+            {
+                yield return new WaitForSeconds(2f);
+                if (OfflineCheats.Unavailable(sim) == null)
+                {
+                    OfflineStoryDiagnostic.Capture(CheatCapturePrefix + "autowin-" + OfflineNativeMatch.ResultsRecorded + ".png");
+                    parity.Append("-\tautowin\t-\t").Append(OfflineCheats.Apply(sim, OfflineCheats.MatchCheat.Win) ?? "won").Append("\t\n");
+                }
+            }
             if (CheatDiagnostic && !cheatsDone && OfflineCheats.Unavailable(sim) == null && sim.Players[sim._turnStateStack.Peek().ActivePlayerIndex] == human)
             {
                 cheatsDone = true;
@@ -1117,6 +1163,27 @@ namespace OfflineEngine
                     return;
                 }
             }
+            // Story jump: open the episode that holds the target event (once), not the first episode button found.
+            // A Master jump first selects the episode screen's Master tab (its own tab handler).
+            if (StoryJumpEvent != 0 && !jumpEpisodeOpened && StoryJumpMaster)
+                foreach (EpisodeSelectPanel panel in UnityEngine.Object.FindObjectsOfType<EpisodeSelectPanel>())
+                    if (panel.isActiveAndEnabled && !(bool)AccessTools.Field(typeof(EpisodeSelectPanel), "_isMasterySelected").GetValue(panel))
+                    {
+                        texts.Append(step).Append("\t-\t(press)\tMASTER TAB\n");
+                        AccessTools.Method(typeof(EpisodeSelectPanel), "HandleOnDifficultyTabSelected").Invoke(panel, new object[] { 1 });
+                        return;
+                    }
+            if (StoryJumpEvent != 0 && !jumpEpisodeOpened)
+                foreach (EpisodeSelectButton episode in UnityEngine.Object.FindObjectsOfType<EpisodeSelectButton>())
+                {
+                    if (!episode.isActiveAndEnabled || (int)AccessTools.Field(typeof(EpisodeSelectButton), "_chapterId").GetValue(episode) != JumpChapterId()) continue;
+                    UnityEngine.UI.Button open = AccessTools.Field(typeof(EpisodeSelectButton), "_button").GetValue(episode) as UnityEngine.UI.Button;
+                    if (open == null || !open.interactable) continue;
+                    jumpEpisodeOpened = true;
+                    texts.Append(step).Append("\t-\t(press)\tJUMP EPISODE ").AppendLine(JumpChapterId().ToString());
+                    open.onClick.Invoke();
+                    return;
+                }
             // Coin-map stories (DBH/CWC/IOM): press the chapter's next uncompleted battle event
             // through StoryState's own coin handler, at most every 30 s and never mid-match.
             global::StoryState story = coinMaps ? UnityEngine.Object.FindObjectOfType<global::StoryState>() : null;
@@ -1128,7 +1195,7 @@ namespace OfflineEngine
                 int campaignId = (int)infoType.GetField("CampaignId").GetValue(info), actId = (int)infoType.GetField("ActId").GetValue(info), chapterId = (int)infoType.GetField("ChapterId").GetValue(info);
                 SPTESL.Chapter chapter = null;
                 foreach (SPTESL.Campaign c in SPTESL.GameManager.Instance.Config.Campaigns) foreach (SPTESL.Act a in c.Acts) foreach (SPTESL.Chapter ch in a.Chapters) if (ch.ResourceId.Id == chapterId) chapter = ch;
-                SparkleServices.Campaign.IUserChapterData user = chapter == null ? null : OfflineCampaignService.FindChapter(OfflineNativeMatch.State.Snapshot(), campaignId, actId, chapterId, false);
+                SparkleServices.Campaign.IUserChapterData user = chapter == null ? null : OfflineCampaignService.FindChapter(OfflineNativeMatch.State.Snapshot(), campaignId, actId, chapterId, (bool)AccessTools.Field(typeof(global::StoryState), "_isMastery").GetValue(story));
                 if (chapter != null && user != null)
                     foreach (SPTESL.ChapterEvent e in chapter.ChapterEvents)
                     {

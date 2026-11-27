@@ -73,12 +73,12 @@ installed data; every scenario name below was checked by the lead in the install
 
 | The Centurion | 100 wins with a nonempty all-Neutral starting deck | native starting-deck color data; threshold tested |
 
-## Still locked, with the reason
-- **Card-ability counters** (Golden, Mastermind, Dawnbreaker, Wrothgar Forge, ...): their
-  native QuestGoalTypes are never raised by the shipped engine; they need per-card hooks in the rules engine.
-- **Other:** The Engineer (no Assemble event hook), The Lone Warrior (needs damage-source tracking), Jaws Perfect (no installed "every keyword" list),
-  The Risen, The Pastry Chef, The Scrupulous, The Strategist, The Chamberlain of Sheogorath (no offline Chaos Arena),
-  TESL Reborn tester/developer titles.
+## Still locked, with the reason (updated 2026-11-13)
+Card-ability titles now count: 35 through the cards' own IncrementQuestProgress events and shared avatar/creature rules
+(OfflineTitles.CardEventGoal), 10 through quest-event hooks (OfflineTitleHooks); The Persistent through OfflineRankedService.
+Still locked: Ambitious Necromancer ("Imbued" unclear), Chamberlain of Sheogorath (no offline Chaos Arena), Earth Bone,
+Shivering and Master of Madness (unknown sources), Dovahkiin and Nerevarine (not production in the game data), TESL Reborn
+tester/developer titles.
 
 ## Arena (`kind=arena`)
 A finished run with 0 losses counts: Versus → The Champion of the Arena (1) and The Master of the Arena (5);

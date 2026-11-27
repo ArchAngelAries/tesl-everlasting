@@ -461,7 +461,8 @@ namespace OfflineEngine
             reward.rewardId = ++d.nextRewardId; reward.source = Rewards.RewardSource.Quest;
             reward.rewardPasses = new List<Rewards.RewardPassDescription> { new Rewards.RewardPassDescription {
                 rewardPassIndex = 0, bundleKey = TitleBundlePrefix + key, bundleCount = 1, rarity = Rewards.RewardRarity.Common,
-                rewardContainerType = Rewards.RewardContainer.None } };
+                // a bag: the client drops only passes with a container, and its window shows the title found inside (RewardsWin)
+                rewardContainerType = Rewards.RewardContainer.Bag } };
             d.rewards.Add(reward);
             UnityEngine.Debug.Log("OFFLINE TITLES: earned " + key);
         }

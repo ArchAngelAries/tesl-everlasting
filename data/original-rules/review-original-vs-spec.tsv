@@ -1,4 +1,5 @@
 card_id	name	failing_tests_with_original
+# 2026-11-13: historical comparison list. ALL 1,718 cards play with full rules (every audit). These cards keep our tested rules; the imported copies differ (often the installed game's own owned rules are used). Not a to-do list.
 # Kept on the compiled spec: these tests fail when the original graph replaces it. Investigate engine support or test assumptions.
 # 2026-11-03 retry after general custom-card choices: the same tests still fail (46). Patterns: triggered-target selectors
 # (original TargetSelectors differ from the tests' eligibility: Bitterfish Witch, Worm King's Agent, Empire Dreadmage, Ash

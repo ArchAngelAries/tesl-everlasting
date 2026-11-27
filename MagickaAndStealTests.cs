@@ -107,6 +107,20 @@ namespace OfflineEngine
                 if (creatures == 0) throw new InvalidOperationException("No creature opponents recognized.");
             });
 
+            test("mod-art-loads-compressed-with-mipmaps", delegate {
+                string art = null;
+                foreach (string f in System.IO.Directory.GetFiles(System.IO.Path.GetFullPath(System.IO.Path.Combine(System.IO.Path.Combine(OfflinePaths.EngineRoot(), "fixtures"), "mods")), "*.png", System.IO.SearchOption.AllDirectories))
+                { art = f; break; }
+                if (art == null) throw new InvalidOperationException("No fixture mod art found.");
+                System.Diagnostics.Stopwatch w = System.Diagnostics.Stopwatch.StartNew();
+                UnityEngine.Texture2D tex = OfflineMods.TextureFor("test/compressed-art-" + System.IO.Path.GetFileName(art), art);
+                w.Stop();
+                bool square4 = tex.width % 4 == 0 && tex.height % 4 == 0;
+                UnityEngine.Debug.Log("OFFLINE MOD ART TEST: " + System.IO.Path.GetFileName(art) + " " + tex.width + "x" + tex.height + " " + tex.format + " mips " + tex.mipmapCount + " in " + w.ElapsedMilliseconds + " ms");
+                if (tex.mipmapCount <= 1) throw new InvalidOperationException("Mod art has no mipmaps.");
+                if (square4 && tex.format != UnityEngine.TextureFormat.DXT1 && tex.format != UnityEngine.TextureFormat.DXT5) throw new InvalidOperationException("Mod art is not compressed: " + tex.format);
+            });
+
             test("stolen-creature-keeps-its-equipped-items", delegate {
                 using (OriginalTargetedSummonTests.LifecycleFixture f = new OriginalTargetedSummonTests.LifecycleFixture(config, Crab))
                 {

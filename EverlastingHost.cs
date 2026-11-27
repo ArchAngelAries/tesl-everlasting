@@ -168,6 +168,8 @@ namespace OfflineEngine
         public static bool HasProfile { get { return state != null; } }
         // A stable id for this local player (seeds per-player random rolls; never sent anywhere).
         public static string PlayerId { get { return OfflineNativeFlow.Profile != null ? OfflineNativeFlow.Profile.Identity : "offline-player"; } }
+        // The profile nickname the client shows (leaderboards find the player's row by it).
+        public static string PlayerName { get { return OfflineNativeFlow.Profile != null && !string.IsNullOrEmpty(OfflineNativeFlow.Profile.Username) ? OfflineNativeFlow.Profile.Username : "Offline Player"; } }
 
         // Hidden diagnostic runs and the menu script they run (--tesl-offline-native-menu=<name>), so an extension can keep its
         // pop-ups (a daily-rewards window ...) out of runs that test something else.

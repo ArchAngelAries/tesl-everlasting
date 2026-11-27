@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.0.3 — titles announced, lighter mod art
+
+- **New titles are announced:** when you earn a title, the reward screen now shows it ("New Title Earned" with its name and
+  description). Before, earned titles were added to your profile without being shown. Story choice titles, such as The
+  Kingslayer or The King's Protector, appear when the chapter ends.
+- **Mod card art uses less memory:** card art from mods is loaded GPU-compressed with mipmaps, about a quarter of the memory,
+  and stays sharp when cards are drawn small.
+- **For modders:** mods can read the player's profile name (for example for their own leaderboards).
+
 ## 1.0.2 — more titles, quieter creatures
 
 - **45 more titles can be earned offline:** the card titles such as The Golden, The Mastermind, The Dawnbreaker, The Forger,
