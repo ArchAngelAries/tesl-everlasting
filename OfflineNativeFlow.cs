@@ -351,6 +351,24 @@ namespace OfflineEngine
         // --tesl-offline-diagnostic-autowin the human wins each match at its first decision (the offline Win cheat).
         private static int StoryJumpEvent; private static bool StoryJumpMaster, AutoWinDiagnostic;
         private static bool jumpEpisodeOpened;
+
+        // The main menu's events widget, pressed through its own button handler once the live event has loaded (up to 30 s).
+        private static IEnumerator OpenEventsFromMainMenu()
+        {
+            for (int i = 0; i < 60; i++)
+            {
+                MenuEventsWidget widget = UnityEngine.Object.FindObjectOfType<MenuEventsWidget>();
+                if (widget != null && widget.isActiveAndEnabled)
+                {
+                    yield return new WaitForSeconds(1f);
+                    Debug.Log("OFFLINE NATIVE: pressing the main menu's events widget");
+                    AccessTools.Method(typeof(MenuEventsWidget), "HandleOnMainBtnPressed").Invoke(widget, null);
+                    yield break;
+                }
+                yield return new WaitForSeconds(0.5f);
+            }
+            Debug.LogWarning("OFFLINE NATIVE: no events widget on the main menu");
+        }
         private static int JumpChapterId()
         {
             foreach (SPTESL.Campaign c in SPTESL.GameManager.Instance.Config.Campaigns) foreach (SPTESL.Act a in c.Acts) foreach (SPTESL.Chapter ch in a.Chapters)
@@ -611,6 +629,14 @@ namespace OfflineEngine
                     OneShot = delegate {
                         Pixelplacement.Singleton<MainMenuNavManager>.Instance.SetMajorNavigable(MainMenuNavData.Id.Profile, MainMenuNavData.Id.Profile_Titles, MainMenuNavData.SlideStyle.Normal);
                     };
+                }
+                if (arg == "--tesl-offline-native-menu=events")
+                {
+                    // Main menu -> Events (an expansion's live event); buttons to press come from --tesl-offline-story-choice.
+                    MenuLabels = new string[0];
+                    MenuButtonNames = new string[0];
+                    OneShotState = "MainMenu";
+                    OneShot = delegate { nativeHost.StartCoroutine(OpenEventsFromMainMenu()); };
                 }
                 if (arg == "--tesl-offline-native-menu=versus")
                 {
@@ -1155,6 +1181,16 @@ namespace OfflineEngine
             SPTESL.PlayWin playWin = seed == null ? null : UnityEngine.Object.FindObjectOfType<SPTESL.PlayWin>();
             if (playWin != null && playWin.isActiveAndEnabled && (long)AccessTools.Field(typeof(SPTESL.PlayWin), "_selectedDeckId").GetValue(playWin) == 0)
             {
+                // An event with explicit (premade) decks: the first deck it offers, through the picker's own handler.
+                SparkleServices.Events events = Pixelplacement.Singleton<ServicesManager>.Instance.Events;
+                if (events != null && events.EventDescription != null && events.EventDescription.IsExplicitDeckSelectionType() && events.EventDescription.explicitDecks != null
+                    && events.EventDescription.explicitDecks.Count > 0 && GameObject.Find("Section_ChoiceButtons") == null)
+                {
+                    long hash = events.EventDescription.explicitDecks[0];
+                    texts.Append(step).Append("\t-\t(press)\tSELECT EXPLICIT DECK ").AppendLine(hash.ToString());
+                    AccessTools.Method(typeof(SPTESL.PlayWin), "HandleOnDeckSelected").Invoke(playWin, new object[] { hash });
+                    return;
+                }
                 OfflinePlayerStateData snapshot = OfflineNativeMatch.State.Snapshot();
                 if (snapshot.decks.Count > 0)
                 {

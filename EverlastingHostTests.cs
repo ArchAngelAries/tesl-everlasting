@@ -25,6 +25,29 @@ namespace OfflineEngine
                 EverlastingHost.Provide("test-objectives", 2, provider);
                 Require(EverlastingHost.Providers("test-objectives", 1).Contains(provider) && EverlastingHost.Providers("test-objectives", 3).Count == 0, "capability versions");
             });
+            test("event-battles-play-the-deck-the-event-names", delegate {
+                // The client sends deck id 0 for every event match; before, the player's first saved deck was played.
+                DeckInfo catalog = config.DeckInfo.Find(delegate(DeckInfo x) { return x != null && x.Cards != null && x.Cards.Count > 5; });
+                Require(catalog != null, "no catalog deck with cards");
+                int size = 0; foreach (DeckInfo.CardInfo c in catalog.Cards) size += c.Count;
+                Deck premade = OfflineNativeMatch.EventDeck(config, new EverlastingHost.EventMatchPlan { PlayerDeckTypeHash = catalog.TypeNameHash }, 0);
+                Require(premade.Size == size && premade.GetCardCount(catalog.Cards[0].Id) == catalog.Cards[0].Count, "premade event deck: " + premade.Size + " of " + size);
+                using (EverlastingHost.UseTestProfile())
+                {
+                    int first = 0, second = 0;
+                    foreach (EverlastingHost.CardInfo c in EverlastingHost.Cards()) if (c.Collectible && c.Mod == null) { if (first == 0) first = c.Id; else if (c.Id != first) { second = c.Id; break; } }
+                    long eventDeck = 0;
+                    EverlastingHost.Mutate(delegate(OfflinePlayerStateData d) {
+                        foreach (int card in new[] { first, second })
+                        {
+                            Inventory.Deck k = new Inventory.Deck { id = ++d.nextDeckId, UnlocalizedName = "deck " + card, cards = new List<Inventory.Deck.DeckCard>() };
+                            k.cards.Add(new Inventory.Deck.DeckCard { typeHash = card, numRegular = 3 });
+                            d.decks.Add(k); eventDeck = k.id;
+                        } });
+                    Deck built = OfflineNativeMatch.EventDeck(config, new EverlastingHost.EventMatchPlan { PlayerDeckId = eventDeck }, 0);
+                    Require(built.GetCardCount(second) == 3 && built.GetCardCount(first) == 0, "the event's own deck was not played (got the first saved deck)");
+                }
+            });
             test("everlasting-host-extension-bundles-reach-the-native-reward-flow", delegate {
                 int card = 0;
                 foreach (EverlastingHost.CardInfo c in EverlastingHost.Cards()) if (c.Collectible && c.Mod == null) { card = c.Id; break; }

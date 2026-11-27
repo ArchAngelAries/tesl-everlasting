@@ -215,6 +215,10 @@ namespace OfflineEngine
             public List<int> OpponentCards;       // the AI's deck (card ids), or null for a practice AI deck
             public string OpponentName;
             public string[] OpponentTags;         // the event's opponent theme (opponents.tagsAny), passed to AI deck providers
+            // The player's deck. The client sends deck id 0 for every event match, so the plan names it: an inventory deck
+            // (the event's built deck) or a catalog deck by type hash (an explicit/premade event deck). Neither: the request's id.
+            public long PlayerDeckId;
+            public int PlayerDeckTypeHash;
         }
         public static Func<long, long, EventMatchPlan> EventMatchProvider;   // (eventId, deckId) -> plan
 

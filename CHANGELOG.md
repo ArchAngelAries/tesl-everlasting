@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.4 — story rewards in their own books
+
+- **Story rewards arrive as the game shows them:** rewards from The Fall of the Dark Brotherhood, Return to Clockwork City
+  and Isle of Madness now come in each story's own reward book. The Forgotten Hero keeps its Elder Scroll. Thanks for
+  the report on GitHub (issue #1).
+- **For expansions:** event battles play the deck the event names (the event's own deck, or a premade deck the player
+  picked), not the player's first saved deck.
+
 ## 1.0.3 — titles announced, lighter mod art
 
 - **New titles are announced:** when you earn a title, the reward screen now shows it ("New Title Earned" with its name and

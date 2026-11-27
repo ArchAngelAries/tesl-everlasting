@@ -305,7 +305,9 @@ namespace OfflineEngine
             if (mode != null) Debug.Log("OFFLINE MODES: " + (storyBattle != null ? "story battle" : "practice match") + " plays mode " + mode.Key);
             if (mode != null && mode.NoMulligan && storyBattle == null) OfflineModes.DisableMulligan(scenario.GameProperties);
             scope = mode != null ? StoryScenarioRules.Prepare(config, scenario.ResourceId.Id) : practice ? OrdinaryMatchRules.Prepare(config) : arena ? StoryScenarioRules.Prepare(config, scenario.ResourceId.Id) : chapter != null ? TutorialScenarioRules.Prepare(config, scenario.ResourceId.Id) : StoryScenarioRules.Prepare(config, scenario.ResourceId.Id);
-            Deck playerDeck = arena ? CardsDeck(versusArena ? "Versus Arena" : "Solo Arena", arenaCards) : practice || (chapter == null && scenario.ScenarioAllowsUserDeckSelection()) ? PlayerDeck(request.deckId) : null;
+            Deck playerDeck = arena ? CardsDeck(versusArena ? "Versus Arena" : "Solo Arena", arenaCards)
+                : eventBattle ? EventDeck(config, plan, request.deckId)
+                : practice || (chapter == null && scenario.ScenarioAllowsUserDeckSelection()) ? PlayerDeck(request.deckId) : null;
             CustomDeck practiceOpponent = practice ? PracticeOpponent(config, request.aiDifficulty)
                 : arena ? config.CustomDecks.Find(delegate(CustomDeck x) { return x.ResourceId.Id == arenaMatch.deckTypeHash; }) : null;
             if (arena && practiceOpponent == null) throw new InvalidOperationException("Arena opponent deck is absent: " + arenaMatch.deckTypeHash);
@@ -548,6 +550,34 @@ namespace OfflineEngine
 
         // The chosen saved deck (matching/add deckId), with the base Avatar; else the first
         // saved deck; else the installed default deck.
+        // The deck an event battle names (EverlastingHost.EventMatchPlan): a catalog deck by type hash (premade events), else
+        // the event's inventory deck; the client itself always sends deck id 0 for events.
+        internal static Deck EventDeck(GameConfiguration config, EverlastingHost.EventMatchPlan plan, long requestDeckId)
+        {
+            if (plan != null && plan.PlayerDeckTypeHash != 0)
+            {
+                DeckInfo info = config.DeckInfo == null ? null : config.DeckInfo.Find(delegate(DeckInfo x) { return x != null && x.TypeNameHash == plan.PlayerDeckTypeHash; });
+                if (info == null || info.Cards == null || info.Cards.Count == 0) throw new InvalidOperationException("Event deck is absent from the catalog: " + plan.PlayerDeckTypeHash);
+                Deck deck = new Deck();
+                deck.Name = info.TypeName;
+                deck.AvatarCardId = OrdinaryMatchRules.BaseAvatarId;
+                foreach (DeckInfo.CardInfo c in info.Cards) for (int n = 0; n < c.Count; n++) deck.AddCard(c.Id);
+                Debug.Log("OFFLINE NATIVE MATCH: event battle plays the event's deck " + info.TypeName + " (" + deck.Size + " cards)");
+                return deck;
+            }
+            long id = plan != null && plan.PlayerDeckId != 0 ? plan.PlayerDeckId : requestDeckId;
+            if (id == 0) return PlayerDeck(0);
+            OfflinePlayerStateData d = EverlastingHost.Snapshot();   // the host's profile (a test profile in engine tests)
+            SparkleServices.Inventory.Deck saved = d == null ? null : d.decks.Find(delegate(SparkleServices.Inventory.Deck x) { return x.id == id; });
+            if (saved == null || saved.cards == null || saved.cards.Count == 0) throw new InvalidOperationException("Event deck " + id + " is missing or empty.");
+            Deck built = new Deck();
+            built.Name = saved.DisplayName;
+            built.AvatarCardId = OrdinaryMatchRules.BaseAvatarId;
+            foreach (SparkleServices.Inventory.Deck.DeckCard card in saved.cards)
+                for (int n = 0; n < card.numRegular + card.numPremium; n++) built.AddCard(card.typeHash);
+            return built;
+        }
+
         private static Deck PlayerDeck(long deckId)
         {
             OfflinePlayerStateData d = state.Snapshot();

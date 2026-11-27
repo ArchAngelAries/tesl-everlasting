@@ -458,6 +458,16 @@ namespace OfflineEngine
             }
         }
 
+        // The installed campaign (UniqueName: TFH, DBH, CWC, IOM, Puzzles, or a mod story's) holding a chapter event, or null.
+        public static string CampaignNameOf(int eventId)
+        {
+            List<SPTESL.Campaign> campaigns = content;
+            if (campaigns == null) return null;
+            foreach (SPTESL.Campaign campaign in campaigns)
+                if (FindContentEvent(campaign.ResourceId.Id, eventId) != null) return campaign.ResourceId.UniqueName;
+            return null;
+        }
+
         public static SPTESL.ChapterEvent FindContentEvent(int eventId)
         {
             List<SPTESL.Campaign> campaigns = content;

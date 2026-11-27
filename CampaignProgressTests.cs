@@ -9,6 +9,25 @@ namespace OfflineEngine
     {
         public static void Run(GameConfiguration config, Action<string, Action> test, string output)
         {
+            test("story-rewards-arrive-in-each-storys-own-container", delegate {
+                // GitHub issue 1: every story reward came in the story scroll. The client ships a book per later story.
+                Dictionary<string, SparkleServices.Rewards.RewardContainer> want = new Dictionary<string, SparkleServices.Rewards.RewardContainer> {
+                    { "TFH", SparkleServices.Rewards.RewardContainer.StoryScroll }, { "DBH", SparkleServices.Rewards.RewardContainer.DBBook },
+                    { "CWC", SparkleServices.Rewards.RewardContainer.CWCBook }, { "IOM", SparkleServices.Rewards.RewardContainer.IOMBook } };
+                foreach (KeyValuePair<string, SparkleServices.Rewards.RewardContainer> w in want)
+                {
+                    SPTESL.Campaign campaign = config.Campaigns.Find(delegate(SPTESL.Campaign c) { return c.ResourceId.UniqueName == w.Key; });
+                    Require(campaign != null, "campaign " + w.Key + " missing");
+                    ChapterEvent rewarded = null;
+                    foreach (Act a in campaign.Acts) foreach (Chapter ch in a.Chapters) foreach (ChapterEvent e in ch.ChapterEvents)
+                        if (rewarded == null && !string.IsNullOrEmpty(e.RewardsBundleKey)) rewarded = e;
+                    Require(rewarded != null, w.Key + " has no rewarded event");
+                    OfflinePlayerStateData d = new OfflinePlayerStateData();
+                    Require(OfflineRewardsService.GrantEvent(d, rewarded.ResourceId.Id, false), w.Key + " reward not granted");
+                    SparkleServices.Rewards.RewardContainer got = d.rewards[d.rewards.Count - 1].rewardPasses[0].rewardContainerType;
+                    Require(got == w.Value, w.Key + " rewards arrive in " + got + ", expected " + w.Value);
+                }
+            });
             test("campaign-result-completes-only-matching-difficulty", delegate {
                 Campaign.IUserChapterEventData normal = new Campaign.IUserChapterEventData { chapterEventId = 12345 };
                 Campaign.IUserChapterEventData master = new Campaign.IUserChapterEventData { chapterEventId = 12345 };

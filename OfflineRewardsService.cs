@@ -223,6 +223,20 @@ namespace OfflineEngine
 
         private const string ChoiceCardPrefix = "story_choice_card_", ChoiceGoldPrefix = "story_choice_gold_";
 
+        // The reward container a story's chapter rewards arrive in. The client ships a book for each later story
+        // (RewardContainer_Book_DB / _CWC / _IOM, from the releases of those stories) and the story scroll (a later client
+        // update) used for The Forgotten Hero; puzzles and mod stories keep the scroll.
+        public static Rewards.RewardContainer StoryContainer(string campaignName)
+        {
+            switch (campaignName)
+            {
+                case "DBH": return Rewards.RewardContainer.DBBook;
+                case "CWC": return Rewards.RewardContainer.CWCBook;
+                case "IOM": return Rewards.RewardContainer.IOMBook;
+                default: return Rewards.RewardContainer.StoryScroll;
+            }
+        }
+
         // Grant a chapter event's bundles once (story replays never re-grant).
         public static bool GrantEvent(OfflinePlayerStateData d, int chapterEventId, bool mastery)
         {
@@ -235,6 +249,7 @@ namespace OfflineEngine
             reward.rewardId = ++d.nextRewardId;
             reward.source = Rewards.RewardSource.Campaign;
             reward.rewardPasses = new List<Rewards.RewardPassDescription>();
+            Rewards.RewardContainer container = StoryContainer(OfflineCampaignService.CampaignNameOf(chapterEventId));
             foreach (string raw in bundleKeys.Split(','))
             {
                 string key = raw.Trim();
@@ -243,7 +258,7 @@ namespace OfflineEngine
                 pass.rewardPassIndex = reward.rewardPasses.Count;
                 pass.bundleKey = key; pass.bundleCount = 1;
                 pass.rarity = Rewards.RewardRarity.Common;
-                pass.rewardContainerType = Rewards.RewardContainer.StoryScroll;
+                pass.rewardContainerType = container;
                 reward.rewardPasses.Add(pass);
             }
             if (reward.rewardPasses.Count == 0) return false;

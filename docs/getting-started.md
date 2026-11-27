@@ -16,9 +16,9 @@
 
 TESL: Everlasting loads through [BepInEx](https://github.com/BepInEx/BepInEx) 5.4.23 (x86, because the game is 32-bit).
 
-- **Your game folder has no `BepInEx` folder:** download **`TESL-Everlasting-1.0.3-with-BepInEx.zip`**. It includes the official,
+- **Your game folder has no `BepInEx` folder:** download **`TESL-Everlasting-1.0.4-with-BepInEx.zip`**. It includes the official,
   unmodified BepInEx 5.4.23 x86.
-- **Your game folder already has `BepInEx` and `winhttp.dll`** (TESL-Reborn installs them): download **`TESL-Everlasting-1.0.3.zip`**
+- **Your game folder already has `BepInEx` and `winhttp.dll`** (TESL-Reborn installs them): download **`TESL-Everlasting-1.0.4.zip`**
   (plugin only), so you don't replace Reborn's copy.
 
 Prefer to install BepInEx yourself? Download `BepInEx_win_x86_5.4.23.x.zip` from the
