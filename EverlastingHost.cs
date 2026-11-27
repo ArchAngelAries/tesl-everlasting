@@ -60,6 +60,8 @@ namespace OfflineEngine
         public static string Register(Manifest m)
         {
             if (m == null || string.IsNullOrEmpty(m.Id)) return "extension manifest has no id";
+            // Diagnostics: measure the engine alone (performance comparisons). Extensions stop at their registration.
+            if (Array.IndexOf(Environment.GetCommandLineArgs(), "--tesl-no-extensions") >= 0) return "extensions are off for this run (--tesl-no-extensions)";
             Registered r = new Registered { Manifest = m, Active = true };
             if (!Supports(m.RequiresApi))
             {

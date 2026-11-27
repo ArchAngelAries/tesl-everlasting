@@ -160,6 +160,14 @@ namespace OfflineEngine
 
         // Change a copy, persist it atomically, and only then publish it in memory, so a
         // failed write never leaves memory ahead of disk.
+        private static void SaveByCopy(string temp, string path, Exception why)
+        {
+            UnityEngine.Debug.LogWarning("OFFLINE PROFILE: replace failed (" + why.Message + "); saving by copy");
+            try { File.Copy(path, path + ".bak", true); } catch (Exception) { }
+            File.Copy(temp, path, true);
+            File.Delete(temp);
+        }
+
         public void Mutate(Action<OfflinePlayerStateData> change)
         {
             lock (gate)
@@ -168,7 +176,14 @@ namespace OfflineEngine
                 change(next);
                 string temp = path + ".tmp";
                 File.WriteAllText(temp, JsonUtility.ToJson(next, true));
-                if (File.Exists(path)) File.Replace(temp, path, path + ".bak");
+                if (File.Exists(path))
+                {
+                    // File.Replace can be refused (antivirus, cloud-synced folders, a locked backup); a failed save would
+                    // undo the change (e.g. a claimed reward that then shows again forever), so fall back to a copy.
+                    try { File.Replace(temp, path, path + ".bak"); }
+                    catch (IOException e) { SaveByCopy(temp, path, e); }
+                    catch (UnauthorizedAccessException e) { SaveByCopy(temp, path, e); }
+                }
                 else File.Move(temp, path);
                 data = next;
             }

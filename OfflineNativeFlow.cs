@@ -99,6 +99,7 @@ namespace OfflineEngine
             Prefix(harmony, typeof(SparkleServices.Analytics), "SendEvent", "Skip", Priority.Normal);
             host.StartCoroutine(PublishAvatarsWhenConfigReady());
             host.StartCoroutine(PublishQuestsWhenLocalized());
+            host.StartCoroutine(OfflineMods.PredecodeCards(14f));   // mod cards decoded while the client boots (ApplyMods reuses them)
             OfflineNameEntry.Install(harmony, host, state);
             OfflineCheatMenu.Install(host, state);
             OfflineMods.Install(harmony);
@@ -207,11 +208,17 @@ namespace OfflineEngine
                 || LocalizationManager.Instance == null || LocalizationManager.Instance.IsLoading())
                 yield return new WaitForSeconds(0.5f);
             OfflineGraphics.Timed("ApplyMods", delegate { ApplyMods(); });
+            yield return null;   // one startup step per frame (no single long freeze)
             OfflineGraphics.Timed("GuardRebornTitleItemPatch", delegate { GuardRebornTitleItemPatch(); });
+            yield return null;   // one startup step per frame (no single long freeze)
             OfflineGraphics.Timed("OfflineQuestService.Publish", delegate { OfflineQuestService.Publish(SPTESL.GameManager.Instance.Config, Path.Combine(exportDirectory, "native-quest-goals.tsv")); });
+            yield return null;   // one startup step per frame (no single long freeze)
             OfflineGraphics.Timed("OfflineCosmetics.Publish", delegate { OfflineCosmetics.Publish(SPTESL.GameManager.Instance.Config, Path.Combine(exportDirectory, "native-titles.tsv")); });
+            yield return null;   // one startup step per frame (no single long freeze)
             OfflineGraphics.Timed("OfflineRankedService.PublishMonthlies", delegate { OfflineRankedService.PublishMonthlies(SPTESL.GameManager.Instance.Config); });
+            yield return null;   // one startup step per frame (no single long freeze)
             OfflineGraphics.Timed("OfflineTitles.Publish", delegate { OfflineTitles.Publish(SPTESL.GameManager.Instance.Config, Path.Combine(exportDirectory, "native-title-goals.tsv")); });
+            yield return null;   // one startup step per frame (no single long freeze)
             OfflineGraphics.Timed("OfflineGoldStore.PublishTexts", delegate { OfflineGoldStore.PublishTexts(SPTESL.GameManager.Instance.Config); });
             // The client fetched the store catalog before these names and images existed: fetch it again.
             if (Pixelplacement.Singleton<ServicesManager>.Instance != null && Pixelplacement.Singleton<ServicesManager>.Instance.Shop != null)

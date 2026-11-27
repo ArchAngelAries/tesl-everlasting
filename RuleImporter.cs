@@ -19,6 +19,7 @@ namespace OfflineEngine
 
         public static void Load(GameConfiguration config, string directory)
         {
+            OfflineMods.RevertChanges(config);   // changed original cards are validated and imported as the originals
             NativeKeywordRules.Validate(config);
             OriginalCardRules.Validate(config);
             OriginalSpecialCreatureRules.Validate(config);
@@ -256,6 +257,12 @@ namespace OfflineEngine
             // Modding Suite cards carry their own graphs in the original form (OfflineMods).
             foreach (int id in OfflineMods.CardIds)
                 if (!supported.Contains(id)) { supported.Add(id); report.AppendLine(id + "	" + config.FindCardById(id).Name + "	mod-card	Modding Suite card with its own original-form rule graph"); }
+            // Original cards a mod changes in place (OfflineMods changes/): the mod's version wins over every batch above.
+            foreach (int id in OfflineMods.ApplyChanges(config))
+            {
+                supported.Add(id);
+                report.AppendLine(id + "\t" + config.FindCardById(id).Name + "\tmod-changed-original\tchanged in place by mod " + OfflineMods.ChangedBy(id));
+            }
             // Card-specific animations of the original graphs, copied into the cards that run our rebuilt rules.
             OriginalFxOverlay.Apply(config, report);
             File.WriteAllText(Path.Combine(directory, "rule-import-results.tsv"), report.ToString());

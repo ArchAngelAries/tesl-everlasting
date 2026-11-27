@@ -21,6 +21,14 @@ namespace OfflineEngine
         public const int CostGold = 150, CostTickets = 1, Picks = 30, Matches = 9, MaxLosses = 3, VersusMaxWins = 7; // VersusArena.MaxVersusArenaWins_
         public const string Solo = "solo", Versus = "versus";
         private static volatile ArenaContent content;
+        // Is this card in the current draft pool (any rarity)? For tests.
+        public static bool InDraftPool(int cardId)
+        {
+            ArenaContent c = content;
+            if (c == null) return false;
+            foreach (List<int> ids in c.CardsByRarity) if (ids.Contains(cardId)) return true;
+            return false;
+        }
 
         private sealed class ArenaContent
         {
@@ -46,6 +54,7 @@ namespace OfflineEngine
                 foreach (Card card in set.Cards)
                 {
                     if (card == null || !card.Production || card.Source != CardSource.Normal || string.IsNullOrEmpty(card.ExportCode) || card.InvalidArenaPick) continue;
+                    if (OfflineMods.OutOfArena(card.ResourceId.Id)) continue;   // the mod keeps its cards out of arena drafts
                     if (card.AlternateOfCard != null && card.AlternateOfCard.resourceId != 0 && card.AlternateOfCard.resourceId != UniqueResourceId.GetInvalid().Id) continue;
                     List<CardSubtype> own = new List<CardSubtype>();
                     foreach (CardSubtype color in colors) if (card.HasSubtype(color)) own.Add(color);

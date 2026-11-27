@@ -132,6 +132,42 @@ namespace OfflineEngine
                     Require(wolfcaller.QueryAttribute(AttributeType.Taunt).Value == 1, "Composed card lost Guard.");
                 }
             });
+            test("mod-changes-an-original-card-in-place", delegate {
+                // The fixture changes Cloudrest Illusionist (TESL Forge "Change this card"): cost 2, health 5, a new name, the
+                // original text and Summon ability kept. Applied at mod load and again after the rule import.
+                const int Illusionist = 652289987;
+                Card card = config.FindCardById(Illusionist);
+                Require(card != null && OfflineMods.IsChanged(Illusionist) && OfflineMods.ChangedBy(Illusionist) == Mod && !OfflineMods.CardIds.Contains(Illusionist),
+                    "Cloudrest Illusionist is not recorded as changed by " + Mod + ".");
+                Require(Stat(card, AttributeType.ManaCost) == 2 && Stat(card, AttributeType.MaxHealth) == 5 && Stat(card, AttributeType.Attack) == 4,
+                    "Changed stats not applied: " + Stat(card, AttributeType.ManaCost) + "/" + Stat(card, AttributeType.Attack) + "/" + Stat(card, AttributeType.MaxHealth));
+                Require(card.NameKey.RawKey.StartsWith("mod." + Mod + ".changed.", StringComparison.Ordinal) && OfflineMods.Text(card.NameKey.RawKey) == "Cloudrest Archillusionist",
+                    "Changed name not shown: " + card.NameKey.RawKey);
+                Require(!card.DescriptionKey.RawKey.StartsWith("mod.", StringComparison.Ordinal), "The unchanged text lost its original (translated) key.");
+                Require(card.TriggeredEffects != null && card.TriggeredEffects.Count > 0, "The Summon ability did not survive the rule import.");
+                using (OriginalTargetedSummonTests.LifecycleFixture f = new OriginalTargetedSummonTests.LifecycleFixture(config, 620729069))
+                {
+                    Simulation s = f.Sim; int me = s._turnStateStack.Peek().ActivePlayerIndex;
+                    ServerCard played = f.Create(Illusionist, me, GameZoneName.Hand);
+                    Require(played.QueryAttribute(AttributeType.ManaCost).Value == 2 && played.QueryAttribute(AttributeType.MaxHealth).Value == 5, "A match card does not have the changed stats.");
+                    f.Mana(me, 2); f.Refresh(me); f.PlayCreatureLane(played, 0, me);
+                    Require(played.CurrentGameZoneName == GameZoneName.CreatureBoard, "The changed card could not be played for its new cost of 2.");
+                }
+            });
+            test("mod-cards-join-arena-drafts-unless-the-mod-opts-out", delegate {
+                // Collectible mod cards join the Solo/Versus Arena draft pool like official ones; "arena": false in mod.json
+                // keeps a mod's cards out (TESL Forge mod settings).
+                const int Wolfcaller = -219964603;
+                try
+                {
+                    OfflineArenaService.Publish(config);
+                    Require(OfflineArenaService.InDraftPool(Wolfcaller), "A collectible mod card is not in the arena draft pool.");
+                    OfflineMods.NoArenaMods.Add(Mod);
+                    OfflineArenaService.Publish(config);
+                    Require(!OfflineArenaService.InDraftPool(Wolfcaller) && OfflineMods.OutOfArena(Wolfcaller), "The mod's arena opt-out did not remove its card from the draft pool.");
+                }
+                finally { OfflineMods.NoArenaMods.Remove(Mod); OfflineArenaService.Publish(config); }
+            });
             test("mod-boards-loaded", delegate {
                 OfflineBoards.Board board = OfflineBoards.Find("sample-skyrim/greenwood-table");
                 Require(board != null && board.Base == PlaymatType.Original && !board.Replace && System.IO.File.Exists(board.Image), "Sample mod board not loaded.");

@@ -1,0 +1,693 @@
+{
+ "ResourceId": {
+  "Id": 652289987,
+  "UniqueName": "Cloudrest Illusionist",
+  "CompletionType": "Complete"
+ },
+ "Production": true,
+ "Name": "Cloudrest Archillusionist",
+ "NameKey": {
+  "RawKey": "51f31703-300a-11e5-a2cb-0800200c9a66-title"
+ },
+ "Definition": "Creature",
+ "Description": "<b><color=E9E0CD>Summon:</color></b> Give a creature <br>-4/-0 this turn.",
+ "DescriptionKey": {
+  "RawKey": "51f31703-300a-11e5-a2cb-0800200c9a66-game_text"
+ },
+ "AdditionalSearchTokensKey": {
+  "RawKey": "51f31703-300a-11e5-a2cb-0800200c9a66-additional_search_tokens"
+ },
+ "Image": "ContentPack000/Cards/Visuals/cloudrest_illusionist/cloudrest_illusionist",
+ "PermanentHangers": [],
+ "MechanicsEntries": [
+  {
+   "MechanicType": "Prophecy",
+   "DisplayHanger": true,
+   "DisplayIcon": false
+  },
+  {
+   "MechanicType": "Summon",
+   "DisplayHanger": true,
+   "DisplayIcon": false
+  }
+ ],
+ "CardReferences": [],
+ "HuntTypes": [],
+ "Source": "Normal",
+ "SourceString": {
+  "RawKey": null
+ },
+ "AvailabilityString": {
+  "RawKey": null
+ },
+ "UpgradesInto": [],
+ "AlternateOfCard": {
+  "resourceId": 0
+ },
+ "IneligibleForRandomPools": false,
+ "InvalidArenaPick": false,
+ "SeasonId": 0,
+ "ExportCode": "dr",
+ "CanBeFirstEverSoloPick": false,
+ "PlayCardVO": "cloudrest_illusionist_enter_play",
+ "DeathCardVO": "high_elf_female_a_death",
+ "AttackCardVO": "cloudrest_illusionist_attack",
+ "HitCardVO": "high_elf_female_a_hit",
+ "SuccessCardVO": null,
+ "FailureCardVO": null,
+ "Unique": false,
+ "MaxCopies": 3,
+ "MobilizeRecruitId": {
+  "CardIdReference": 0
+ },
+ "DefaultRareAttributes": [],
+ "PlayRequirements": {
+  "PlayerRequirements": []
+ },
+ "BetrayRequirements": {
+  "PlayerRequirements": []
+ },
+ "PlayWeight": {
+  "CommonWeights": [],
+  "LocalWeights": []
+ },
+ "ActionPlayInformation": [],
+ "AttackRequirements": {
+  "PlayerRequirements": [],
+  "CardRequirements": [],
+  "LaneRequirements": []
+ },
+ "StrongHintRequirements": {
+  "PlayerRequirements": [],
+  "CardRequirements": [],
+  "LaneRequirements": []
+ },
+ "CardFxRelations": [],
+ "Rarity": "Epic",
+ "ActivatedAbility": {
+  "TargetingType": "NoTarget",
+  "TargetSelectors": [],
+  "AiTargetRules": {
+   "AllyRule": "TargetBoth"
+  },
+  "AbilityWeight": {
+   "CommonWeights": [],
+   "LocalWeights": []
+  },
+  "ActivationPlayerRequirements": [],
+  "ActivationCardRequirements": [],
+  "AbilityGroups": []
+ },
+ "Subtypes": [
+  "High_Elf",
+  "Willpower"
+ ],
+ "ArenaDraftSubtypes": [],
+ "TriggeredEffects": [
+  {
+   "EffectGroup": {
+    "Effects": [
+     {
+      "ExecuteValueRequirements": [],
+      "ExecuteCardRequirements": [],
+      "ExecutePlayerRequirements": [],
+      "ExecuteLaneRequirements": [],
+      "CardActions": [
+       {
+        "HashId": 160060518,
+        "NameForHashing": "Action_NoName",
+        "CardFxDefinition": "Card_Illusionist",
+        "SelectorSort": {
+         "Method": "ByInstanceId",
+         "NumToReturn": {
+          "ValueMethod": "Constant",
+          "ConstantValue": 0,
+          "ConstantMultiplier": 0,
+          "MinRandom": 0,
+          "MaxRandom": 0,
+          "MinValue": 0,
+          "MaxValue": 0,
+          "AttributeName": "None",
+          "RareAttributeName": "None",
+          "CardRole": "Self",
+          "PlayerRole": "Self",
+          "Selectors": [],
+          "AllPlayers": false,
+          "JournalType": "Drawn",
+          "TimeWindow": "ThisTurn"
+         },
+         "SortAttribute": "None",
+         "Order": "LowestFirst",
+         "RequireUniqueNames": false
+        },
+        "Selectors": [
+         {
+          "Check": "Is",
+          "Role": "DecisionTarget",
+          "$type": "SPTESL.CardConditionals+CardRoleType"
+         },
+         {
+          "Check": "IsIn",
+          "ZoneTypeMask": {
+           "List": [
+            "Board"
+           ]
+          },
+          "$type": "SPTESL.CardConditionals+Zone"
+         }
+        ],
+        "Action": {
+         "Enchantment": {
+          "NameForEditor": null,
+          "DisplayTitle": {
+           "RawKey": "4b5086eb-6c12-1014-9108-c32b49961fc7-display_buff_title"
+          },
+          "DisplayText": {
+           "RawKey": "4b5086eb-6c12-1014-9108-c32b49961fc7-display_buff_text"
+          },
+          "MaxTurns": 0,
+          "DeferApplication": false,
+          "DeferApplicationLast": false,
+          "BasicItemEnchantment": false,
+          "KeepWhenMovesOffBoard": false,
+          "ExpiresAtStartOfTurn": false,
+          "ExpiresAtStartOfSourcesTurn": false,
+          "ExpiresAtEndOfTurn": true,
+          "ExpiresAtEndOfFight": false,
+          "ExpiresOnAttack": false,
+          "ExpiresOnIncomingDamage": false,
+          "ExpiresAtEndOfProphecy": false,
+          "ExpiresAtEndOfTurnAfterNotAttacking": false,
+          "ExpiresAfterRuneBreak": false,
+          "PermanentExpiresOnLeavingBoard": false,
+          "PermanentExpiresOnChange": false,
+          "ResetWoundedState": false,
+          "AttributeModifications": [
+           {
+            "ModificationType": "Add",
+            "AttributeName": "Attack",
+            "Value": -4,
+            "DynamicValue": 0,
+            "LockedDynamicValue": false
+           }
+          ],
+          "GrantedEffects": [],
+          "GrantedAuras": [],
+          "AddedCreatureSubtypes": [],
+          "NewColorSubtypes": [],
+          "SubcardDistributionSubtypes": [],
+          "MechanicsEntries": [],
+          "CardReferences": [],
+          "TagReferences": []
+         },
+         "SkipLogging": false,
+         "SanitizeRule": "Default",
+         "$type": "SPTESL.CardActions+Debuff"
+        },
+        "FailureCard": {
+         "BaseCard": {
+          "Id": 0,
+          "UniqueName": null,
+          "CompletionType": "Placeholder"
+         },
+         "Power": {
+          "ValueMethod": "Constant",
+          "ConstantValue": 0,
+          "ConstantMultiplier": 0,
+          "MinRandom": 0,
+          "MaxRandom": 0,
+          "MinValue": 0,
+          "MaxValue": 0,
+          "AttributeName": "None",
+          "RareAttributeName": "None",
+          "CardRole": "Self",
+          "PlayerRole": "Self",
+          "Selectors": [],
+          "AllPlayers": false,
+          "JournalType": "Drawn",
+          "TimeWindow": "ThisTurn"
+         }
+        },
+        "FailureCardOwner": "Self"
+       }
+      ],
+      "PlayerActions": [
+       {
+        "HashId": -1,
+        "NameForHashing": null,
+        "CardFxDefinition": null,
+        "Selectors": [
+         {
+          "Check": "Is",
+          "Role": "Self",
+          "$type": "SPTESL.PlayerConditionals+PlayerRoleType"
+         }
+        ],
+        "Action": {
+         "ModificationType": "Add",
+         "StatType": "IllusionsCast",
+         "Value": {
+          "ValueMethod": "Constant",
+          "ConstantValue": 1,
+          "ConstantMultiplier": 0,
+          "MinRandom": 0,
+          "MaxRandom": 0,
+          "MinValue": 0,
+          "MaxValue": 0,
+          "AttributeName": "None",
+          "RareAttributeName": "None",
+          "CardRole": "Self",
+          "PlayerRole": "Self",
+          "Selectors": [],
+          "AllPlayers": false,
+          "JournalType": "Drawn",
+          "TimeWindow": "ThisTurn"
+         },
+         "$type": "SPTESL.PlayerActions+ModifyMatchStat"
+        }
+       }
+      ],
+      "NameForEditor": "-4"
+     }
+    ]
+   },
+   "TriggerType": "Summon",
+   "SortOrder": "StateChanges_CardAttributes_ReduceAttack",
+   "AfterRuneBreaks": false,
+   "AreaEffect": false,
+   "AllowReentrancy": false,
+   "IgnoredByClientLog": false,
+   "UseGenericIcon": false,
+   "CanMergeEffectsWithSelf": false,
+   "ComplexMergeEffectsWithSelf": false,
+   "SanitizeRule": "Default",
+   "ClientTargetingType": "OptionalTarget",
+   "TargetSelectors": [
+    {
+     "DecisionType": "Card",
+     "CardConditionalExpressions": [
+      {
+       "Check": "IsIn",
+       "ZoneTypeMask": {
+        "List": [
+         "Board"
+        ]
+       },
+       "$type": "SPTESL.CardConditionals+Zone"
+      },
+      {
+       "Check": "Is",
+       "SubtypeName": "Creature",
+       "TestSubtypesOfDouble": false,
+       "$type": "SPTESL.CardConditionals+Subtype"
+      },
+      {
+       "AttributeName": "Attack",
+       "Is": "GreaterThan",
+       "Value": {
+        "ValueMethod": "Constant",
+        "ConstantValue": 0,
+        "ConstantMultiplier": 0,
+        "MaxValue": 0,
+        "AttributeName": "None",
+        "RareAttributeName": "None",
+        "CardRole": "Self",
+        "PlayerRole": "Self",
+        "Selectors": [],
+        "Values": []
+       },
+       "UseWielderAsSource": false,
+       "$type": "SPTESL.CardConditionals+AttributeValue"
+      }
+     ],
+     "LaneConditionalExpressions": []
+    }
+   ],
+   "OpponentChooses": false,
+   "SecretTarget": false,
+   "ItemUsesWielderAsEffectSource": false,
+   "AiTargetRules": {
+    "AllyRule": "TargetEnemies"
+   },
+   "EffectTargetWeight": {
+    "CommonWeights": [
+     {
+      "WeightType": "TempPowerDebuff",
+      "TriggerValue": {
+       "ValueMethod": "Constant",
+       "ConstantValue": 0,
+       "ConstantMultiplier": 0,
+       "MinRandom": 0,
+       "MaxRandom": 0,
+       "MinValue": 0,
+       "MaxValue": 0,
+       "AttributeName": "None",
+       "RareAttributeName": "None",
+       "CardRole": "Self",
+       "PlayerRole": "Self",
+       "Selectors": [],
+       "AllPlayers": false,
+       "JournalType": "Drawn",
+       "TimeWindow": "ThisTurn"
+      }
+     }
+    ],
+    "LocalWeights": []
+   },
+   "TargetingPrompt": {
+    "RawKey": "4b5086eb-6c12-1014-9108-c32b49961fc7.Prompt1"
+   },
+   "CustomUiType": "None",
+   "OptionalCustomUiType": false,
+   "CustomUiPrompt": {
+    "RawKey": null
+   },
+   "CustomUiEffectGroups": [],
+   "PostCustomUiEffectGroup": {
+    "Effects": []
+   },
+   "TriggerValueRequirements": [],
+   "TriggerCardRequirements": [
+    {
+     "LhsCard": "Self",
+     "Conditional": {
+      "Check": "IsIn",
+      "ZoneTypeMask": {
+       "List": [
+        "Board"
+       ]
+      }
+     },
+     "$type": "SPTESL.CardRequirements+ZoneRequirement"
+    }
+   ],
+   "TriggerPlayerRequirements": [],
+   "BeforeTargetingCardRequirements": [],
+   "BeforeTargetingPlayerRequirements": []
+  }
+ ],
+ "Auras": [],
+ "DoubleCardReferences": [],
+ "DynamicTextAssignments": [],
+ "ImageScale": 1.0,
+ "ImageOffsetX": 0.0,
+ "ImageOffsetY": 0.0,
+ "HangerImageScale": 1.5,
+ "HangerImageOffsetX": 0.0,
+ "HangerImageOffsetY": 0.0,
+ "HistoryLogItemImageScale": 1.75,
+ "HistoryLogItemImageOffsetX": 0.0,
+ "HistoryLogItemImageOffsetY": -0.08,
+ "ListImageScale": 1.0,
+ "ListImageOffsetX": 0.0,
+ "ListImageOffsetY": -0.2,
+ "IsPremiumOnly": false,
+ "ContentPackIndex": 0,
+ "AllowContentPackOverride": false,
+ "EntityAttributes": [
+  {
+   "Value": 2,
+   "Name": "ManaCost",
+   "$type": "SPTESL.IntAttribute"
+  },
+  {
+   "Value": 4,
+   "Name": "Attack",
+   "$type": "SPTESL.IntAttribute"
+  },
+  {
+   "Value": 5,
+   "Name": "MaxHealth",
+   "$type": "SPTESL.IntAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "Charge",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "Taunt",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "Deathtouch",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "CannotAttack",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "Immune",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "Freeze",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "DamageAvatarOfAttackedCreature",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "IgnoreTaunt",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "Untouchable",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "FirstStrike",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "Unstoppable",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": true,
+   "Name": "Prophecy",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "Ward",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "Breakthrough",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "Cover",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "Regenerate",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "ImmuneToLethal",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "ImmuneToFreeze",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "ImmuneToSilence",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "CanAttackOtherLane",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "CanAttackFriendlies",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": 1,
+   "Name": "NumAttacksPerTurn",
+   "$type": "SPTESL.IntAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "Wounded",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "Drain",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "ImmuneToCover",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "ImmuneToEnemyActionTargeting",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "ImmuneToActionDamage",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "ImmuneToSupportDamage",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "ImmuneToEnemyDragons",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": 0,
+   "Name": "Rally",
+   "$type": "SPTESL.IntAttribute"
+  },
+  {
+   "Value": 0,
+   "Name": "ExaltCost",
+   "$type": "SPTESL.IntAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "Exalted",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "ImmuneToEnemyCliffCreatures",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "CanOnlyAttackCreatures",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "GuardsBothLanes",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "MoveToAttackOtherLane",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "Reanimated",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "PermFreeze",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "IceFreeze",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "WebFreeze",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "ImmuneMusic",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "BoardSplash",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "DrainOnBothTurns",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": 0,
+   "Name": "PreventOpponentManaPlay",
+   "$type": "SPTESL.IntAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "ImmuneToWounded",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "ImmuneToBanish",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "ImmuneToSteal",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "CanAttackFriendFace",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "Colossal",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "CanBeAttackedFromAnyLane",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "ImmuneToEnemyKeywords",
+   "$type": "SPTESL.BoolAttribute"
+  },
+  {
+   "Value": 0,
+   "Name": "OblivionGateLevel",
+   "$type": "SPTESL.IntAttribute"
+  },
+  {
+   "Value": false,
+   "Name": "SlayOnBothTurns",
+   "$type": "SPTESL.BoolAttribute"
+  }
+ ],
+ "_mod": {
+  "changes": 652289987,
+  "template": 652289987
+ }
+}

@@ -228,22 +228,30 @@ namespace OfflineEngine
 
         // Hitch log (with the counter on): every frame over 100 ms, with garbage collections during it and what was tagged
         // (Mark) in that frame or the one before, so test-harness work can be told apart from the game's own stalls.
+        // Hidden performance runs (--tesl-offline-perf-log): the hitch log and summaries without the on-screen counter or a
+        // change to the player's graphics.json.
+        public static readonly bool PerfLog = Array.IndexOf(Environment.GetCommandLineArgs(), "--tesl-offline-perf-log") >= 0;
         private static string mark = ""; private static int markFrame = -10; private static int lastGc0, lastGc2;
         public static void Mark(string what) { mark = what; markFrame = Time.frameCount; }
         // Startup timing: logs any step that takes 30 ms or more (the main thread is blocked meanwhile).
         public static void Timed(string what, Action step)
         {
             System.Diagnostics.Stopwatch w = System.Diagnostics.Stopwatch.StartNew();
+            long before = PerfLog ? System.GC.GetTotalMemory(false) : 0;
             Mark(what);
             try { step(); }
-            finally { if (w.ElapsedMilliseconds >= 30) Debug.Log("OFFLINE TIMING: " + what + " " + w.ElapsedMilliseconds + " ms"); }
+            finally
+            {
+                long grew = PerfLog ? (System.GC.GetTotalMemory(false) - before) >> 20 : 0;   // MB kept (perf runs only)
+                if (w.ElapsedMilliseconds >= 30 || grew >= 4) Debug.Log("OFFLINE TIMING: " + what + " " + w.ElapsedMilliseconds + " ms" + (PerfLog ? ", heap +" + grew + " MB" : ""));
+            }
         }
         private float windowStart = -1f, worst; private int frames;
         private void Update()
         {
             smoothed = Mathf.Lerp(smoothed, Time.unscaledDeltaTime, 0.05f);
             // With the counter on, the log gets a 10-second summary (average fps and the slowest frame).
-            if (Settings.fpsCounter)
+            if (Settings.fpsCounter || PerfLog)
             {
                 if (windowStart < 0f) { windowStart = Time.unscaledTime; frames = 0; worst = 0f; }
                 frames++; worst = Mathf.Max(worst, Time.unscaledDeltaTime);

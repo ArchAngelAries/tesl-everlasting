@@ -20,7 +20,7 @@ namespace OfflineEngine
     {
         // Engine feature level: the checkpoint that added the newest mod feature (56: card back, deck banner and board previews;
         // 50: window/quality presets; 49: Master stories).
-        public const int ApiLevel = 56;
+        public const int ApiLevel = 57;   // 57: original cards changed in place (mod changes/ folder)
 
         public sealed class Manifest
         {

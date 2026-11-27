@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.0.5 — faster start, changed cards
+
+- **No more getting stuck on a reward screen:** if a reward cannot be applied, the game now logs it and moves on instead of
+  showing the same (empty) reward again forever, and saving your profile falls back to a plain copy if Windows refuses
+  the normal save. Thanks for the report on GitHub (issue #1).
+- **Smoother start:** the longest freeze while the game starts went from about 3.4 seconds to under 0.6 seconds with
+  several mods enabled. Mod cards are prepared while the game is still loading, and the remaining start-up steps no
+  longer run all at once.
+- **For modders: change an original card in place.** A mod can now change any original card (cost, power, health,
+  name, text, rarity and abilities). Every deck that holds the card plays the changed version. Like all gameplay mods,
+  changes apply to offline play only. Made with TESL Forge 1.0.2.
+- **For modders: arena drafts.** A mod can keep its cards out of Solo and Versus Arena drafts, or keep out single cards.
+  By default mod cards join the drafts like official cards.
+
 ## 1.0.4 — story rewards in their own books
 
 - **Story rewards arrive as the game shows them:** rewards from The Fall of the Dark Brotherhood, Return to Clockwork City

@@ -34,6 +34,57 @@ namespace OfflineEngine
                 if (arg.StartsWith(ListFlag, StringComparison.Ordinal)) return arg.Substring(ListFlag.Length).Trim('"');
             return null;
         }
+        // Mod cards decode slowly (FullSerializer, ~7 ms a card: 3 s for 422 cards in one main-thread block, measured
+        // 2026-11-26). Decoding needs no game data, so it starts with the game and runs a few ms per frame (main thread:
+        // FullSerializer's type cache is shared), while the client boots; ApplyMod then takes the decoded cards.
+        private sealed class Decoded { public Card Card; public Dictionary<string, fsData> Raw; public string Json; }
+        private static readonly Dictionary<string, Decoded> predecoded = new Dictionary<string, Decoded>(StringComparer.OrdinalIgnoreCase);
+        public static int PredecodedCards { get { lock (predecoded) return predecoded.Count; } }
+        public static System.Collections.IEnumerator PredecodeCards(float budgetMs)
+        {
+            List<string> files = new List<string>();
+            try
+            {
+                string list = CommandLineList() ?? DefaultActiveList();
+                if (File.Exists(list))
+                {
+                    fsData root = fsJsonParser.Parse(File.ReadAllText(list));
+                    string baseDir = Path.GetDirectoryName(list);
+                    if (root.IsDictionary && root.AsDictionary.ContainsKey("mods"))
+                        foreach (fsData entry in root.AsDictionary["mods"].AsList)
+                        {
+                            string dir = entry.AsString;
+                            if (!Path.IsPathRooted(dir)) dir = Path.GetFullPath(Path.Combine(baseDir, dir));
+                            string cards = Path.Combine(dir, "cards");
+                            if (Directory.Exists(cards)) files.AddRange(Directory.GetFiles(cards, "*.json"));
+                        }
+                }
+            }
+            catch (Exception e) { Debug.LogWarning("OFFLINE MODS: card predecode skipped: " + e.Message); yield break; }
+            System.Diagnostics.Stopwatch total = System.Diagnostics.Stopwatch.StartNew(), slice = System.Diagnostics.Stopwatch.StartNew();
+            int frames = 0;
+            foreach (string file in files)
+            {
+                if (applied) yield break;   // mods were applied first: nothing left to save
+                try
+                {
+                    string json = File.ReadAllText(file);
+                    Decoded d = new Decoded { Card = OriginalGraphRules.Decode<Card>(json), Raw = fsJsonParser.Parse(json).AsDictionary, Json = json };
+                    lock (predecoded) predecoded[file] = d;
+                }
+                catch (Exception) { }   // ApplyMod decodes it again and reports the problem
+                if (slice.Elapsed.TotalMilliseconds >= budgetMs) { frames++; yield return null; slice.Reset(); slice.Start(); }
+            }
+            Debug.Log("OFFLINE MODS: predecoded " + PredecodedCards + " mod cards over " + frames + " frames (" + total.ElapsedMilliseconds + " ms).");
+        }
+        // The predecoded card for this file if its text is unchanged; else null.
+        private static Decoded TakePredecoded(string file, string json)
+        {
+            Decoded d;
+            lock (predecoded) { if (!predecoded.TryGetValue(file, out d)) return null; predecoded.Remove(file); }
+            return d.Json == json ? d : null;
+        }
+
         private static readonly Dictionary<string, string> texts = new Dictionary<string, string>();
         private static readonly Dictionary<string, string> artFiles = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
         private static readonly Dictionary<string, Texture2D> textures = new Dictionary<string, Texture2D>(StringComparer.OrdinalIgnoreCase);
@@ -46,6 +97,9 @@ namespace OfflineEngine
         // Mods whose mod.json says "collection": "earn": their cards and decks are not handed out for free; players get them
         // like original cards (packs, store decks, rewards, crafting). Other mods keep the old behaviour (owned as a playset).
         public static readonly HashSet<string> EarnMods = new HashSet<string>();
+        public static readonly HashSet<string> NoArenaMods = new HashSet<string>();
+        // A card the arena draft pool leaves out because its mod says "arena": false.
+        public static bool OutOfArena(int cardId) { string m; return cardMod.TryGetValue(cardId, out m) && NoArenaMods.Contains(m); }
         private static readonly Dictionary<int, string> cardMod = new Dictionary<int, string>(), deckMod = new Dictionary<int, string>();
         public static bool IsEarnedCard(int id) { string m; return cardMod.TryGetValue(id, out m) && EarnMods.Contains(m); }
         // Extension interface (EverlastingHost): which mod a card or card back came from, each loaded mod's name and folder.
@@ -101,11 +155,13 @@ namespace OfflineEngine
             // OfflineCompat: duplicates, engine level, declared conflicts and dependencies decide what loads, and in which order.
             foreach (OfflineCompat.Manifest m in OfflineCompat.Plan(dirs, Problems))
             {
+                System.Diagnostics.Stopwatch mw = System.Diagnostics.Stopwatch.StartNew();
                 try { ApplyMod(config, m.Dir); LoadOrder.Add(m.Id); }
                 catch (Exception e) { Problems.Add(m.Id + ": " + e.Message); Debug.LogError("OFFLINE MODS: " + m.Dir + " not loaded: " + e); }
+                finally { if (mw.ElapsedMilliseconds >= 30) Debug.Log("OFFLINE TIMING: mod " + m.Id + " total " + mw.ElapsedMilliseconds + " ms"); }
             }
             foreach (string p in Problems) Debug.LogWarning("OFFLINE MODS problem: " + p);
-            if (!LocalOnly) try { ApplyGlobalExtras(config); } catch (Exception e) { Problems.Add("extra emotes: " + e.Message); }
+            if (!LocalOnly) OfflineGraphics.Timed("mods: global extras", delegate { try { ApplyGlobalExtras(config); } catch (Exception e) { Problems.Add("extra emotes: " + e.Message); } });
             Debug.Log("OFFLINE MODS: " + Loaded.Count + " mods, " + CardIds.Count + " cards, " + Decks.Count + " decks, " + ExtraEmotes + " extra emotes; problems " + Problems.Count + ".");
             if (OfflineModLocale.Languages > 0) Debug.Log("OFFLINE MODS: translations " + OfflineModLocale.Strings + " strings in " + OfflineModLocale.Languages + " languages; game language names: " + OfflineModLocale.LanguageNames());
             if (CommandLineList() == null) WriteReport(null);   // previews with another list leave the Play test report alone
@@ -152,13 +208,17 @@ namespace OfflineEngine
             texts["mod." + id + ".set"] = name;
             if (meta.AsDictionary.ContainsKey("collection") && meta.AsDictionary["collection"].IsString
                 && string.Equals(meta.AsDictionary["collection"].AsString, "earn", StringComparison.OrdinalIgnoreCase)) EarnMods.Add(id);
+            // "arena": false keeps every card of this mod out of the Solo and Versus Arena drafts (a card can also opt out
+            // alone with InvalidArenaPick in its file).
+            if (meta.AsDictionary.ContainsKey("arena") && meta.AsDictionary["arena"].IsBool && !meta.AsDictionary["arena"].AsBool) NoArenaMods.Add(id);
             string cardsDir = Path.Combine(dir, "cards");
             if (!LocalOnly && Directory.Exists(cardsDir))
                 foreach (string file in Directory.GetFiles(cardsDir, "*.json"))
                 try
                 {
                     string cardJson = File.ReadAllText(file);
-                    Card card = OriginalGraphRules.Decode<Card>(cardJson);
+                    Decoded pre = TakePredecoded(file, cardJson);
+                    Card card = pre != null ? pre.Card : OriginalGraphRules.Decode<Card>(cardJson);
                     int cid = card.ResourceId.Id;
                     if (cid == 0 || existing.Contains(cid)) { Problems.Add(id + "/" + Path.GetFileName(file) + ": card id " + cid + " already exists"); continue; }
                     if (!config.CardDefinitions.Exists(delegate(CardDefinition d) { return d.Name == card.Definition; }))
@@ -172,7 +232,7 @@ namespace OfflineEngine
                     if (string.IsNullOrEmpty(card.Image) || !card.Image.StartsWith(ImagePrefix, StringComparison.OrdinalIgnoreCase)) card.Image = ImagePrefix + id + "/" + slug;
                     if (File.Exists(art)) artFiles[card.Image] = art;
                     set.Cards.Add(card); existing.Add(cid); CardIds.Add(cid); cardMod[cid] = id;
-                    OfflineAudio.RegisterCard(id, dir, card, fsJsonParser.Parse(cardJson).AsDictionary, config, Problems);
+                    OfflineAudio.RegisterCard(id, dir, card, pre != null ? pre.Raw : fsJsonParser.Parse(cardJson).AsDictionary, config, Problems);
                 }
                 catch (Exception e) { Problems.Add(id + "/cards/" + Path.GetFileName(file) + ": skipped (" + e.Message + ")"); }
             if (set.Cards.Count > 0 && config != null) config.CardCollection.Add(set);
@@ -223,6 +283,9 @@ namespace OfflineEngine
                     config.DeckInfo.Add(deck); Decks.Add(deck); deckMod[deck.TypeNameHash] = id;
                 }
                 catch (Exception e) { Problems.Add(id + "/decks/" + Path.GetFileName(file) + ": skipped (" + e.Message + ")"); }
+            int changedHere = 0;
+            if (!LocalOnly) Section(id, "changed cards", delegate { changedHere = LoadChanges(config, id, dir); });   // gameplay: offline only
+            if (changedHere > 0) Debug.Log("OFFLINE MODS: " + id + " changes " + changedHere + " original cards.");
             int replacedHere = 0, avatarsHere = 0;
             Section(id, "image replacements", delegate { replacedHere = LoadReplacements(id, Path.Combine(dir, "replace")); });
             if (!LocalOnly) Section(id, "avatars", delegate { avatarsHere = LoadAvatars(config, id, name, Path.Combine(dir, "avatars")); });
@@ -243,8 +306,10 @@ namespace OfflineEngine
         // One kind of a mod's content: a failure is reported and the rest of the mod (and the game) carries on.
         private static void Section(string id, string what, Action load)
         {
+            System.Diagnostics.Stopwatch w = System.Diagnostics.Stopwatch.StartNew();
             try { load(); }
             catch (Exception e) { Problems.Add(id + ": " + what + " not loaded (" + e.Message + ")"); Debug.LogError("OFFLINE MODS: " + id + " " + what + ": " + e); }
+            finally { if (w.ElapsedMilliseconds >= 30) Debug.Log("OFFLINE TIMING: mod " + id + " " + what + " " + w.ElapsedMilliseconds + " ms"); }
         }
 
         // The avatar picker (AvatarPickerWin) pages through AvatarCollection.Races and shows each race's avatars in its
@@ -646,6 +711,106 @@ namespace OfflineEngine
             string value;
             if (key == null || !texts.TryGetValue(key, out value)) return true;
             text = OfflineModLocale.Translate(key, value) ?? value; __result = true; return false;
+        }
+
+        // ---- original cards changed in place (<mod>/changes/*.json; offline gameplay mods) -----------------------------
+        // A change is a full copy of an original card (TESL Forge "Change this card") with the mod's edits: stats, keywords,
+        // abilities, rarity, name and text. Its fields are copied onto the installed card at the end of the rule import
+        // (RuleImporter; the engine prepares this right after the main menu shows), so the mod's rules win over the original
+        // ones; each import starts from the original again (RevertChanges), as its batches validate the original cards.
+        // A changed name or text gets its own key; otherwise the original (translated) name and text stay.
+        private sealed class Change { public string Mod, Json, Slug, OriginalName, OriginalText; public Card Snapshot; }
+        private static readonly Dictionary<int, Change> changes = new Dictionary<int, Change>();
+        public static int ChangedCount { get { return changes.Count; } }
+        public static bool IsChanged(int cardId) { return changes.ContainsKey(cardId); }
+        public static string ChangedBy(int cardId) { Change c; return changes.TryGetValue(cardId, out c) ? c.Mod : null; }
+
+        private static int LoadChanges(GameConfiguration config, string id, string dir)
+        {
+            string folder = Path.Combine(dir, "changes");
+            if (config == null || !Directory.Exists(folder)) return 0;
+            int n = 0;
+            foreach (string file in Directory.GetFiles(folder, "*.json"))
+                try
+                {
+                    string json = File.ReadAllText(file);
+                    Card changed = OriginalGraphRules.Decode<Card>(json);
+                    int cid = changed.ResourceId.Id;
+                    Card original = config.FindCardById(cid);
+                    if (original == null || CardIds.Contains(cid)) { Problems.Add(id + "/changes/" + Path.GetFileName(file) + ": card " + cid + " is not an original card"); continue; }
+                    if (changes.ContainsKey(cid)) { Problems.Add(id + "/changes/" + Path.GetFileName(file) + ": " + original.Name + " is already changed by " + changes[cid].Mod + "; skipped"); continue; }
+                    // Recorded now, applied at the end of the rule import (ApplyChanges): the import's batches check the
+                    // installed cards against the original data, so they must still see the original card.
+                    changes[cid] = new Change { Mod = id, Json = json, Slug = Path.GetFileNameWithoutExtension(file), OriginalName = original.Name, OriginalText = original.Description };
+                    n++;
+                }
+                catch (Exception e) { Problems.Add(id + "/changes/" + Path.GetFileName(file) + ": skipped (" + e.Message + ")"); }
+            return n;
+        }
+
+        // At the end of the rule import: every change over its card (the original's fields are kept the first time, so the
+        // next import can start from the original again); returns the changed card ids.
+        public static List<int> ApplyChanges(GameConfiguration config)
+        {
+            List<int> done = new List<int>();
+            foreach (KeyValuePair<int, Change> kv in changes)
+            {
+                Card target = config.FindCardById(kv.Key);
+                if (target == null) continue;
+                try
+                {
+                    Card changed = OriginalGraphRules.Decode<Card>(kv.Value.Json);
+                    if (kv.Value.Snapshot == null) { kv.Value.Snapshot = new Card(); CopyFields(target, kv.Value.Snapshot); }
+                    Apply(target, changed, kv.Value);
+                    done.Add(kv.Key);
+                }
+                catch (Exception e) { Debug.LogError("OFFLINE MODS: change of " + kv.Key + " by " + kv.Value.Mod + " not applied: " + e.Message); }
+            }
+            return done;
+        }
+
+        // At the start of a rule import: changed cards back to their original fields (the import validates originals).
+        public static void RevertChanges(GameConfiguration config)
+        {
+            foreach (KeyValuePair<int, Change> kv in changes)
+            {
+                Card target = kv.Value.Snapshot == null ? null : config.FindCardById(kv.Key);
+                if (target != null) CopyFields(kv.Value.Snapshot, target);
+            }
+        }
+
+        private static void CopyFields(Card from, Card to)
+        {
+            CardFields();
+            foreach (System.Reflection.FieldInfo f in cardFields) f.SetValue(to, f.GetValue(from));
+        }
+
+        private static List<System.Reflection.FieldInfo> cardFields;
+        private static void CardFields()
+        {
+            if (cardFields != null) return;
+            cardFields = new List<System.Reflection.FieldInfo>();
+            for (Type t = typeof(Card); t != null && t != typeof(object); t = t.BaseType)
+                foreach (System.Reflection.FieldInfo f in t.GetFields(System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.DeclaredOnly))
+                    if (f.Name != "ResourceId") cardFields.Add(f);
+        }
+        private static void Apply(Card target, Card changed, Change c)
+        {
+            CardFields();
+            LocalizedStringKey nameKey = target.NameKey, textKey = target.DescriptionKey;
+            foreach (System.Reflection.FieldInfo f in cardFields) f.SetValue(target, f.GetValue(changed));
+            // the original's translated name and text, unless the mod changed them
+            target.NameKey = nameKey; target.DescriptionKey = textKey;
+            if (!string.IsNullOrEmpty(changed.Name) && changed.Name != c.OriginalName)
+            {
+                target.NameKey = new LocalizedStringKey { RawKey = "mod." + c.Mod + ".changed." + c.Slug + ".title" };
+                texts[target.NameKey.RawKey] = changed.Name;
+            }
+            if (changed.Description != null && changed.Description != c.OriginalText)
+            {
+                target.DescriptionKey = new LocalizedStringKey { RawKey = "mod." + c.Mod + ".changed." + c.Slug + ".text" };
+                texts[target.DescriptionKey.RawKey] = changed.Description;
+            }
         }
 
         public static void SetText(string key, string text) { if (key != null) texts[key] = text ?? ""; }

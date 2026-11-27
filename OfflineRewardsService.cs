@@ -161,7 +161,16 @@ namespace OfflineEngine
                             Rewards.RewardPassDescription pass = reward == null ? null : reward.rewardPasses.Find(delegate(Rewards.RewardPassDescription x) { return x.rewardPassIndex == id.passIndex; });
                             if (pass == null || pass.claimed) continue;
                             pass.claimed = true;
-                            results.Add(Apply(d, pass));
+                            // One reward that cannot be applied must not block the rest: before, an exception here undid the
+                            // whole claim, so the client showed the same (empty) reward screen again forever.
+                            try { results.Add(Apply(d, pass)); }
+                            catch (Exception e)
+                            {
+                                Debug.LogError("OFFLINE REWARDS: reward " + id.rewardId + " pass " + id.passIndex + " (" + pass.bundleKey + ") could not be applied; skipped: " + e);
+                                Rewards.AcceptRewardResponse.AcceptRewardResult empty = new Rewards.AcceptRewardResponse.AcceptRewardResult();
+                                empty.bundleCount = 1; empty.items = new List<Rewards.AcceptRewardResponse.AcceptRewardResult.ItemType>();
+                                results.Add(empty);
+                            }
                         }
                         d.rewards.RemoveAll(delegate(Rewards.RewardDescription r) { return r.rewardPasses.TrueForAll(delegate(Rewards.RewardPassDescription x) { return x.claimed; }); });
                         OfflineArenaService.AfterRewardsClaimed(d);
